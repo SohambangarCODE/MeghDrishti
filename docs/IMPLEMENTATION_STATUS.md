@@ -1,30 +1,30 @@
 # Implementation and acceptance status
 
-The current deliverable is an end-to-end synthetic evaluator with a temporary React presentation, explicitly authorized by the user's revised instructions. It is not the final Stitch design or a connected sourced-data platform.
+The current deliverable is an end-to-end synthetic evaluator with the eleven local Stitch designs adapted to the working React routes. It is not a connected sourced-data platform. Export provenance, corrections and API mappings are documented in STITCH_INTEGRATION.md.
 
 ## Page matrix
 
 | Page | Status | Implemented behavior and limits |
 | --- | --- | --- |
-| P01 /welcome | Implemented temporary UI | Demo entry, purpose, coverage and sign-in links; no login required. |
+| P01 /welcome | Implemented Stitch presentation | Demo entry, purpose, coverage and sign-in links; no login required. |
 | P02 /auth | Implemented configuration gate | Supabase sign-in/sign-up/reset request handling and sign-out; unavailable without configuration. Real account/email flows unverified. |
 | P03 /overview | Implemented | Draft holdings, engine label, latest immutable result metrics, run/edit/graph/compare navigation, empty state. |
-| P04 /portfolio | Implemented | Add/edit/remove, CSV template and preview, exact name/qualified ticker matching, explicit exclusion, duplicate merge, invalid amount/currency blocking, reset. |
+| P04 /portfolio | Implemented | Add/edit/remove, CSV template and preview, exact name/qualified ticker matching, explicit exclusion, duplicate merge, explicit rupees/lakh conversion, invalid amount/unit/currency blocking, reset. |
 | P05 /graph | Implemented | React Flow typed graph, directed semantics, deterministic layout, search/type/affected filters, zoom/fit, hop draft control, selected paths/evidence and keyboard table alternative; 100-node display bound. |
 | P06 /locations | Implemented synthetic scope | Illustrative facility marker, optional Leaflet/OSM tiles, offline list, layer toggles, graph links, honest unavailable weather. No invented route geometry. |
 | P07 /scenarios | Implemented synthetic scope | Stored heat, facility/route/both, intensity/vulnerability/transmission assumptions and 1–3 hops; future-context controls without fabricated data. Sourced auto-screen workflow awaits operations. |
 | P08 /results/:runId | Implemented | Snapshot metrics, direct/indirect unknown handling, tables/chart, strongest and alternative paths, shared dependencies, assumptions, deterministic explanation, JSON/CSV/print. |
 | P09 /compare | Implemented allocation workflow | Fixed source/event/scenario transfer, amount validation, preserved capital, apply to draft/reset. Engine supports assumption overlays; a separate supplier-substitution editor is not implemented. |
 | P10 /evidence | Implemented synthetic scope | Integration statuses, source/version labels, missing inputs, assumptions; refresh disabled for unavailable services. |
-| P11 /reports | Implemented local scope | Bounded local snapshots, result links and exports; in-memory fallback. Authenticated sourced report workflow is prepared at adapter level, not integrated/verified. |
+| P11 /reports | Implemented local scope | Bounded local snapshots, save/open/delete, search and exports; in-memory fallback. Authenticated sourced report workflow is prepared at adapter level, not integrated/verified. |
 
-All P01–P11 use the temporary shell. Final Stitch screens are pending, not a blocker to this authorized development phase. Exact prompts and future export destination are provided.
+All P01–P11 use the shared Stitch presentation. Original HTML, previews and design metadata are preserved; project/screen IDs remain unknown without remote access.
 
 ## Acceptance matrix
 
 | ID | Status | Evidence / limit |
 | --- | --- | --- |
-| A01 | Deferred by explicit user direction | PRD/DESIGN/prompts extracted; no generated exports claimed; temporary routes preserve future integration boundaries. |
+| A01 | Implemented from local exports | Eleven original HTML screens, ten readable PNG previews, one failed-fetch PNG placeholder and exported DESIGN.md preserved. Manifest maps routes. |
 | A02 | Implemented | Lockfile install, Vite build, browser and backend setup procedures; credential-free engine and API modes. See verification log. |
 | A03 | Implemented | Parser/validation tests and desktop/mobile import workflow. |
 | A04 | Implemented | Facility-only, route-only, waypoint/region mapping, overlap maximum and commodity non-duplication. |
@@ -37,7 +37,7 @@ All P01–P11 use the temporary shell. Final Stitch screens are pending, not a b
 | A11 | Implemented | Revision/sequence cancellation tests; obsolete success and failure cannot replace current state. |
 | A12 | Implemented adapter scope | Weather-cache/unavailable fixtures and explicit API errors; no sourced live feed enabled. |
 | A13 | Blocked on configured Postgres | RLS migration and transactional isolation test supplied. JWT cryptographic checks and demo-owner API isolation pass; actual Supabase RLS test has NOT run. |
-| A14 | Implemented temporary UI | Desktop/mobile workflow, keyboard path selection, import errors, map list fallback and downloads tested; targeted screenshots inspected. |
+| A14 | Implemented Stitch presentation | Desktop/mobile workflow, keyboard path selection, import errors, map list fallback and downloads tested; targeted screenshots inspected. |
 | A15 | Implemented | This matrix separates usable demo, prepared adapters, unavailable inputs and unverified external connections. |
 
 ## Integration status

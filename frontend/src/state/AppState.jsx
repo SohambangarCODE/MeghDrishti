@@ -1,4 +1,5 @@
 import { createContext,useContext,useEffect,useRef,useState } from 'react';
+import { FastApiRepository } from '../services/live/FastApiRepository.js';
 import { MockRepository } from '../services/mock/MockRepository.js';
 import { BrowserSimulationService } from '../services/mock/BrowserSimulationService.js';
 import { FastApiSimulationService } from '../services/live/FastApiSimulationService.js';
@@ -15,7 +16,7 @@ export function AppState({children}) {
   const history=useRef(null),gate=useRef(new LatestRequest()),service=useRef(null);
   if(!history.current)history.current=new RunHistory(storage());
   if(!service.current)service.current=import.meta.env.VITE_API_BASE_URL?new FastApiSimulationService(import.meta.env.VITE_API_BASE_URL,session()):new BrowserSimulationService();
-  useEffect(()=>{new MockRepository().load().then(f=>{
+  useEffect(()=>{const repository=import.meta.env.VITE_API_BASE_URL?new FastApiRepository(import.meta.env.VITE_API_BASE_URL):new MockRepository();repository.load().then(f=>{
     let draft=null;
     try{const saved=storage()?.getItem('meghdrishti:draft:v1');if(saved){draft=JSON.parse(saved);draft.holdings=draft.holdings.map(h=>Holding.parse(h));draft.scenario=Scenario.parse(draft.scenario);if(draft.scenario.datasetVersion!==f.dataset.datasetVersion)throw new Error('Old dataset');}}
     catch{draft=null;history.current.warning='Saved draft was invalid or unavailable; reference demo loaded.';}
@@ -33,6 +34,8 @@ export function AppState({children}) {
   return <Context.Provider value={{data,holdings,scenario,error,setError,validationError,
     setAmountError:(id,message)=>{gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors(old=>{const next={...old};if(message)next[id]=message;else delete next[id];return next;});},
     pending,outdated,history:history.current,historyRevision,
+    deleteReport:id=>{history.current.delete(id);setHistoryRevision(n=>n+1);},
+    saveReport:run=>{history.current.save(run);setHistoryRevision(n=>n+1);},
     engine:import.meta.env.VITE_API_BASE_URL?'FastAPI / NetworkX':'Browser demo',
     setHoldings:value=>{edit(setHoldings,value);setAmountErrors(old=>Object.fromEntries(Object.entries(old).filter(([id])=>value.some(h=>h.id===id))));},setScenario:value=>edit(setScenario,value),analyze,
     compare:(...args)=>service.current.compare(...args),reset:()=>{edit(setHoldings,structuredClone(data.holdings));setScenario(structuredClone(data.scenario));setAmountErrors({});}}}>{children}</Context.Provider>;

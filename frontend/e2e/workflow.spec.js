@@ -62,3 +62,39 @@ test('invalid amount blocks analysis and a corrected amount restores it',async({
   await amount.fill('4000000');await amount.press('Tab');
   await expect(page.getByRole('button',{name:'Run synthetic analysis'})).toBeEnabled();
 });
+
+test('reports restore and delete; linked locations and all routes',async({page},testInfo)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/overview');
+ const response=page.waitForResponse(r=>r.url().endsWith('/api/v1/analysis')&&r.request().method()==='POST');
+ await page.getByRole('button',{name:'Run synthetic analysis'}).click();
+ expect((await response).ok()).toBe(true);
+ await expect(page.getByRole('heading',{name:'Analysis results',exact:true})).toBeVisible();
+ const resultUrl=page.url();
+ await page.getByRole('button',{name:'Save report',exact:true}).click();
+ await expect(page.getByText('Snapshot saved in local browser history.',{exact:true})).toBeVisible();
+ await page.goto('/reports');await page.reload();
+ await expect(page.getByRole('button',{name:'Delete report',exact:false})).toHaveCount(1);
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export CSV'}).click();
+ const download=await downloadPromise;const stream=await download.createReadStream();let csv='';for await(const chunk of stream)csv+=chunk;
+ expect(csv).toContain('Evergreen Services');expect(csv).toContain('1000000');
+ await page.locator('main a').filter({hasText:/^20\d\d-/}).click();
+ expect(page.url()).toBe(resultUrl);
+ await expect(page.locator('main')).toContainText('13,34,340.00');
+ await page.goto('/reports');await page.getByRole('button',{name:'Delete report',exact:false}).click();await page.getByRole('button',{name:'Confirm delete'}).click();await page.reload();
+ await expect(page.getByText('No saved local snapshots.',{exact:false})).toBeVisible();
+ await page.goto('/locations');await page.getByLabel('Company selection').selectOption('demo:evergreen');
+ await expect(page.getByText('No recorded facility for this company.',{exact:false})).toBeVisible();
+ await page.getByRole('button',{name:'Select facility'}).click();
+ await expect(page).toHaveURL(/entity=demo%3Afacility/);
+ await page.getByRole('link',{name:'Inspect selection in graph'}).click();
+ await expect(page.locator('main pre')).toContainText('demo:facility');
+ for(const route of ['welcome','overview','portfolio','locations','scenarios','compare','evidence','reports','auth']){
+  await page.goto('/'+route);await expect(page.locator('main h1')).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route).toBe(true);
+  await page.screenshot({path:testInfo.outputPath(route+'.png'),fullPage:true});
+ }
+ await page.goto('/scenarios');await page.getByRole('button',{name:'What-if event',exact:true}).click();
+ await expect(page.getByLabel('Shock mapping').locator('option')).toHaveCount(2);
+ expect(errors).toEqual([]);
+});

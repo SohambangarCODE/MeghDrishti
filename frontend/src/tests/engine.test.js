@@ -25,3 +25,17 @@ describe('portfolio, history and exports',()=>{
   it('makes immutable runs, bounds history and handles denied storage',async()=>{const f=fresh();const r=await new BrowserSimulationService().analyze({...f,requestId:'test'});expect(Object.isFrozen(r.sourceSnapshot)).toBe(true);const h=new RunHistory({getItem:()=>null,setItem:()=>{throw new Error('denied');}},2);h.save(r);h.save({...r,id:'2'});h.save({...r,id:'3'});expect(h.list()).toHaveLength(2);expect(h.warning).toContain('denied');const csv=exportCsv({...r,holdingsResults:r.holdingsResults.map(x=>({...x,originalInputName:'=CMD()'}))});expect(csv).toContain("'=CMD()");expect(csv).toContain('Synthetic / assumed');});
   it('rejects stale async responses after input changes',async()=>{const gate=new LatestRequest();let resolve;const pending=new Promise(r=>resolve=r);let accepted=false;const task=gate.run(()=>pending,()=>accepted=true);gate.invalidate();resolve({});expect(await task).toBe(false);expect(accepted).toBe(false);});
 });
+
+it('normalizes explicit lakh units and rejects ambiguous units',()=>{
+ const p=previewCsv('name,amount,currency,unit\nAster Motors,40,INR,lakh\nEvergreen Services,1000000,INR,rupees',fixture.dataset.companies);
+ expect(commitPreview(p.rows,fixture.dataset.companies).map(h=>h.amount)).toEqual([4000000,1000000]);
+ const invalid=previewCsv('name,amount,unit\nAster Motors,40,crore',fixture.dataset.companies);
+ expect(()=>commitPreview(invalid.rows,fixture.dataset.companies)).toThrow();
+});
+it('restores saved snapshots and persists deletion without mutating other reports',async()=>{
+ let value=null;const storage={getItem:()=>value,setItem:(key,v)=>value=v};
+ const r=await new BrowserSimulationService().analyze({...fresh(),requestId:'history'});
+ const history=new RunHistory(storage);history.save(r);history.save({...r,id:'second'});
+ const restored=new RunHistory(storage);expect(restored.get(r.id).totals.assumedWeightedExposure).toBeCloseTo(1334340,8);
+ restored.delete(r.id);expect(new RunHistory(storage).get(r.id)).toBeNull();expect(new RunHistory(storage).get('second')).not.toBeNull();
+});

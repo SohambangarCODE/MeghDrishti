@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-surface":"#1b1b1e","inverse-surface":"#303033","on-secondary":"#ffffff","surface-variant":"#e4e1e6","background":"#fbf8fc","primary-fixed-dim":"#8fd3ca","surface":"#fbf8fc","primary-container":"#397d76","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed-variant":"#46464f","on-tertiary-container":"#fff7f5","tertiary-container":"#b8560d","secondary":"#5e5e67","secondary-container":"#e0dee9","on-primary-fixed-variant":"#00504a","on-primary-fixed":"#00201d","surface-container-lowest":"#ffffff","outline":"#6f7977","surface-tint":"#216962","on-tertiary":"#ffffff","surface-container-highest":"#e4e1e6","surface-container":"#f0edf1","on-surface-variant":"#3f4947","inverse-on-surface":"#f3f0f4","on-tertiary-fixed":"#331200","primary":"#1b645d","on-background":"#1b1b1e","primary-fixed":"#abefe6","surface-container-high":"#eae7eb","tertiary-fixed":"#ffdbca","on-secondary-fixed":"#1a1b23","surface-container-low":"#f6f2f7","on-primary":"#ffffff","error-container":"#ffdad6","on-primary-container":"#e0fffa","outline-variant":"#bec9c6","tertiary":"#944100","tertiary-fixed-dim":"#ffb68e","on-secondary-container":"#62626b","surface-bright":"#fbf8fc","surface-dim":"#dcd9dd","secondary-fixed":"#e3e1ec","on-tertiary-fixed-variant":"#763300","secondary-fixed-dim":"#c7c5d0","inverse-primary":"#8fd3ca"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1rem","margin":"1rem","gutter-lg":"1rem","margin-lg":"1.5rem","space-md":"0.75rem","space-sm":"0.5rem","gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"tabular-lg":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"label-md":["JetBrains Mono"],"tabular-md":["JetBrains Mono"],"headline-xl":["Geist"],"headline-sm":["Geist"],"headline-lg":["Geist"],"headline-md":["Geist"],"body-sm":["Geist"],"label-xs":["JetBrains Mono"],"body-md":["Geist"],"body-lg":["Geist"]},"fontSize":{"tabular-lg":["16px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"tabular-md":["13px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.02em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-[72px] z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-margin-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="MeghDrishti Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Un6gZaDYLat3kQ9tG_Zi_Nybdmwx8FsTErhWQcfyDYDKKx3Q2GOEG6ZyVOJWQGUHPiLmBVdiVj5aCXzdUpPNppi_bfR18719TLlUhbVA_8OBBA75Zm2xTgCBMGbQowhWNoGFWTUYrnMZ0X4PpzS1-mS_gTX_FK5xMqxX_gnQTs5arITfJHeu6dA4JaxZxU4_WFjS_P7VD6y6901iieRhuLFkiRmgXllUvAPxoVLBubM8etQV0oWBITwMyn"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface tracking-tight leading-none">MeghDrishti</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Climate Portfolio Intelligence</span></div></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Active Entity</span><span class="font-tabular-md text-tabular-md text-on-surface font-semibold">Demo Portfolio Alpha (INR 100L)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[16px] ml-space-xs">expand_more</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-tertiary-fixed px-space-sm py-0.5 rounded-lg text-on-tertiary-fixed-variant"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span><span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Demo simulation</span></div><span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg border border-surface-container-highest uppercase font-medium">Synthetic fixture: v1.0</span></div><div class="hidden xl:flex items-center gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Sectivia</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Synthetic</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Open-Meteo</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Demo cache</span></div></div><div class="flex items-center gap-space-md pl-space-sm border-l border-surface-container-high"><div class="flex flex-col text-right"><span class="font-body-sm text-body-sm text-on-surface font-semibold leading-tight">P. Sundaram</span><span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">Lead Climate Risk Analyst</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiiV8t_qNxEjM9vNWWpeh5aN9usctVNAFd9utDsW3WpOqe3-ZBLCGbuDGAOAOSPlJE_mnwYznVypI4Jakf__D-o_PGX3ESiW_yLd2UYEcbVWsqx7AQDq4b5uYJViVzbK49jt-mkpztWIWqmF64CPUBLtvro3PNmmoCMGZfI1Rw5W4TqWZXknLylY8G2_Dp_lT9QMiR57x21GataOG7vI9L-1YjD2esVt-_IudO35TmT6WfZcgnr6xBw"/></div></div></header><aside class="fixed left-0 top-[72px] bottom-0 w-60 z-40 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-lg mb-space-sm"><span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Risk Navigation</span></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="portfolio-holdings" href="#"><span class="material-symbols-outlined text-[18px]">pie_chart</span><span class="font-body-md text-body-md">Portfolio Holdings</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="exposure-graph" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-md text-body-md">Exposure Graph</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="operational-locations" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-body-md text-body-md">Operational Locations</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scenarios-screening" href="#"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">Scenarios &amp; Screening</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="analysis-results" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span class="font-body-md text-body-md">Analysis Results</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="allocation-compare" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span class="font-body-md text-body-md">Allocation Compare</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evidence-provenance" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-md text-body-md">Evidence &amp; Provenance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="saved-reports" href="#"><span class="material-symbols-outlined text-[18px]">folder</span><span class="font-body-md text-body-md">Saved Reports</span></a></nav></div><div class="p-space-md mx-space-sm mb-space-md bg-surface-container-low rounded-lg"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs font-semibold text-secondary uppercase">Environment</span><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span></div><div class="font-label-xs text-label-xs text-on-surface font-medium truncate">Auth: Demo Mode (Unconfigured)</div><div class="font-label-xs text-label-xs text-on-surface-variant mt-1">2025-05-18T09:42:14Z IST</div></div></aside><div class="pl-60"><main class="relative w-full pt-[72px] px-gutter-lg pb-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Utility Context Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between pb-space-lg gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg uppercase tracking-wider font-semibold">Audit Dossier P10</span>
+<span class="text-outline-variant font-label-xs">•</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-tabular-md">CID: MD-2025-PROV-0089</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Evidence &amp; Data Provenance</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Rigorous audit trail, coverage denominators, live adapter connectivity states, and mathematical assumptions ledger.
+      </p>
+</div>
+<!-- Global Integrity Badge & Action -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-sm rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Provenance Standard</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">BCBS 239 / NGFS Tier-2 Audit</span>
+</div>
+</div>
+<button class="relative group flex items-center gap-space-xs bg-surface-container-high text-secondary px-space-md py-2 rounded-lg cursor-not-allowed transition-all" title="Live sync disabled in deterministic demo sandbox">
+<span class="material-symbols-outlined text-[16px]">sync_disabled</span>
+<span class="font-body-sm text-body-sm font-semibold">Live Feed Resync</span>
+<span class="hidden group-hover:block absolute top-full mt-1.5 right-0 z-30 bg-inverse-surface text-inverse-on-surface font-label-xs text-label-xs px-2.5 py-1.5 rounded-lg shadow-lg whitespace-nowrap">
+          Disabled: Demo fixtures lock live API polling
+        </span>
+</button>
+</div>
+</div>
+<!-- Interactive Provenance Navigation Tabs -->
+<div class="bg-surface-container-low p-1 rounded-xl mb-space-xl flex flex-wrap gap-1 shadow-sm">
+<button class="tab-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-headline-sm text-headline-sm transition-all bg-primary-container text-on-primary-container shadow-sm" id="tab-btn-integrations" onclick="switchTab('integrations')">
+<span class="material-symbols-outlined text-[16px]">cable</span>
+<span>1. Source Integrations</span>
+<span class="ml-1 font-label-xs text-label-xs bg-surface-container-lowest/30 px-1.5 py-0.2 rounded font-mono">5</span>
+</button>
+<button class="tab-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-btn-coverage" onclick="switchTab('coverage')">
+<span class="material-symbols-outlined text-[16px]">pie_chart</span>
+<span>2. Data Coverage</span>
+<span class="ml-1 font-label-xs text-label-xs bg-surface-container-high px-1.5 py-0.2 rounded font-mono">100% L</span>
+</button>
+<button class="tab-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-btn-gaps" onclick="switchTab('gaps')">
+<span class="material-symbols-outlined text-[16px]">running_with_errors</span>
+<span>3. Missing Information</span>
+<span class="ml-1 font-label-xs text-label-xs bg-tertiary-container text-on-tertiary-container px-1.5 py-0.2 rounded font-mono">3 Disclosed</span>
+</button>
+<button class="tab-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-btn-assumptions" onclick="switchTab('assumptions')">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>4. Assumptions Ledger</span>
+<span class="ml-1 font-label-xs text-label-xs bg-surface-container-high px-1.5 py-0.2 rounded font-mono">λ=0.70</span>
+</button>
+<button class="tab-trigger flex items-center gap-space-xs px-space-md py-space-sm rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:bg-surface-container-high transition-all" id="tab-btn-versions" onclick="switchTab('versions')">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>5. Dataset Versions</span>
+<span class="ml-1 font-label-xs text-label-xs bg-surface-container-high px-1.5 py-0.2 rounded font-mono">v1.0</span>
+</button>
+</div>
+<!-- TAB 1: Source Integrations Grid -->
+<div class="tab-panel flex flex-col gap-space-lg" id="tab-integrations">
+<!-- Status Overview Ribbon -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Active Adapters</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface font-semibold mt-0.5">2 / 5 Operational</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">power</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Fixture Mode</span>
+<span class="font-tabular-lg text-tabular-lg text-tertiary font-semibold mt-0.5">Synthetic &amp; Cache</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-[24px]">science</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Audit Attestation</span>
+<span class="font-tabular-lg text-tabular-lg text-primary font-semibold mt-0.5">Deterministic</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">fact_check</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Security Vault State</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface font-semibold mt-0.5">In-Memory Sandbox</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[24px]">lock_clock</span>
+</div>
+</div>
+<!-- Integrations Table Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-surface-container-low">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface">Upstream Ingestion Adapters &amp; Remote Connectors</span>
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-1.5 py-0.5 rounded uppercase">Canonical Spec</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Live ping latency, verification hash digests, and fallback pipeline conditions</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs text-secondary bg-surface-container-lowest px-space-sm py-1 rounded-lg">
+<span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>
+<span>Deterministic Mock Bus Active</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider h-8">
+<th class="px-space-lg font-medium">Adapter Service</th>
+<th class="px-space-md font-medium">Integration State</th>
+<th class="px-space-md font-medium">Technical Specification &amp; Manifest</th>
+<th class="px-space-md font-medium">Scope Coverage</th>
+<th class="px-space-md font-medium">Provenance Grade</th>
+<th class="px-space-lg text-right font-medium">Audit Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md text-on-surface">
+<!-- Adapter 1: Sectivia -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Sectivia Relationship Graph</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">adapter.sectivia.local_graph</span>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center gap-1 font-label-xs text-label-xs bg-primary-container/15 text-primary px-2 py-0.5 rounded font-semibold uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                  Imported
+                </span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">Local reference fixture v1.0. Sourced feed not connected.</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono mt-0.5">SHA256: 9f8a3c...e81d • CC BY 4.0</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-on-surface">
+                4 entities, 3 commercial ties
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono uppercase font-semibold">
+                  Synthetic
+                </span>
+</td>
+<td class="px-space-lg py-space-md text-right">
+<button class="font-label-xs text-label-xs text-primary hover:text-surface-tint font-semibold uppercase underline" onclick="inspectDigest('Sectivia Graph Fixture', '4 entity vertices, 3 directed bilateral cash-flow edges. Model bounds max traversal: 3 hops. Canonical node reference checksum matches demo ledger.')">
+                  Verify Digest
+                </button>
+</td>
+</tr>
+<!-- Adapter 2: Open-Meteo -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">thermostat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Open-Meteo Weather API</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">adapter.openmeteo.forecast_v1</span>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center gap-1 font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded font-semibold uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span>
+                  Simulated Cache
+                </span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">7-day forecast cache for Sanand / Bhiwandi / JNPT. Live API connection not configured.</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono mt-0.5">TTL: Cached • 0.25° Spatial Grid Resolution</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-on-surface">
+                3 Key Industrial Corridors
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono uppercase font-semibold">
+                  Sourced
+                </span>
+</td>
+<td class="px-space-lg py-space-md text-right">
+<button class="font-label-xs text-label-xs text-primary hover:text-surface-tint font-semibold uppercase underline" onclick="inspectDigest('Open-Meteo Fixture', 'Point forecast lat/lon bindings for Sanand Auto Hub (22.98, 72.37), Bhiwandi Warehousing (19.29, 73.06), JNPT Port Terminal (18.95, 72.95). 7-day diurnal heat bounds recorded.')">
+                  Verify Digest
+                </button>
+</td>
+</tr>
+<!-- Adapter 3: World Bank CCKP -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary font-bold">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">World Bank CCKP Projections</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">adapter.wb.climate_knowledge</span>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center gap-1 font-label-xs text-label-xs bg-error-container text-on-error-container px-2 py-0.5 rounded font-semibold uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-error"></span>
+                  Unavailable / Not Configured
+                </span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">CMIP6 hd35 reference fixtures available for demonstration; live credentials not configured.</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono mt-0.5">SSP2-4.5 / SSP5-8.5 baseline fallback</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-secondary">
+                CMIP6 hd35 Ref Only
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono uppercase font-semibold">
+                  Assumed
+                </span>
+</td>
+<td class="px-space-lg py-space-md text-right">
+<button class="font-label-xs text-label-xs text-primary hover:text-surface-tint font-semibold uppercase underline" onclick="inspectDigest('World Bank CCKP Mock', 'Historical decadal baseline (1995-2014) coupled with ensemble median SSP2-4.5 projections. Live WB API endpoints omitted in client demo runtime.')">
+                  Verify Digest
+                </button>
+</td>
+</tr>
+<!-- Adapter 4: Supabase Auth & Postgres -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary font-bold">
+<span class="material-symbols-outlined text-[18px]">database</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Supabase Auth &amp; Postgres</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">client.supabase.pg_cluster</span>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center gap-1 font-label-xs text-label-xs bg-surface-container-high text-secondary px-2 py-0.5 rounded font-semibold uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  Not Configured (Demo Mode)
+                </span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">Operating in local in-memory session. Server RLS disabled.</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono mt-0.5">Session Memory: Active Alpha State</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-secondary">
+                Client-Local Runtime
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono uppercase font-semibold">
+                  Synthetic
+                </span>
+</td>
+<td class="px-space-lg py-space-md text-right">
+<button class="font-label-xs text-label-xs text-primary hover:text-surface-tint font-semibold uppercase underline" onclick="inspectDigest('In-Memory State', 'No external database mutations allowed. Authentication operates as analyst persona Sundaram with read-only sandbox permissions.')">
+                  Verify Digest
+                </button>
+</td>
+</tr>
+<!-- Adapter 5: Google Gemini -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Google Gemini Explanations</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">genai.gemini.risk_narrator</span>
+</div>
+</div>
+</td>
+<td class="px-space-md py-space-md">
+<span class="inline-flex items-center gap-1 font-label-xs text-label-xs bg-surface-container-high text-secondary px-2 py-0.5 rounded font-semibold uppercase">
+<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
+                  Deterministic Template Fallback
+                </span>
+</td>
+<td class="px-space-md py-space-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">Model explanations generated via verified deterministic rules.</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono mt-0.5">Zero probabilistic hallucination risk</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-on-surface">
+                All 4 Holdings
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono uppercase font-semibold">
+                  Synthetic
+                </span>
+</td>
+<td class="px-space-lg py-space-md text-right">
+<button class="font-label-xs text-label-xs text-primary hover:text-surface-tint font-semibold uppercase underline" onclick="inspectDigest('Template Explanations Engine', 'Deterministic templating ensures repeatable audit evidence. Mathematical risk transmission factors (0.75 facility vulnerability * 0.70 transmission multiplier) are hardwired.')">
+                  Verify Digest
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Provenance Footnote Footer -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between text-secondary gap-space-sm font-label-xs text-label-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">info</span>
+<span>Status Legend: <strong class="text-on-surface font-semibold">Imported</strong> (Local store loaded), <strong class="text-on-surface font-semibold">Simulated Cache</strong> (Fixed corridor points), <strong class="text-on-surface font-semibold">Not Configured</strong> (Stubbed).</span>
+</div>
+<span>Data Snapshot UTC: 2025-05-18T09:42:14Z</span>
+</div>
+</div>
+</div>
+<!-- TAB 2: Data Coverage Denominators -->
+<div class="tab-panel hidden flex-col gap-space-lg" id="tab-coverage">
+<!-- Guiding Principle Banner -->
+<div class="bg-primary text-on-primary p-space-lg rounded-xl shadow-md flex items-start gap-space-md">
+<span class="material-symbols-outlined text-[24px] text-primary-fixed mt-0.5">balance</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary-fixed">Regulatory Governance Principle</span>
+<h2 class="font-headline-md text-headline-md font-semibold mt-0.5">Coverage Transparency: Zero-Imputation Doctrine</h2>
+<p class="font-body-md text-body-md text-on-primary/90 mt-1 leading-relaxed">
+          Missing data is strictly classified and tracked as <span class="font-mono bg-on-primary/10 px-1.5 py-0.5 rounded text-white">UNKNOWN</span> in calculations. Unreported facilities, unmapped supply tiers, or absent emissions declarations are <strong class="underline decoration-primary-fixed">never imputed as zero risk</strong> nor certified as safe.
+        </p>
+</div>
+</div>
+<!-- 4 Explicit Coverage Breakdown Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Matched Holdings -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Capital Allocation Match</span>
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">4 / 4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1">Holdings Active</span>
+</div>
+<!-- Gauge Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex flex-col gap-0.5">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Matched Portfolio Value</span>
+<span class="font-tabular-md text-tabular-md font-semibold text-on-surface">₹ 100.00 Lakh</span>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Coverage Denominator</span>
+<span class="font-tabular-md text-tabular-md font-semibold text-primary">100.0% of Capital</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Dependency Paths -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Dependency Graph Traversal</span>
+<span class="material-symbols-outlined text-primary text-[20px]">account_tree</span>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">3 / 4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1">Holdings Tied</span>
+</div>
+<!-- Gauge Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex flex-col gap-0.5">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Traversed Capital</span>
+<span class="font-tabular-md text-tabular-md font-semibold text-on-surface">₹ 90.00 Lakh</span>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Coverage Denominator</span>
+<span class="font-tabular-md text-tabular-md font-semibold text-primary">90.0% of Capital</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Operational Locations -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Geospatial Asset Pinning</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">pin_drop</span>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">3 / 4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1">Holdings Disclosed</span>
+</div>
+<!-- Gauge Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex flex-col gap-0.5">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Active Facility Nodes</span>
+<span class="font-tabular-md text-tabular-md font-semibold text-on-surface">6 Physical Sites</span>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Gap Exception</span>
+<span class="font-label-xs text-label-xs font-semibold text-tertiary">Evergreen (No Sites)</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Evaluated Weather Coverage -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Stress Testing Hazard Footprint</span>
+<span class="material-symbols-outlined text-primary text-[20px]">thunderstorm</span>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">1 / 1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-1">Simulated Corridor</span>
+</div>
+<!-- Gauge Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex flex-col gap-0.5">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Active Stress Zone</span>
+<span class="font-label-xs text-label-xs font-semibold text-on-surface">Western Industrial</span>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Fixture Status</span>
+<span class="font-label-xs text-label-xs text-primary font-mono">Illustrative Demo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Denominator Audit Breakdown Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-md bg-surface-container-low flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">Entity-Level Coverage Audit Breakdown</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">Total Allocation Base: ₹ 100,00,000</span>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider h-8">
+<th class="px-space-lg font-medium">Entity Holding</th>
+<th class="px-space-md font-medium text-right">Capital Exposure</th>
+<th class="px-space-md font-medium">Graph Linkage</th>
+<th class="px-space-md font-medium">Disclosed Facilities</th>
+<th class="px-space-md font-medium">Weather Exposure</th>
+<th class="px-space-lg font-medium">Coverage Classification</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-sm font-semibold text-on-surface">Tata Motors Ltd.</td>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md text-right text-on-surface">₹ 40.00 Lakh</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-primary font-mono">Linked (Tier-1)</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-on-surface">3 Facilities (Sanand, Pune, Pantnagar)</td>
+<td class="px-space-md py-space-sm"><span class="font-label-xs text-label-xs bg-tertiary-container/20 text-tertiary font-semibold px-2 py-0.5 rounded">High Stress (&gt;35°C)</span></td>
+<td class="px-space-lg py-space-sm"><span class="font-label-xs text-label-xs bg-primary-container/15 text-primary font-semibold px-2 py-0.5 rounded">Fully Qualified (100%)</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-sm font-semibold text-on-surface">Mahindra Logistics Ltd.</td>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md text-right text-on-surface">₹ 30.00 Lakh</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-primary font-mono">Linked (Supplier)</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-on-surface">2 Facilities (Bhiwandi, Chakan Hub)</td>
+<td class="px-space-md py-space-sm"><span class="font-label-xs text-label-xs bg-tertiary-container/20 text-tertiary font-semibold px-2 py-0.5 rounded">Moderate Stress (34.2°C)</span></td>
+<td class="px-space-lg py-space-sm"><span class="font-label-xs text-label-xs bg-primary-container/15 text-primary font-semibold px-2 py-0.5 rounded">Fully Qualified (100%)</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-sm font-semibold text-on-surface">APM Terminals Pipavav</td>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md text-right text-on-surface">₹ 20.00 Lakh</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-primary font-mono">Linked (Transport Hub)</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-on-surface">1 Facility (Pipavav Port)</td>
+<td class="px-space-md py-space-sm"><span class="font-label-xs text-label-xs bg-surface-container-high text-secondary px-2 py-0.5 rounded">Nominal (32.1°C)</span></td>
+<td class="px-space-lg py-space-sm"><span class="font-label-xs text-label-xs bg-primary-container/15 text-primary font-semibold px-2 py-0.5 rounded">Fully Qualified (100%)</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-low/50">
+<td class="px-space-lg py-space-sm font-semibold text-on-surface">Evergreen Clean Services Pvt.</td>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md text-right text-on-surface">₹ 10.00 Lakh</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-secondary font-mono">Isolated (Zero Traversal)</td>
+<td class="px-space-md py-space-sm font-label-xs text-label-xs text-tertiary">0 Facilities Mapped (Public Gap)</td>
+<td class="px-space-md py-space-sm"><span class="font-label-xs text-label-xs bg-surface-container-high text-secondary px-2 py-0.5 rounded">Unmonitored / NA</span></td>
+<td class="px-space-lg py-space-sm"><span class="font-label-xs text-label-xs bg-error-container text-on-error-container font-semibold px-2 py-0.5 rounded">Data Gap Flagged</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- TAB 3: Missing Information & Data Gaps -->
+<div class="tab-panel hidden flex-col gap-space-lg" id="tab-gaps">
+<!-- Context Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Disclosed Analytical Gaps &amp; Fallback Rules</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Explicit catalogue of systemic omissions in public filings and Sectivia corporate registry disclosures.
+        </p>
+</div>
+<span class="font-label-xs text-label-xs bg-tertiary-container text-on-tertiary-container px-space-md py-1 rounded-lg font-semibold uppercase">
+        3 Material Gaps Documented
+      </span>
+</div>
+<!-- 3 Core Disclosed Gaps Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Gap 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-tertiary mb-space-sm">
+<span class="material-symbols-outlined text-[20px]">factory</span>
+<span class="font-label-xs text-label-xs uppercase font-semibold">Production Distribution</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Facility Production Volume Splits</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed">
+            Entities do not disaggregate operating throughput across physical assembly sites in BRSR filings.
+          </p>
+<div class="mt-space-md bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Imputation Fallback Rule:</span>
+<p class="font-label-xs text-label-xs text-on-surface mt-0.5 font-mono">
+              Uniform allocation (100% capacity assumption per node under maximum potential loss bounds).
+            </p>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex items-center justify-between text-secondary">
+<span class="font-label-xs text-label-xs">Impacted: All Portfolios</span>
+<span class="font-label-xs text-label-xs font-semibold bg-surface-container-high px-1.5 py-0.5 rounded text-tertiary">High Severity</span>
+</div>
+</div>
+<!-- Gap 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-tertiary mb-space-sm">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+<span class="font-label-xs text-label-xs uppercase font-semibold">Logistics Corridors</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Transport Route Carrier Splits</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed">
+            Inter-modal carrier shares (rail vs. highway vs. coastal feeder) lack auditable contract share disclosures in published logistics contracts.
+          </p>
+<div class="mt-space-md bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Imputation Fallback Rule:</span>
+<p class="font-label-xs text-label-xs text-on-surface mt-0.5 font-mono">
+              Directed edges utilize nominal equal-weight transit split across identified multi-modal nodes.
+            </p>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex items-center justify-between text-secondary">
+<span class="font-label-xs text-label-xs">Impacted: Mahindra Logistics</span>
+<span class="font-label-xs text-label-xs font-semibold bg-surface-container-high px-1.5 py-0.5 rounded text-primary">Moderate</span>
+</div>
+</div>
+<!-- Gap 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-error mb-space-sm">
+<span class="material-symbols-outlined text-[20px]">person_off</span>
+<span class="font-label-xs text-label-xs uppercase font-semibold">Tier-2 Supply Chain</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Evergreen Services Sub-Contracts</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed">
+            Evergreen Clean Services Pvt. has zero registered public operational facilities and withholds Tier-2 contractor geographic manifests.
+          </p>
+<div class="mt-space-md bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Imputation Fallback Rule:</span>
+<p class="font-label-xs text-label-xs text-on-surface mt-0.5 font-mono">
+              Classified explicitly as "UNMAPPED_NODE"; excluded from spatial heat hazard index calculation.
+            </p>
+</div>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-surface-container flex items-center justify-between text-secondary">
+<span class="font-label-xs text-label-xs">Impacted: ₹10.00 Lakh</span>
+<span class="font-label-xs text-label-xs font-semibold bg-error-container text-on-error-container px-1.5 py-0.5 rounded">Unresolvable</span>
+</div>
+</div>
+</div>
+<!-- Remediation Protocol Guidance -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex items-start gap-space-md shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">policy</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Data Ingestion Remediation Process</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+          Analysts can submit verified corporate disclosures or supply chain invoices to overwrite default fallback assumptions. Any uploaded client overrides generate a distinct hash digest and require dual-sign-off before propagating through the topological engine.
+        </p>
+</div>
+</div>
+</div>
+<!-- TAB 4: Model Assumptions & Parameters Ledger -->
+<div class="tab-panel hidden flex-col gap-space-lg" id="tab-assumptions">
+<!-- Header Summary -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Mathematical Assumptions &amp; Transmission Parameters</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Deterministic coefficients governing topological vulnerability cascades across industrial vertices</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-md py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">copyright</span>
+<span>Attribution: Sectivia CC BY 4.0</span>
+</div>
+</div>
+<!-- Parameter Ledger Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider h-8">
+<th class="px-space-lg font-medium">Model Parameter</th>
+<th class="px-space-md font-medium">Mathematical Variable</th>
+<th class="px-space-md font-medium text-right">Configured Value</th>
+<th class="px-space-md font-medium">Sensitivity Domain</th>
+<th class="px-space-lg font-medium">Methodological Rationale</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md text-on-surface">
+<!-- Parameter 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md font-semibold text-on-surface">
+                Operational Screening Threshold
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs font-mono text-primary font-bold">
+                T_crit
+              </td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-right font-bold text-on-surface">
+                35.0 °C
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs text-secondary font-mono">
+                [32.0°C – 40.0°C]
+              </td>
+<td class="px-space-lg py-space-md font-body-sm text-body-sm text-on-surface-variant">
+                Ambient wet-bulb/dry-bulb inflection point where manufacturing labor hours decrease and equipment cooling loads incur non-linear energy surcharge penalties.
+              </td>
+</tr>
+<!-- Parameter 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md font-semibold text-on-surface">
+                Hazard Severity Normalization Span
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs font-mono text-primary font-bold">
+                ΔT_norm
+              </td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-right font-bold text-on-surface">
+                10.0 °C
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs text-secondary font-mono">
+                [5.0°C – 15.0°C]
+              </td>
+<td class="px-space-lg py-space-md font-body-sm text-body-sm text-on-surface-variant">
+                Scales heat anomaly from initial threshold to acute crisis level (35°C baseline to 45°C catastrophic max). Hazard factor is calculated as (T - T_crit) / ΔT_norm.
+              </td>
+</tr>
+<!-- Parameter 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md font-semibold text-on-surface">
+                Direct Facility Vulnerability
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs font-mono text-primary font-bold">
+                V_direct
+              </td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-right font-bold text-on-surface">
+                0.75
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs text-secondary font-mono">
+                [0.00 – 1.00]
+              </td>
+<td class="px-space-lg py-space-md font-body-sm text-body-sm text-on-surface-variant">
+                Physical vulnerability coefficient applied directly to capital at risk at affected asset footprint in the absence of on-site microgrid/chiller redundancy.
+              </td>
+</tr>
+<!-- Parameter 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md font-semibold text-on-surface">
+                Commercial Transmission Multiplier
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs font-mono text-tertiary font-bold">
+                λ_comm
+              </td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-right font-bold text-tertiary">
+                0.70
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs text-secondary font-mono">
+                [0.20 – 0.90]
+              </td>
+<td class="px-space-lg py-space-md font-body-sm text-body-sm text-on-surface-variant">
+                Geometric decay factor transmitting stress between buyer and vendor vertices. Each successive hop dampens indirect financial impairment by factor of λ^k.
+              </td>
+</tr>
+<!-- Parameter 5 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-space-lg py-space-md font-semibold text-on-surface">
+                Max Graph Traversal Bounds
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs font-mono text-primary font-bold">
+                k_max
+              </td>
+<td class="px-space-md py-space-md font-tabular-md text-tabular-md text-right font-bold text-on-surface">
+                3 hops
+              </td>
+<td class="px-space-md py-space-md font-label-xs text-label-xs text-secondary font-mono">
+                [1 – 5 hops]
+              </td>
+<td class="px-space-lg py-space-md font-body-sm text-body-sm text-on-surface-variant">
+                Truncation depth for indirect supply cascade analysis. Mitigates noise amplification in sparse networks while capturing primary and secondary customer impacts.
+              </td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Attribution Bar -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between text-secondary gap-space-sm font-label-xs text-label-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Methodology certified for Institutional Portfolio Alpha INR 100 Lakh benchmark stress test.</span>
+</div>
+<span class="font-mono">Reference Spec: NGFS-DIR-PH-2025.4</span>
+</div>
+</div>
+</div>
+<!-- TAB 5: Dataset Versions -->
+<div class="tab-panel hidden flex-col gap-space-lg" id="tab-versions">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Version Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase font-semibold text-primary">Production Fixture</span>
+<span class="font-label-xs text-label-xs bg-primary-container/15 text-primary px-1.5 py-0.5 rounded font-mono font-semibold">CURRENT</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-sm">Synthetic Baseline v1.0</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            Baseline release containing canonical 4-holding Indian commercial dependency matrix and 6 physical facility points.
+          </p>
+<div class="mt-space-md font-mono font-label-xs text-label-xs text-secondary bg-surface-container-low p-space-sm rounded">
+            Commit: 7a9e3b1c8f42<br/>
+            Release Date: 2025-05-10
+          </div>
+</div>
+<button class="mt-space-lg w-full bg-surface-container-high text-on-surface py-2 rounded-lg font-headline-sm text-headline-sm hover:bg-surface-container-highest transition-all">
+          Inspect Schema Spec
+        </button>
+</div>
+<!-- Version Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase font-semibold text-secondary">Historical Sandbox</span>
+<span class="font-label-xs text-label-xs bg-surface-container-high text-secondary px-1.5 py-0.5 rounded font-mono">ARCHIVED</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-sm">Synthetic Baseline v0.9-rc</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            Early topology testing draft without Evergreen Services gap disclosure annotations.
+          </p>
+<div class="mt-space-md font-mono font-label-xs text-label-xs text-secondary bg-surface-container-low p-space-sm rounded">
+            Commit: 3d1c4e9a0f21<br/>
+            Release Date: 2025-04-22
+          </div>
+</div>
+<button class="mt-space-lg w-full bg-surface-container-high text-secondary py-2 rounded-lg font-headline-sm text-headline-sm cursor-not-allowed">
+          View Diff Delta
+        </button>
+</div>
+<!-- Version Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase font-semibold text-tertiary">Upcoming Live Staging</span>
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-1.5 py-0.5 rounded font-mono">Q3 STAGING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-sm">SEBI BRSR Core Connect v2.0</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            Real-time XBRL feed connector to NSE/BSE disclosures including Scope 3 upstream transport logs.
+          </p>
+<div class="mt-space-md font-mono font-label-xs text-label-xs text-secondary bg-surface-container-low p-space-sm rounded">
+            Target Release: 2025-08-30<br/>
+            Spec: Evolving
+          </div>
+</div>
+<button class="mt-space-lg w-full bg-surface-container-high text-secondary py-2 rounded-lg font-headline-sm text-headline-sm cursor-not-allowed">
+          Preview Staging Schema
+        </button>
+</div>
+</div>
+</div>
+<!-- Audit Inspector Drawer Modal (Subtle Tonal Stack) -->
+<div class="fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-50 hidden items-center justify-center p-space-md" id="inspector-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-xl border-none">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fingerprint</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold" id="modal-title">Verification Digest</h3>
+</div>
+<button class="text-secondary hover:text-on-surface" onclick="closeDigest()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="py-space-md">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="modal-body">
+          Digest payload metadata.
+        </p>
+<div class="mt-space-md bg-surface-container-low p-space-md rounded-lg font-mono font-label-xs text-label-xs text-secondary">
+<div>Status: DETERMINISTIC_VALIDATED</div>
+<div>Cryptographic Key: RSA_SHA256_SEC_FIXTURE_9918</div>
+<div>Signature: VALID (Self-attested synthetic environment)</div>
+</div>
+</div>
+<div class="pt-space-sm flex justify-end">
+<button class="bg-primary text-on-primary font-headline-sm text-headline-sm px-space-lg py-2 rounded-lg shadow-sm" onclick="closeDigest()">
+          Acknowledge
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Tab Interaction Script -->
+<script>
+  function switchTab(tabId) {
+    // Hide all tab panels
+    const panels = document.querySelectorAll('.tab-panel');
+    panels.forEach(panel => {
+      panel.classList.add('hidden');
+      panel.classList.remove('flex');
+    });
+
+    // Reset button states
+    const buttons = document.querySelectorAll('.tab-trigger');
+    buttons.forEach(btn => {
+      btn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      btn.classList.add('text-on-surface-variant');
+    });
+
+    // Activate selected panel
+    const activePanel = document.getElementById('tab-' + tabId);
+    if (activePanel) {
+      activePanel.classList.remove('hidden');
+      activePanel.classList.add('flex');
+    }
+
+    // Activate selected button
+    const activeBtn = document.getElementById('tab-btn-' + tabId);
+    if (activeBtn) {
+      activeBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      activeBtn.classList.remove('text-on-surface-variant');
+    }
+  }
+
+  function inspectDigest(title, body) {
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-body').innerText = body;
+    const modal = document.getElementById('inspector-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeDigest() {
+    const modal = document.getElementById('inspector-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+</script></main></div></body></html>

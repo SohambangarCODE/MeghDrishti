@@ -23,7 +23,7 @@ export function previewCsv(text,companies) {
   if (!result.data.length) throw new Error('CSV contains no holdings');
   const rows=result.data.map((row,index)=>{
     const match=matchCompany(row,companies);const errors=[];let amount=null;
-    try {amount=parseAmount(row.amount);} catch(e) {errors.push(e.message);}
+    try {const unit=(row.unit?.trim()||'rupees').toLowerCase();if(!['rupees','lakh'].includes(unit))throw new Error('Unit must be rupees or lakh');amount=parseAmount(String(parseAmount(row.amount)*(unit==='lakh'?100000:1)));} catch(e) {errors.push(e.message);}
     if ((row.currency?.trim()||'INR')!=='INR') errors.push('Only INR is supported; no implicit FX conversion');
     return {id:`import:${index}`,portfolioId:'demo:portfolio',originalInputName:row.name||row.ticker||row.companyId||'Unnamed record',
       ...match,amount,currency:row.currency?.trim()||'INR',exclusionReason:null,errors};

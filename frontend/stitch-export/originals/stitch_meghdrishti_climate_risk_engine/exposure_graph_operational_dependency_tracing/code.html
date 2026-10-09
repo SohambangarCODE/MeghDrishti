@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-surface":"#1b1b1e","inverse-surface":"#303033","on-secondary":"#ffffff","surface-variant":"#e4e1e6","background":"#fbf8fc","primary-fixed-dim":"#8fd3ca","surface":"#fbf8fc","primary-container":"#397d76","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed-variant":"#46464f","on-tertiary-container":"#fff7f5","tertiary-container":"#b8560d","secondary":"#5e5e67","secondary-container":"#e0dee9","on-primary-fixed-variant":"#00504a","on-primary-fixed":"#00201d","surface-container-lowest":"#ffffff","outline":"#6f7977","surface-tint":"#216962","on-tertiary":"#ffffff","surface-container-highest":"#e4e1e6","surface-container":"#f0edf1","on-surface-variant":"#3f4947","inverse-on-surface":"#f3f0f4","on-tertiary-fixed":"#331200","primary":"#1b645d","on-background":"#1b1b1e","primary-fixed":"#abefe6","surface-container-high":"#eae7eb","tertiary-fixed":"#ffdbca","on-secondary-fixed":"#1a1b23","surface-container-low":"#f6f2f7","on-primary":"#ffffff","error-container":"#ffdad6","on-primary-container":"#e0fffa","outline-variant":"#bec9c6","tertiary":"#944100","tertiary-fixed-dim":"#ffb68e","on-secondary-container":"#62626b","surface-bright":"#fbf8fc","surface-dim":"#dcd9dd","secondary-fixed":"#e3e1ec","on-tertiary-fixed-variant":"#763300","secondary-fixed-dim":"#c7c5d0","inverse-primary":"#8fd3ca"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1rem","margin":"1rem","gutter-lg":"1rem","margin-lg":"1.5rem","space-md":"0.75rem","space-sm":"0.5rem","gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"tabular-lg":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"label-md":["JetBrains Mono"],"tabular-md":["JetBrains Mono"],"headline-xl":["Geist"],"headline-sm":["Geist"],"headline-lg":["Geist"],"headline-md":["Geist"],"body-sm":["Geist"],"label-xs":["JetBrains Mono"],"body-md":["Geist"],"body-lg":["Geist"]},"fontSize":{"tabular-lg":["16px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"tabular-md":["13px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.02em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-[72px] z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-margin-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="MeghDrishti Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Un6gZaDYLat3kQ9tG_Zi_Nybdmwx8FsTErhWQcfyDYDKKx3Q2GOEG6ZyVOJWQGUHPiLmBVdiVj5aCXzdUpPNppi_bfR18719TLlUhbVA_8OBBA75Zm2xTgCBMGbQowhWNoGFWTUYrnMZ0X4PpzS1-mS_gTX_FK5xMqxX_gnQTs5arITfJHeu6dA4JaxZxU4_WFjS_P7VD6y6901iieRhuLFkiRmgXllUvAPxoVLBubM8etQV0oWBITwMyn"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface tracking-tight leading-none">MeghDrishti</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Climate Portfolio Intelligence</span></div></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Active Entity</span><span class="font-tabular-md text-tabular-md text-on-surface font-semibold">Demo Portfolio Alpha (INR 100L)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[16px] ml-space-xs">expand_more</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-tertiary-fixed px-space-sm py-0.5 rounded-lg text-on-tertiary-fixed-variant"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span><span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Demo simulation</span></div><span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg border border-surface-container-highest uppercase font-medium">Synthetic fixture: v1.0</span></div><div class="hidden xl:flex items-center gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Sectivia</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Synthetic</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Open-Meteo</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Demo cache</span></div></div><div class="flex items-center gap-space-md pl-space-sm border-l border-surface-container-high"><div class="flex flex-col text-right"><span class="font-body-sm text-body-sm text-on-surface font-semibold leading-tight">P. Sundaram</span><span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">Lead Climate Risk Analyst</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiiV8t_qNxEjM9vNWWpeh5aN9usctVNAFd9utDsW3WpOqe3-ZBLCGbuDGAOAOSPlJE_mnwYznVypI4Jakf__D-o_PGX3ESiW_yLd2UYEcbVWsqx7AQDq4b5uYJViVzbK49jt-mkpztWIWqmF64CPUBLtvro3PNmmoCMGZfI1Rw5W4TqWZXknLylY8G2_Dp_lT9QMiR57x21GataOG7vI9L-1YjD2esVt-_IudO35TmT6WfZcgnr6xBw"/></div></div></header><aside class="fixed left-0 top-[72px] bottom-0 w-60 z-40 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-lg mb-space-sm"><span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Risk Navigation</span></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="portfolio-holdings" href="#"><span class="material-symbols-outlined text-[18px]">pie_chart</span><span class="font-body-md text-body-md">Portfolio Holdings</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="exposure-graph" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-md text-body-md">Exposure Graph</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="operational-locations" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-body-md text-body-md">Operational Locations</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scenarios-screening" href="#"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">Scenarios &amp; Screening</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="analysis-results" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span class="font-body-md text-body-md">Analysis Results</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="allocation-compare" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span class="font-body-md text-body-md">Allocation Compare</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evidence-provenance" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-md text-body-md">Evidence &amp; Provenance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="saved-reports" href="#"><span class="material-symbols-outlined text-[18px]">folder</span><span class="font-body-md text-body-md">Saved Reports</span></a></nav></div><div class="p-space-md mx-space-sm mb-space-md bg-surface-container-low rounded-lg"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs font-semibold text-secondary uppercase">Environment</span><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span></div><div class="font-label-xs text-label-xs text-on-surface font-medium truncate">Auth: Demo Mode (Unconfigured)</div><div class="font-label-xs text-label-xs text-on-surface-variant mt-1">2025-05-18T09:42:14Z IST</div></div></aside><div class="pl-60"><main class="relative w-full pt-[72px] px-gutter-lg pb-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Banner & Simulation Mode Disclosures -->
+<div class="w-full bg-surface-container-low px-gutter-lg py-space-sm mb-space-md rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-space-sm shadow-sm">
+<div class="flex items-start md:items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5 md:mt-0">warning</span>
+<div class="flex flex-col min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface font-medium truncate">
+<span class="font-semibold text-tertiary">DEMO SIMULATION:</span> Operational Dependency Graph. Edges reflect commercial buyer-supplier linkages &amp; asset dependencies. Interactive analytical workspace, not empirical price prediction.
+        </p>
+<span class="font-label-xs text-label-xs text-on-surface-variant">
+          Universe: Demo Portfolio Alpha (₹ 100.00 Lakh Total AUM) • Engine: Sectivia Multi-Hop Topological Fixture v1.0
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 self-end md:self-auto">
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded uppercase font-semibold">Synthetic Fixture</span>
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-mono">λ = 0.70</span>
+</div>
+</div>
+<!-- Graph Workspace Control Strip -->
+<div class="w-full bg-surface-container-lowest p-space-sm rounded-lg shadow-sm mb-space-md flex flex-wrap items-center justify-between gap-space-sm">
+<!-- Search and Zoom Cluster -->
+<div class="flex items-center gap-space-xs flex-1 min-w-[280px]">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-on-surface-variant text-[16px]">search</span>
+<input class="w-full bg-surface-container-low text-on-surface pl-8 pr-3 py-1 text-body-sm rounded focus:bg-surface-container-lowest focus:outline-none focus:ring-1 focus:ring-primary placeholder-on-surface-variant/60" id="graph-search" placeholder="Filter nodes, assets, logistics..." type="text"/>
+</div>
+<div class="flex items-center bg-surface-container-low rounded p-0.5">
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" id="btn-zoom-in" title="Zoom In">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" id="btn-zoom-out" title="Zoom Out">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" id="btn-fit-view" title="Fit View">
+<span class="material-symbols-outlined text-[16px]">center_focus_strong</span>
+</button>
+</div>
+</div>
+<!-- Filters & Segment Selectors -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<!-- Role Filters -->
+<div class="flex items-center gap-1 bg-surface-container-low p-0.5 rounded text-label-xs font-label-xs">
+<button class="filter-chip px-2 py-1 rounded bg-surface-container-lowest font-medium text-on-surface shadow-xs" data-filter="all">All (8)</button>
+<button class="filter-chip px-2 py-1 rounded hover:bg-surface-container-high text-on-surface-variant" data-filter="holdings">Holdings (4)</button>
+<button class="filter-chip px-2 py-1 rounded hover:bg-surface-container-high text-on-surface-variant" data-filter="suppliers">Suppliers</button>
+<button class="filter-chip px-2 py-1 rounded hover:bg-surface-container-high text-on-surface-variant" data-filter="facilities">Facilities</button>
+</div>
+<!-- Hop Selector -->
+<div class="flex items-center gap-1 bg-surface-container-low p-0.5 rounded text-label-xs font-label-xs">
+<span class="text-on-surface-variant px-1 font-semibold">Max:</span>
+<button class="hop-btn px-1.5 py-0.5 rounded text-on-surface-variant hover:bg-surface-container-high" data-hop="1">1 Hop</button>
+<button class="hop-btn px-1.5 py-0.5 rounded text-on-surface-variant hover:bg-surface-container-high" data-hop="2">2 Hops</button>
+<button class="hop-btn px-1.5 py-0.5 rounded bg-primary text-on-primary font-medium" data-hop="3">3 Hops</button>
+</div>
+<!-- Disrupted Only Toggle -->
+<label class="flex items-center gap-1.5 cursor-pointer bg-surface-container-low px-2 py-1 rounded text-label-xs font-label-xs text-on-surface select-none">
+<input class="accent-primary rounded h-3.5 w-3.5" id="toggle-disrupted" type="checkbox"/>
+<span>Disrupted Only</span>
+</label>
+<!-- View Switcher -->
+<div class="flex items-center bg-surface-container-low p-0.5 rounded">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-primary font-medium text-label-xs flex items-center gap-1 shadow-xs" id="view-mode-canvas">
+<span class="material-symbols-outlined text-[14px]">account_tree</span> Canvas
+        </button>
+<button class="px-2 py-1 rounded text-on-surface-variant hover:text-on-surface text-label-xs flex items-center gap-1" id="view-mode-matrix">
+<span class="material-symbols-outlined text-[14px]">table_chart</span> Matrix
+        </button>
+</div>
+</div>
+</div>
+<!-- 2:1 Split Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md w-full items-start">
+<!-- LEFT 2/3 COLUMN: Interactive Dependency Graph Canvas -->
+<div class="lg:col-span-2 flex flex-col gap-space-sm">
+<div class="relative w-full h-[660px] bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col" id="graph-wrapper">
+<!-- Canvas Status Ribbon -->
+<div class="absolute top-3 left-3 z-20 flex items-center gap-space-xs bg-surface-container-lowest/95 backdrop-blur px-2.5 py-1 rounded shadow-sm">
+<span class="h-2 w-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-xs text-label-xs font-semibold text-on-surface tracking-wider uppercase">Active Stress Path: GUJ-HTW-01</span>
+<span class="text-on-surface-variant text-label-xs">•</span>
+<span class="font-tabular-md text-tabular-md text-tertiary font-bold">Cascade Exposure: ₹ 90.00 L</span>
+</div>
+<!-- Canvas Mini-map Floating Preview -->
+<div class="absolute top-3 right-3 z-20 bg-surface-container-lowest/90 backdrop-blur p-1.5 rounded shadow-sm flex flex-col gap-1 items-end">
+<span class="font-label-xs text-label-xs text-on-surface-variant font-mono">Topological Depth: 4 Tiers</span>
+<div class="w-24 h-12 bg-surface-container rounded relative overflow-hidden flex items-center justify-around px-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+</div>
+</div>
+<!-- SVG Flow Canvas Container with Dot-Grid Background -->
+<div class="relative w-full flex-1 overflow-auto bg-surface-bright" id="canvas-viewport" style="background-image: radial-gradient(var(--tw-colors-outline-variant) 0.75px, transparent 0.75px); background-size: 20px 20px;">
+<svg class="absolute inset-0 w-[1100px] h-[640px] pointer-events-none z-0" id="edges-layer" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow-hazard" markerheight="6" markerwidth="6" orient="auto-fit" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 9 5 L 0 9 z" fill="#b8560d"></path>
+</marker>
+<marker id="arrow-commercial" markerheight="6" markerwidth="6" orient="auto-fit" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 9 5 L 0 9 z" fill="#1b645d"></path>
+</marker>
+<marker id="arrow-dimmed" markerheight="6" markerwidth="6" orient="auto-fit" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M 0 1 L 9 5 L 0 9 z" fill="#bec9c6"></path>
+</marker>
+</defs>
+<!-- Edge: Hazard -> Plant -->
+<path d="M 175 145 C 235 145, 235 240, 295 240" fill="none" marker-end="url(#arrow-hazard)" stroke="#b8560d" stroke-dasharray="4 2" stroke-width="2.5"></path>
+<text class="fill-tertiary font-label-xs text-[10px] font-mono" x="215" y="180">impacts (0.80)</text>
+<!-- Edge: Plant -> Delta Supplier -->
+<path d="M 445 240 C 490 240, 490 240, 530 240" fill="none" marker-end="url(#arrow-hazard)" stroke="#b8560d" stroke-width="2.5"></path>
+<text class="fill-tertiary font-label-xs text-[10px] font-mono" x="460" y="230">operates (1.0)</text>
+<!-- Edge: Freight Corridor -> Delta (Contextual overlay) -->
+<path d="M 440 95 C 490 95, 520 180, 560 205" fill="none" stroke="#bec9c6" stroke-dasharray="3 3" stroke-width="1.5"></path>
+<text class="fill-on-surface-variant font-label-xs text-[9px] font-mono" x="475" y="130">logistics co-risk</text>
+<!-- Edge: Delta -> Semiconductor Commodity (Contextual) -->
+<path d="M 640 210 C 660 145, 680 130, 715 130" fill="none" stroke="#bec9c6" stroke-dasharray="3 3" stroke-width="1.5"></path>
+<text class="fill-on-surface-variant font-label-xs text-[9px] font-mono" x="645" y="165">contract spec</text>
+<!-- Edge: Delta -> Aster Motors (Hop 1) -->
+<path d="M 670 250 C 720 250, 720 250, 760 250" fill="none" marker-end="url(#arrow-commercial)" stroke="#1b645d" stroke-width="2.5"></path>
+<text class="fill-primary font-label-xs text-[10px] font-mono font-semibold" x="685" y="242">w: 0.60, λ: 0.70</text>
+<!-- Edge: Aster Motors -> Beacon Logistics (Hop 2) -->
+<path d="M 850 315 C 850 380, 850 400, 850 435" fill="none" marker-end="url(#arrow-commercial)" stroke="#1b645d" stroke-width="2"></path>
+<text class="fill-primary font-label-xs text-[10px] font-mono font-semibold" x="855" y="375">w: 0.50, λ: 0.70</text>
+<!-- Edge: Beacon Logistics -> Cedar Retail (Hop 3) -->
+<path d="M 760 495 C 680 495, 620 495, 545 495" fill="none" marker-end="url(#arrow-commercial)" stroke="#1b645d" stroke-width="1.5"></path>
+<text class="fill-primary font-label-xs text-[10px] font-mono font-semibold" x="615" y="488">w: 0.50, λ: 0.70</text>
+</svg>
+<!-- Interactive Node Canvas Layer -->
+<div class="relative w-[1100px] h-[640px] z-10" id="nodes-container">
+<!-- NODE 1: Hazard Event (Top-Left) -->
+<div class="graph-node cursor-pointer absolute top-20 left-6 w-44 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="gujarat-heat" onclick="selectNode('gujarat-heat')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-1 rounded uppercase font-semibold">Hazard Event</span>
+<span class="material-symbols-outlined text-tertiary text-[14px]">local_fire_department</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Simulated Heat Wave</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Gujarat Corridor &gt; 35°C</div>
+<div class="mt-2 pt-1.5 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Intensity:</span>
+<span class="font-tabular-md font-bold text-tertiary">0.80 / 1.0</span>
+</div>
+</div>
+<!-- NODE 2: Contextual Transport Route (Top Mid-Left) -->
+<div class="graph-node cursor-pointer absolute top-8 left-72 w-48 bg-surface-container-low p-space-sm rounded-lg shadow-xs hover:shadow-sm transition-all" data-id="route-wfc" onclick="selectNode('route-wfc')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-1 rounded uppercase font-semibold">Contextual Asset</span>
+<span class="material-symbols-outlined text-secondary text-[14px]">alt_route</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Western Freight Corridor</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Rail • Vadodara-Surat</div>
+<div class="mt-2 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Route Vuln:</span>
+<span class="font-tabular-md font-semibold text-on-surface">0.60 (Illustrative)</span>
+</div>
+</div>
+<!-- NODE 3: Facility Operating Asset (Mid-Left) -->
+<div class="graph-node cursor-pointer absolute top-48 left-64 w-48 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="sanand-plant" onclick="selectNode('sanand-plant')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-error-container text-on-error-container px-1 rounded uppercase font-semibold">Physical Facility</span>
+<span class="material-symbols-outlined text-error text-[14px]">factory</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Delta Sanand Plant</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Automotive Electronic Sub-Fab</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Asset Vuln:</span>
+<span class="font-tabular-md font-semibold text-on-surface">0.75</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs mt-0.5">
+<span class="text-on-surface-variant">Physical Seed:</span>
+<span class="font-tabular-md font-bold text-tertiary">0.6000</span>
+</div>
+</div>
+<!-- NODE 4: Contextual Commodity (Top Mid-Right) -->
+<div class="graph-node cursor-pointer absolute top-16 left-[680px] w-52 bg-surface-container-low p-space-sm rounded-lg shadow-xs hover:shadow-sm transition-all" data-id="commodity-semi" onclick="selectNode('commodity-semi')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-1 rounded uppercase font-semibold">Supply Commodity</span>
+<span class="material-symbols-outlined text-secondary text-[14px]">memory</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Semiconductor Assemblies</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">BOM Item #AS-9042</div>
+<div class="mt-2 text-label-xs font-label-xs text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">info</span>
+<span>Contextual spec link</span>
+</div>
+</div>
+<!-- NODE 5: Supplier Entity (Tier-1 Seed) -->
+<div class="graph-node cursor-pointer absolute top-48 left-[510px] w-48 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="delta-components" onclick="selectNode('delta-components')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-surface-variant text-on-surface-variant px-1 rounded uppercase font-semibold">Tier-1 Supplier</span>
+<span class="material-symbols-outlined text-primary text-[14px]">hub</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Delta Components</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">CIN: U34101GJ2011PTC</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Seed Stress S(0):</span>
+<span class="font-tabular-md font-bold text-tertiary">60.00 / 100</span>
+</div>
+</div>
+<!-- NODE 6: Hop 1 Portfolio Holding (Aster Motors) -->
+<div class="graph-node cursor-pointer active-node absolute top-44 left-[750px] w-52 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="aster-motors" onclick="selectNode('aster-motors')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-primary-container text-on-primary-container px-1.5 py-0.5 rounded uppercase font-semibold">Hop 1 • Holding</span>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">₹ 40.00 L</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Aster Motors Ltd</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Automotive OEM • 40% AUM</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Direct Dep:</span>
+<span class="font-tabular-md font-semibold text-on-surface">w = 0.60</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs mt-0.5">
+<span class="text-on-surface-variant">Cascaded S(1):</span>
+<span class="font-tabular-md font-bold text-tertiary">25.20 / 100</span>
+</div>
+</div>
+<!-- NODE 7: Hop 2 Portfolio Holding (Beacon Logistics) -->
+<div class="graph-node cursor-pointer absolute top-[425px] left-[750px] w-52 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="beacon-logistics" onclick="selectNode('beacon-logistics')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-secondary-container text-on-secondary-container px-1.5 py-0.5 rounded uppercase font-semibold">Hop 2 • Holding</span>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">₹ 30.00 L</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Beacon Logistics Corp</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Freight Transportation • 30% AUM</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Downstream Dep:</span>
+<span class="font-tabular-md font-semibold text-on-surface">w = 0.50</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs mt-0.5">
+<span class="text-on-surface-variant">Cascaded S(2):</span>
+<span class="font-tabular-md font-bold text-tertiary-container">8.82 / 100</span>
+</div>
+</div>
+<!-- NODE 8: Hop 3 Portfolio Holding (Cedar Retail) -->
+<div class="graph-node cursor-pointer absolute top-[435px] left-[380px] w-52 bg-surface-container-lowest p-space-sm rounded-lg shadow-sm hover:shadow-md transition-all" data-id="cedar-retail" onclick="selectNode('cedar-retail')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded uppercase font-semibold">Hop 3 • Holding</span>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">₹ 20.00 L</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Cedar Retail Ltd</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Consumer Distribution • 20% AUM</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Downstream Dep:</span>
+<span class="font-tabular-md font-semibold text-on-surface">w = 0.50</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs mt-0.5">
+<span class="text-on-surface-variant">Cascaded S(3):</span>
+<span class="font-tabular-md font-bold text-on-surface">3.087 / 100</span>
+</div>
+</div>
+<!-- NODE 9: Disconnected Holding (Evergreen Services) -->
+<div class="graph-node cursor-pointer absolute top-[435px] left-8 w-48 bg-surface-container-low p-space-sm rounded-lg shadow-xs hover:shadow-sm opacity-90 transition-all" data-id="evergreen-services" onclick="selectNode('evergreen-services')">
+<div class="flex items-center justify-between pb-1 mb-1">
+<span class="font-label-xs text-label-xs bg-surface-container-highest text-secondary px-1.5 py-0.5 rounded uppercase font-semibold">Holding • Untethered</span>
+<span class="font-tabular-md text-tabular-md text-secondary font-bold">₹ 10.00 L</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface leading-tight">Evergreen Services</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">IT Consulting • 10% AUM</div>
+<div class="mt-2 pt-1 flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Path Status:</span>
+<span class="text-on-primary-fixed-variant bg-primary-fixed px-1 rounded font-semibold">No direct link</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs mt-0.5">
+<span class="text-on-surface-variant">Simulated Stress:</span>
+<span class="font-tabular-md font-semibold text-on-surface-variant">0.00 / 100</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Canvas Legend Footer Bar -->
+<div class="w-full bg-surface-container-lowest px-space-md py-space-xs flex flex-wrap items-center justify-between gap-space-sm z-20">
+<div class="flex items-center gap-space-md flex-wrap text-label-xs font-label-xs text-on-surface-variant">
+<span class="font-semibold text-on-surface uppercase">Legend:</span>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-primary-container"></span>
+<span>Holding Entity</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-surface-variant"></span>
+<span>Supplier / Node</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-error-container"></span>
+<span>Physical Facility</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-tertiary-fixed"></span>
+<span>Climate Hazard</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md text-label-xs font-label-xs text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-0.5 bg-primary inline-block"></span>
+<span>Commercial Propagation (Tier Flow)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-0.5 bg-outline-variant border-t border-dashed border-outline-variant inline-block"></span>
+<span>Contextual Dependency</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabular Path Matrix View (Toggleable accessibility & analytical inspection mode) -->
+<div class="hidden w-full bg-surface-container-lowest p-space-md rounded-lg shadow-sm" id="path-matrix-container">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Tabular Path Risk Matrix</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Linear exposure graph traversals from physical seed to active portfolio holdings.</p>
+</div>
+<span class="font-label-xs text-label-xs text-primary font-mono bg-primary-fixed px-2 py-0.5 rounded">4 Recorded Paths</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-label-xs font-label-xs text-on-surface-variant uppercase">
+<tr>
+<th class="py-2 px-3">Path Target Holding</th>
+<th class="py-2 px-3">Capital Exposed</th>
+<th class="py-2 px-3">Hop Depth</th>
+<th class="py-2 px-3">Direct Edge Weight (w)</th>
+<th class="py-2 px-3">Cascade Stress S(k)</th>
+<th class="py-2 px-3">Data Provenance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-semibold text-on-surface">Aster Motors Ltd</td>
+<td class="py-2.5 px-3 font-tabular-md">₹ 40.00 L</td>
+<td class="py-2.5 px-3 font-label-xs text-primary">Hop 1 (Direct)</td>
+<td class="py-2.5 px-3 font-tabular-md">0.60</td>
+<td class="py-2.5 px-3 font-tabular-md text-tertiary font-bold">25.20 / 100</td>
+<td class="py-2.5 px-3"><span class="font-label-xs text-label-xs bg-emerald-50 text-emerald-800 px-1.5 py-0.5 rounded">Reported Tier-1</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-semibold text-on-surface">Beacon Logistics Corp</td>
+<td class="py-2.5 px-3 font-tabular-md">₹ 30.00 L</td>
+<td class="py-2.5 px-3 font-label-xs text-secondary">Hop 2 (Secondary)</td>
+<td class="py-2.5 px-3 font-tabular-md">0.50</td>
+<td class="py-2.5 px-3 font-tabular-md text-tertiary-container font-bold">8.82 / 100</td>
+<td class="py-2.5 px-3"><span class="font-label-xs text-label-xs bg-sky-50 text-sky-800 px-1.5 py-0.5 rounded">Sourced Synthetic</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-semibold text-on-surface">Cedar Retail Ltd</td>
+<td class="py-2.5 px-3 font-tabular-md">₹ 20.00 L</td>
+<td class="py-2.5 px-3 font-label-xs text-secondary">Hop 3 (Tertiary Bound)</td>
+<td class="py-2.5 px-3 font-tabular-md">0.50</td>
+<td class="py-2.5 px-3 font-tabular-md text-on-surface font-semibold">3.087 / 100</td>
+<td class="py-2.5 px-3"><span class="font-label-xs text-label-xs bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded">Assumed Link</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-semibold text-on-surface">Evergreen Services</td>
+<td class="py-2.5 px-3 font-tabular-md">₹ 10.00 L</td>
+<td class="py-2.5 px-3 font-label-xs text-on-surface-variant">∞ (Disconnected)</td>
+<td class="py-2.5 px-3 font-tabular-md">0.00</td>
+<td class="py-2.5 px-3 font-tabular-md text-on-surface-variant">0.00 / 100</td>
+<td class="py-2.5 px-3"><span class="font-label-xs text-label-xs bg-surface-container-highest text-secondary px-1.5 py-0.5 rounded">No Inflow Found</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- RIGHT 1/3 COLUMN: Forensic Inspector & Evidence Drawer -->
+<div class="flex flex-col gap-space-md">
+<!-- Primary Card: Selected Entity & Active Propagation Path -->
+<div class="w-full bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">account_tree</span>
+<span class="font-headline-sm text-headline-sm text-on-surface" id="inspector-title">Active Propagation Path</span>
+</div>
+<span class="font-label-xs text-label-xs bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded font-mono font-semibold" id="inspector-badge">3 Hops Max</span>
+</div>
+<!-- Path Breadcrumb Representation -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1.5">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-semibold">Traversed Dependency Spine:</span>
+<div class="flex flex-wrap items-center gap-1 font-label-xs text-label-xs">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-1.5 py-0.5 rounded font-medium">Gujarat Heat</span>
+<span class="text-on-surface-variant">→</span>
+<span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded">Sanand Plant</span>
+<span class="text-on-surface-variant">→</span>
+<span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded">Delta Components</span>
+<span class="text-on-surface-variant">→</span>
+<span class="bg-primary text-on-primary px-1.5 py-0.5 rounded font-medium">Aster Motors</span>
+<span class="text-on-surface-variant">→</span>
+<span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded">Beacon</span>
+<span class="text-on-surface-variant">→</span>
+<span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded">Cedar</span>
+</div>
+</div>
+<!-- Attenuation Formula Explanation Box -->
+<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Propagation Mechanics</span>
+<span class="font-label-xs text-label-xs text-primary font-mono font-semibold">S(k) = S(k-1) × W_trans × λ</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Each commercial hop attenuates climate stress through contractual buffering and operational substitution capacity (λ = 0.70).
+          </p>
+<!-- Step-by-Step Math Calculation Waterfall -->
+<div class="mt-1 flex flex-col gap-1.5 pt-2 border-t border-surface-container-highest">
+<div class="flex items-center justify-between text-label-xs font-label-xs bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Initial Seed S(0) [Delta]:</span>
+<span class="font-mono text-tertiary font-bold">0.80 × 0.75 × 1.0 = 0.6000 (60.0%)</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Hop 1 [Aster Motors]:</span>
+<span class="font-mono text-tertiary font-bold">0.6000 × 0.60 × 0.70 = 0.2520 (25.20%)</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Hop 2 [Beacon Logistics]:</span>
+<span class="font-mono text-tertiary-container font-semibold">0.2520 × 0.50 × 0.70 = 0.0882 (8.82%)</span>
+</div>
+<div class="flex items-center justify-between text-label-xs font-label-xs bg-surface-container-lowest p-1.5 rounded">
+<span class="text-on-surface-variant">Hop 3 [Cedar Retail]:</span>
+<span class="font-mono text-on-surface font-semibold">0.0882 × 0.50 × 0.70 = 0.03087 (3.087%)</span>
+</div>
+</div>
+</div>
+<!-- Entity Specific Diagnostic Panel (Dynamically changed on click) -->
+<div class="flex flex-col gap-space-xs pt-1" id="inspector-entity-details">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs font-semibold uppercase text-secondary">Inspected Node Details</span>
+<span class="font-label-xs text-label-xs text-primary font-mono">Aster Motors Ltd</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-label-xs text-label-xs text-on-surface-variant block">Direct Valuation</span>
+<span class="font-tabular-md text-tabular-md font-bold text-on-surface">₹ 40.00 Lakh</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded">
+<span class="font-label-xs text-label-xs text-on-surface-variant block">Attributed Risk Cap</span>
+<span class="font-tabular-md text-tabular-md font-bold text-tertiary">₹ 10.08 Lakh</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded text-body-sm flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Supplier Concentration:</span>
+<span class="font-mono text-on-surface font-medium">Single-source Delta (60% BOM)</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Substitution Window:</span>
+<span class="font-mono text-on-surface font-medium">4.5 Months to Re-qualify</span>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Inventory Buffer:</span>
+<span class="font-mono text-on-surface font-medium">21 Days Operating Reserve</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Card: Evidence & Data Provenance Drawer -->
+<div class="w-full bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Evidence &amp; Provenance</span>
+</div>
+<span class="font-label-xs text-label-xs bg-emerald-50 text-emerald-800 px-1.5 py-0.5 rounded font-mono font-medium">Sectivia #SEC-4921</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Item 1: Sectivia Provenance -->
+<div class="flex items-start gap-2 bg-surface-container-low p-2 rounded">
+<span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">dataset</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Commercial Link Disclosure</span>
+<span class="font-label-xs text-label-xs bg-sky-50 text-sky-800 px-1 rounded">Sourced</span>
+</div>
+<p class="font-label-xs text-label-xs text-on-surface-variant mt-0.5">
+                FY24 Statutory Filing Note 24.3 (Related Party &amp; Key Component Supplier declarations).
+              </p>
+</div>
+</div>
+<!-- Item 2: Missing Data Flag -->
+<div class="flex items-start gap-2 bg-amber-50/70 p-2 rounded">
+<span class="material-symbols-outlined text-tertiary text-[16px] shrink-0 mt-0.5">flag</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Data Completeness Flag</span>
+<span class="font-label-xs text-label-xs bg-amber-100 text-amber-800 px-1 rounded">Assumed Split</span>
+</div>
+<p class="font-label-xs text-label-xs text-on-surface-variant mt-0.5">
+                Exact plant-to-customer shipment allocation missing in public registries. Allocation default: 1.0 deterministic routing.
+              </p>
+</div>
+</div>
+<!-- Item 3: Hazard Observation Provenance -->
+<div class="flex items-start gap-2 bg-surface-container-low p-2 rounded">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">cloud_sync</span>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Physical Climate Telemetry</span>
+<span class="font-label-xs text-label-xs bg-purple-50 text-purple-800 px-1 rounded">Synthetic Cache</span>
+</div>
+<p class="font-label-xs text-label-xs text-on-surface-variant mt-0.5">
+                Open-Meteo ERA5 Reanalysis cache (2025-05-18). Lat: 23.02° N, Lon: 72.57° E.
+              </p>
+</div>
+</div>
+</div>
+<!-- Institutional Regulatory Methodological Notice -->
+<div class="p-2.5 bg-surface-container rounded border-l-2 border-primary text-label-xs font-label-xs text-on-surface-variant">
+<p class="leading-relaxed">
+<span class="font-semibold text-on-surface">Methodological Bound:</span> Visual canvas graph filters do not alter underlying portfolio balance sheets. A disconnected node in this simulation indicates absence of recorded supply paths in current fixture, not definitive climate physical immunity.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Script for Interactive Canvas Interactions -->
+<script>
+    // State management for Graph interactive actions
+    const nodes = {
+      'aster-motors': {
+        title: 'Aster Motors Ltd (Hop 1)',
+        badge: 'Holding &bull; Direct Tier-1',
+        val: '₹ 40.00 Lakh',
+        risk: '₹ 10.08 Lakh',
+        supplier: 'Delta Components (60% BOM)',
+        sub: '4.5 Months to Re-qualify',
+        inv: '21 Days Operating Reserve'
+      },
+      'delta-components': {
+        title: 'Delta Components (Supplier Seed)',
+        badge: 'Tier-1 Strategic Supplier',
+        val: 'Unlisted Entity',
+        risk: 'Seed S(0) = 0.6000',
+        supplier: 'Self (Delta Sanand Asset)',
+        sub: 'Captive Asset Link',
+        inv: '14 Days Finished Goods'
+      },
+      'sanand-plant': {
+        title: 'Delta Sanand Plant (Asset)',
+        badge: 'Operating Physical Asset',
+        val: 'Gross Fixed Asset: ₹ 142 Cr',
+        risk: 'Vulnerability: 0.75',
+        supplier: 'Grid / Sub-station Gujarat',
+        sub: 'Capital Asset (Non-substitutable)',
+        inv: 'N/A (Manufacturing Unit)'
+      },
+      'gujarat-heat': {
+        title: 'Gujarat Heat Wave Scenario',
+        badge: 'Climatic Stressor',
+        val: 'Hazard Intensity: 0.80',
+        risk: 'Corridor Temperature &gt; 35°C',
+        supplier: 'Meteorological Hazard',
+        sub: 'Ambient Environmental Shock',
+        inv: 'High Cooling Load &amp; Labor Halts'
+      },
+      'beacon-logistics': {
+        title: 'Beacon Logistics Corp (Hop 2)',
+        badge: 'Holding &bull; Cascaded Tier-2',
+        val: '₹ 30.00 Lakh',
+        risk: '₹ 2.646 Lakh',
+        supplier: 'Aster Motors (Downstream Inflow)',
+        sub: 'Alternate Freight Routing Available',
+        inv: '7 Days Rolling Stock'
+      },
+      'cedar-retail': {
+        title: 'Cedar Retail Ltd (Hop 3)',
+        badge: 'Holding &bull; Cascaded Tier-3',
+        val: '₹ 20.00 Lakh',
+        risk: '₹ 0.617 Lakh',
+        supplier: 'Beacon Logistics (Consumer Route)',
+        sub: 'Multi-distributor Network',
+        inv: '35 Days Retail Shelf Buffer'
+      },
+      'evergreen-services': {
+        title: 'Evergreen Services (Untethered)',
+        badge: 'Holding &bull; Zero Impact',
+        val: '₹ 10.00 Lakh',
+        risk: '₹ 0.00 Lakh',
+        supplier: 'No Gujarat corridor exposure',
+        sub: 'Fully Remote Digital Ops',
+        inv: 'N/A (Software Services)'
+      },
+      'route-wfc': {
+        title: 'Western Freight Corridor (Asset)',
+        badge: 'Contextual Infrastructure',
+        val: 'Public Infrastructure Node',
+        risk: 'Thermal Track Vulnerability: 0.60',
+        supplier: 'Indian Railways / DFC Corp',
+        sub: 'State Highway Alternative',
+        inv: 'Illustrative Supply Chain Link'
+      },
+      'commodity-semi': {
+        title: 'Semiconductor Assemblies (Commodity)',
+        badge: 'Contract Specification',
+        val: 'BOM Item #AS-9042',
+        risk: 'Single Qualified Sourcing',
+        supplier: 'Delta Sanand Cleanrooms',
+        sub: 'TSMC / Alternate Fab Re-spin (6 mo)',
+        inv: 'Safety Buffer Active'
+      }
+    };
+
+    function selectNode(nodeId) {
+      // Highlight selected card visually
+      document.querySelectorAll('.graph-node').forEach(el => {
+        el.classList.remove('ring-2', 'ring-primary', 'shadow-md');
+      });
+      const el = document.querySelector(`[data-id="${nodeId}"]`);
+      if (el) {
+        el.classList.add('ring-2', 'ring-primary', 'shadow-md');
+      }
+
+      // Update inspector drawer details
+      const info = nodes[nodeId];
+      if (info) {
+        const titleEl = document.getElementById('inspector-title');
+        const badgeEl = document.getElementById('inspector-badge');
+        const detailsEl = document.getElementById('inspector-entity-details');
+
+        if (titleEl) titleEl.innerText = info.title;
+        if (badgeEl) badgeEl.innerHTML = info.badge;
+
+        if (detailsEl) {
+          detailsEl.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-label-xs text-label-xs font-semibold uppercase text-secondary">Inspected Node Details</span>
+              <span class="font-label-xs text-label-xs text-primary font-mono">${info.title.split('(')[0]}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="bg-surface-container-low p-2 rounded">
+                <span class="font-label-xs text-label-xs text-on-surface-variant block">Primary Exposure</span>
+                <span class="font-tabular-md text-tabular-md font-bold text-on-surface">${info.val}</span>
+              </div>
+              <div class="bg-surface-container-low p-2 rounded">
+                <span class="font-label-xs text-label-xs text-on-surface-variant block">Computed Impact</span>
+                <span class="font-tabular-md text-tabular-md font-bold text-tertiary">${info.risk}</span>
+              </div>
+            </div>
+            <div class="bg-surface-container-low p-2.5 rounded text-body-sm flex flex-col gap-1">
+              <div class="flex items-center justify-between font-label-xs text-label-xs">
+                <span class="text-on-surface-variant">Primary Upstream Link:</span>
+                <span class="font-mono text-on-surface font-medium truncate ml-2">${info.supplier}</span>
+              </div>
+              <div class="flex items-center justify-between font-label-xs text-label-xs">
+                <span class="text-on-surface-variant">Substitution Profile:</span>
+                <span class="font-mono text-on-surface font-medium truncate ml-2">${info.sub}</span>
+              </div>
+              <div class="flex items-center justify-between font-label-xs text-label-xs">
+                <span class="text-on-surface-variant">Buffer / Contingency:</span>
+                <span class="font-mono text-on-surface font-medium truncate ml-2">${info.inv}</span>
+              </div>
+            </div>
+          `;
+        }
+      }
+    }
+
+    // View Switcher (Canvas vs Matrix)
+    const btnCanvas = document.getElementById('view-mode-canvas');
+    const btnMatrix = document.getElementById('view-mode-matrix');
+    const wrapper = document.getElementById('graph-wrapper');
+    const matrixContainer = document.getElementById('path-matrix-container');
+
+    if (btnCanvas && btnMatrix && wrapper && matrixContainer) {
+      btnCanvas.addEventListener('click', () => {
+        wrapper.classList.remove('hidden');
+        matrixContainer.classList.add('hidden');
+        btnCanvas.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-xs');
+        btnCanvas.classList.remove('text-on-surface-variant');
+        btnMatrix.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-xs');
+        btnMatrix.classList.add('text-on-surface-variant');
+      });
+
+      btnMatrix.addEventListener('click', () => {
+        wrapper.classList.add('hidden');
+        matrixContainer.classList.remove('hidden');
+        btnMatrix.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-xs');
+        btnMatrix.classList.remove('text-on-surface-variant');
+        btnCanvas.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-xs');
+        btnCanvas.classList.add('text-on-surface-variant');
+      });
+    }
+
+    // Disrupted Only Filter toggle
+    const toggleDisrupted = document.getElementById('toggle-disrupted');
+    if (toggleDisrupted) {
+      toggleDisrupted.addEventListener('change', (e) => {
+        const untethered = document.querySelector('[data-id="evergreen-services"]');
+        if (untethered) {
+          if (e.target.checked) {
+            untethered.classList.add('opacity-10', 'pointer-events-none');
+          } else {
+            untethered.classList.remove('opacity-10', 'pointer-events-none');
+          }
+        }
+      });
+    }
+
+    // Role Filter Buttons
+    document.querySelectorAll('.filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(b => {
+          b.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs', 'font-medium');
+          b.classList.add('text-on-surface-variant');
+        });
+        btn.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-xs', 'font-medium');
+        btn.classList.remove('text-on-surface-variant');
+
+        const filter = btn.getAttribute('data-filter');
+        const nodes = document.querySelectorAll('.graph-node');
+        nodes.forEach(node => {
+          const id = node.getAttribute('data-id');
+          if (filter === 'all') {
+            node.style.opacity = '1';
+          } else if (filter === 'holdings') {
+            node.style.opacity = (id.includes('motors') || id.includes('beacon') || id.includes('cedar') || id.includes('evergreen')) ? '1' : '0.25';
+          } else if (filter === 'suppliers') {
+            node.style.opacity = (id.includes('delta')) ? '1' : '0.25';
+          } else if (filter === 'facilities') {
+            node.style.opacity = (id.includes('sanand') || id.includes('route')) ? '1' : '0.25';
+          }
+        });
+      });
+    });
+
+    // Zoom and Fit controls mock
+    const viewport = document.getElementById('canvas-viewport');
+    let scale = 1;
+    document.getElementById('btn-zoom-in')?.addEventListener('click', () => {
+      if (scale < 1.4) scale += 0.1;
+      const target = document.getElementById('nodes-container');
+      const edges = document.getElementById('edges-layer');
+      if (target) target.style.transform = `scale(${scale})`;
+      if (target) target.style.transformOrigin = 'top left';
+      if (edges) edges.style.transform = `scale(${scale})`;
+      if (edges) edges.style.transformOrigin = 'top left';
+    });
+    document.getElementById('btn-zoom-out')?.addEventListener('click', () => {
+      if (scale > 0.7) scale -= 0.1;
+      const target = document.getElementById('nodes-container');
+      const edges = document.getElementById('edges-layer');
+      if (target) target.style.transform = `scale(${scale})`;
+      if (target) target.style.transformOrigin = 'top left';
+      if (edges) edges.style.transform = `scale(${scale})`;
+      if (edges) edges.style.transformOrigin = 'top left';
+    });
+    document.getElementById('btn-fit-view')?.addEventListener('click', () => {
+      scale = 1;
+      const target = document.getElementById('nodes-container');
+      const edges = document.getElementById('edges-layer');
+      if (target) target.style.transform = `scale(1)`;
+      if (edges) edges.style.transform = `scale(1)`;
+      if (viewport) {
+        viewport.scrollLeft = 0;
+        viewport.scrollTop = 0;
+      }
+    });
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,109 @@
+{
+  "projectName": "MeghDrishti Climate Risk Engine",
+  "projectId": null,
+  "retrievalStatus": "local-export-retrieved",
+  "remoteAccess": "No Stitch MCP tools exposed; remote IDs unavailable in ZIP filenames",
+  "sourceArchive": "C:\\Users\\soham\\Downloads\\stitch_meghdrishti_climate_risk_engine.zip",
+  "sha256": "340d55e7008554081f54dc128a09f6dcf4fd0be3cdd20f01f6daa9e9974f5bb5",
+  "screens": [
+    {
+      "name": "analysis_results_snapshot_meghdrishti",
+      "screenId": null,
+      "route": "/results/:runId",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/analysis_results_snapshot_meghdrishti/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/analysis_results_snapshot_meghdrishti/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "authentication_access_gateway_meghdrishti",
+      "screenId": null,
+      "route": "/auth",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/authentication_access_gateway_meghdrishti/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/authentication_access_gateway_meghdrishti/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "evidence_provenance_management",
+      "screenId": null,
+      "route": "/evidence",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/evidence_provenance_management/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/evidence_provenance_management/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "exposure_graph_operational_dependency_tracing",
+      "screenId": null,
+      "route": "/graph",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/exposure_graph_operational_dependency_tracing/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/exposure_graph_operational_dependency_tracing/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "operational_locations_climate_screening",
+      "screenId": null,
+      "route": "/locations",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/operational_locations_climate_screening/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/operational_locations_climate_screening/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "overview_climate_portfolio_intelligence",
+      "screenId": null,
+      "route": "/overview",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/overview_climate_portfolio_intelligence/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/overview_climate_portfolio_intelligence/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "portfolio_allocation_scenario_comparison",
+      "screenId": null,
+      "route": "/compare",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/portfolio_allocation_scenario_comparison/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/portfolio_allocation_scenario_comparison/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "portfolio_holdings_management",
+      "screenId": null,
+      "route": "/portfolio",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/portfolio_holdings_management/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/portfolio_holdings_management/screen.png",
+      "status": "saved-original",
+      "imageStatus": "invalid image in original archive"
+    },
+    {
+      "name": "saved_reports_analysis_history",
+      "screenId": null,
+      "route": "/reports",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/saved_reports_analysis_history/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/saved_reports_analysis_history/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "scenarios_stress_screening",
+      "screenId": null,
+      "route": "/scenarios",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/scenarios_stress_screening/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/scenarios_stress_screening/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    },
+    {
+      "name": "welcome_meghdrishti_climate_portfolio_intelligence",
+      "screenId": null,
+      "route": "/welcome",
+      "html": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/welcome_meghdrishti_climate_portfolio_intelligence/code.html",
+      "image": "frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/welcome_meghdrishti_climate_portfolio_intelligence/screen.png",
+      "status": "saved-original",
+      "imageStatus": "readable"
+    }
+  ]
+}

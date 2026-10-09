@@ -4,7 +4,7 @@ import { ResponsiveContainer,BarChart,Bar,XAxis,YAxis,Tooltip,CartesianGrid } fr
 import { useApp } from '../state/AppState.jsx';
 import { Empty,Metrics,ResultsTable,Exports,PathList,Notice } from '../components.jsx';
 export default function Results() {
-  const {runId}=useParams(),app=useApp(),run=app.history.get(runId);const [path,setPath]=useState(null);
+  const {runId}=useParams(),app=useApp(),run=app.history.get(runId);const [path,setPath]=useState(null),[saved,setSaved]=useState(false);
   if(!run)return <><h1>Result snapshot unavailable</h1><Empty>This run is not in local history. It may have expired, been cleared, or belong to another browser.</Empty></>;
   return <><h1>Analysis results</h1><p>Immutable demo snapshot · <span className="mono">{run.id}</span></p><p>{run.completedAt} · {run.scenarioSnapshot.modelVersion} · {run.scenarioSnapshot.datasetVersion}</p>
     {app.outdated&&<Notice>The draft has changed. These snapshot results remain unchanged; rerun for the current draft.</Notice>}{run.warnings.map(w=><Notice key={w}>{w}</Notice>)}<Metrics run={run}/>
@@ -14,6 +14,6 @@ export default function Results() {
     <section><h2>Paths</h2><p>Only the strongest supported path contributes to each holding’s total. Alternative paths remain available for explanation.</p><PathList run={run} onSelect={setPath}/>{path&&<pre>{JSON.stringify(path,null,2)}</pre>}</section>
     <section><h2>Shared dependencies</h2>{run.sharedDependencies.length?<ul>{run.sharedDependencies.map(s=><li key={s.companyId}>{run.sourceSnapshot.companies.find(c=>c.id===s.companyId)?.name}: shared by {s.holdingCompanyIds.map(id=>run.sourceSnapshot.companies.find(c=>c.id===id)?.name).join(', ')}</li>)}</ul>:<p>No shared dependency recorded in these paths.</p>}<p>Electronic components describe the Delta → Aster supply item. They do not create a second numerical disruption channel.</p></section>
     <section><h2>Explanation and assumptions</h2><p>Facility and route mapping create initial company stress. Supplier-to-customer paths transmit that stress through the selected commercial hop limit. The maximum supported path is used for each holding; source and path stresses are not added.</p><p>Gemini: not connected. This deterministic explanation is always available.</p><pre>{JSON.stringify(run.scenarioSnapshot,null,2)}</pre><details><summary>Source seeds, factors and missing inputs</summary><pre>{JSON.stringify(run.seeds,null,2)}</pre></details></section>
-    <Exports run={run}/><div className="actions no-print"><Link to={`/compare?run=${run.id}`}>Compare this snapshot</Link><Link to={`/graph?run=${run.id}`}>Inspect graph</Link><Link to="/reports">Local reports</Link></div>
+    <div className="actions"><button onClick={()=>{app.saveReport(run);setSaved(true);}}>Save report</button>{saved&&<span role="status">{app.history.warning||'Snapshot saved in local browser history.'}</span>}</div><Exports run={run}/><div className="actions no-print"><Link to={`/compare?run=${run.id}`}>Compare this snapshot</Link><Link to={`/graph?run=${run.id}`}>Inspect graph</Link><Link to="/reports">Local reports</Link></div>
   </>;
 }

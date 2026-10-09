@@ -10,7 +10,7 @@ Runs capture holdings, scenario, raw dataset, effective events, seeds, paths, as
 
 Draft edits increment a revision and invalidate pending requests. Response acceptance also checks an operation sequence; both obsolete successes and errors are discarded. Backend run creation requires an idempotency key and rejects reuse with different inputs. Exact CORS origins are configurable.
 
-Frontend routes match P01–P11. The current UI is intentionally a simple development shell. Future Stitch files should remain unmodified under `frontend/stitch-export/`, then map to reusable presentation components without changing services/contracts. Graph filters and layout operate after analysis and do not affect metrics. A graph/table alternative, chart/table pair and offline location list expose the same underlying records.
+Frontend routes match P01–P11. The UI adapts the eleven local Stitch exports preserved under `frontend/stitch-export/` into shared presentation components without changing the numerical engine. API mode loads the normalized fixture through FastApiRepository. Graph filters and layout operate after analysis and do not affect metrics. A graph/table alternative, chart/table pair and offline location list expose the same underlying records.
 
 Browser history stores at most 20 validated synthetic snapshots; failures use in-memory fallback. Drafts are validated on restore. There is no persistent authenticated portfolio cache. JSON exports include complete snapshots; CSV includes source labels, assumptions, exclusions and formula-prefix protection. Print uses the result page with navigation hidden.
 

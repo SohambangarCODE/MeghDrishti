@@ -18,3 +18,6 @@ No emojis, Inter, serif dashboard fonts, pure black UI, neon glows, oversaturate
 8 Screen and Content Contract
 Follow P01–P11 in PRD.md. Persist a visible Demo simulation banner in every synthetic-data workspace. Preserve coverage/unknown states and labels. Use reference fixture numbers from PRD section 9 only. Do not invent other metrics. The apparent automatic event is labelled a stored synthetic event. Sourced-mode variants show supported source status and timestamps. Stitch provides layouts; implementation replaces graph/chart/map placeholders with React Flow, Recharts and Leaflet without restyling the application.
 
+
+9 Implemented Stitch export mapping (2026-10-09)
+The completed local Stitch exports now supply the implemented compact teal/lilac palette, 76px header, 220px rail, 24px page headings, 4px controls, metric cards and analytical split panes. The original guidance above is retained as specification history; for current visual tokens use frontend/stitch-export/originals/stitch_meghdrishti_climate_risk_engine/meghdrishti_climate_portfolio_intelligence/DESIGN.md and frontend/src/styles.css. User-supplied completed layouts take precedence over generic redesign guidance. Numerical semantics, unknown states and accessibility remain governed by the PRD. No perpetual analytical animation or unsupported live claims were introduced.

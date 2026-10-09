@@ -1,0 +1,1001 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-surface":"#1b1b1e","inverse-surface":"#303033","on-secondary":"#ffffff","surface-variant":"#e4e1e6","background":"#fbf8fc","primary-fixed-dim":"#8fd3ca","surface":"#fbf8fc","primary-container":"#397d76","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed-variant":"#46464f","on-tertiary-container":"#fff7f5","tertiary-container":"#b8560d","secondary":"#5e5e67","secondary-container":"#e0dee9","on-primary-fixed-variant":"#00504a","on-primary-fixed":"#00201d","surface-container-lowest":"#ffffff","outline":"#6f7977","surface-tint":"#216962","on-tertiary":"#ffffff","surface-container-highest":"#e4e1e6","surface-container":"#f0edf1","on-surface-variant":"#3f4947","inverse-on-surface":"#f3f0f4","on-tertiary-fixed":"#331200","primary":"#1b645d","on-background":"#1b1b1e","primary-fixed":"#abefe6","surface-container-high":"#eae7eb","tertiary-fixed":"#ffdbca","on-secondary-fixed":"#1a1b23","surface-container-low":"#f6f2f7","on-primary":"#ffffff","error-container":"#ffdad6","on-primary-container":"#e0fffa","outline-variant":"#bec9c6","tertiary":"#944100","tertiary-fixed-dim":"#ffb68e","on-secondary-container":"#62626b","surface-bright":"#fbf8fc","surface-dim":"#dcd9dd","secondary-fixed":"#e3e1ec","on-tertiary-fixed-variant":"#763300","secondary-fixed-dim":"#c7c5d0","inverse-primary":"#8fd3ca"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1rem","margin":"1rem","gutter-lg":"1rem","margin-lg":"1.5rem","space-md":"0.75rem","space-sm":"0.5rem","gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"tabular-lg":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"label-md":["JetBrains Mono"],"tabular-md":["JetBrains Mono"],"headline-xl":["Geist"],"headline-sm":["Geist"],"headline-lg":["Geist"],"headline-md":["Geist"],"body-sm":["Geist"],"label-xs":["JetBrains Mono"],"body-md":["Geist"],"body-lg":["Geist"]},"fontSize":{"tabular-lg":["16px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"tabular-md":["13px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.02em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-[72px] z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-margin-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="MeghDrishti Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Un6gZaDYLat3kQ9tG_Zi_Nybdmwx8FsTErhWQcfyDYDKKx3Q2GOEG6ZyVOJWQGUHPiLmBVdiVj5aCXzdUpPNppi_bfR18719TLlUhbVA_8OBBA75Zm2xTgCBMGbQowhWNoGFWTUYrnMZ0X4PpzS1-mS_gTX_FK5xMqxX_gnQTs5arITfJHeu6dA4JaxZxU4_WFjS_P7VD6y6901iieRhuLFkiRmgXllUvAPxoVLBubM8etQV0oWBITwMyn"><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface tracking-tight leading-none">MeghDrishti</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Climate Portfolio Intelligence</span></div></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Active Entity</span><span class="font-tabular-md text-tabular-md text-on-surface font-semibold">Demo Portfolio Alpha (INR 100L)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[16px] ml-space-xs">expand_more</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-tertiary-fixed px-space-sm py-0.5 rounded-lg text-on-tertiary-fixed-variant"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span><span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Demo simulation</span></div><span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg border border-surface-container-highest uppercase font-medium">Synthetic fixture: v1.0</span></div><div class="hidden xl:flex items-center gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Sectivia</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Synthetic</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Open-Meteo</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Demo cache</span></div></div><div class="flex items-center gap-space-md pl-space-sm border-l border-surface-container-high"><div class="flex flex-col text-right"><span class="font-body-sm text-body-sm text-on-surface font-semibold leading-tight">P. Sundaram</span><span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">Lead Climate Risk Analyst</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiiV8t_qNxEjM9vNWWpeh5aN9usctVNAFd9utDsW3WpOqe3-ZBLCGbuDGAOAOSPlJE_mnwYznVypI4Jakf__D-o_PGX3ESiW_yLd2UYEcbVWsqx7AQDq4b5uYJViVzbK49jt-mkpztWIWqmF64CPUBLtvro3PNmmoCMGZfI1Rw5W4TqWZXknLylY8G2_Dp_lT9QMiR57x21GataOG7vI9L-1YjD2esVt-_IudO35TmT6WfZcgnr6xBw"></div></div></header><aside class="fixed left-0 top-[72px] bottom-0 w-60 z-40 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-lg mb-space-sm"><span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Risk Navigation</span></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="portfolio-holdings" href="#"><span class="material-symbols-outlined text-[18px]">pie_chart</span><span class="font-body-md text-body-md">Portfolio Holdings</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="exposure-graph" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-md text-body-md">Exposure Graph</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="operational-locations" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-body-md text-body-md">Operational Locations</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scenarios-screening" href="#"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">Scenarios &amp; Screening</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="analysis-results" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span class="font-body-md text-body-md">Analysis Results</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="allocation-compare" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span class="font-body-md text-body-md">Allocation Compare</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evidence-provenance" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-md text-body-md">Evidence &amp; Provenance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="saved-reports" href="#"><span class="material-symbols-outlined text-[18px]">folder</span><span class="font-body-md text-body-md">Saved Reports</span></a></nav></div><div class="p-space-md mx-space-sm mb-space-md bg-surface-container-low rounded-lg"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs font-semibold text-secondary uppercase">Environment</span><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span></div><div class="font-label-xs text-label-xs text-on-surface font-medium truncate">Auth: Demo Mode (Unconfigured)</div><div class="font-label-xs text-label-xs text-on-surface-variant mt-1">2025-05-18T09:42:14Z IST</div></div></aside><div class="pl-60"><main class="relative w-full pt-[72px] px-gutter-lg pb-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md pb-space-lg mb-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-xs text-label-xs tracking-wider uppercase text-secondary font-semibold">Active Assessment Universe</span>
+<span class="inline-flex items-center px-space-xs py-0.5 bg-surface-container text-on-surface-variant font-label-xs text-label-xs rounded">ID: MD-PORT-2025-ALPHA</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Live Model Feed
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Portfolio Holdings &amp; Exposure Ledger</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Audit corporate entity exposures, reconcile tickers against Sectivia graph master nodes, and quantify geo-operational site linkage in INR Lakhs.
+      </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md hover:bg-surface-container transition-colors shadow-sm rounded-lg" id="open-upload-btn">
+<span class="material-symbols-outlined text-[18px] text-primary">upload_file</span>
+<span class="">Upload CSV</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md hover:bg-surface-container transition-colors shadow-sm rounded-lg" id="add-holding-row-btn">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span class="">Add Holding Row</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md hover:bg-surface-container transition-colors shadow-sm rounded-lg" id="reset-demo-btn">
+<span class="material-symbols-outlined text-[18px] text-secondary">history</span>
+<span class="">Reset to Demo Reference (INR 100L)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary-container font-headline-sm text-headline-sm hover:opacity-95 transition-opacity shadow-sm rounded-lg" id="save-draft-btn">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+<span class="">Save Local Draft</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-xs text-label-xs uppercase text-secondary font-medium tracking-wider">Gross Modeled Capital</span>
+<span class="material-symbols-outlined text-primary text-[18px]">currency_rupee</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-lg text-tabular-lg text-on-surface" id="metric-total-amount">100.00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Lakh INR</span>
+</div>
+<div class="mt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-xs text-label-xs">Currency strictness</span>
+<span class="font-label-xs text-label-xs text-primary font-semibold">100% INR Match</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-xs text-label-xs uppercase text-secondary font-medium tracking-wider">Accounted Holdings</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">domain_verification</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-lg text-tabular-lg text-on-surface" id="metric-holding-count">4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Active Constituents</span>
+</div>
+<div class="mt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-xs text-label-xs">Coverage factor</span>
+<span class="font-label-xs text-label-xs text-primary font-semibold">4 / 4 Sectivia Resolved</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-xs text-label-xs uppercase text-secondary font-medium tracking-wider">Physical Site Assets Linked</span>
+<span class="material-symbols-outlined text-tertiary-container text-[18px]">factory</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-lg text-tabular-lg text-on-surface">6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Geospatial Nodes</span>
+</div>
+<div class="mt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-xs text-label-xs">Lat/Lon Precision</span>
+<span class="font-label-xs text-label-xs text-on-surface font-medium">Illustrative Demo Coordinates</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-xs text-label-xs uppercase text-secondary font-medium tracking-wider">Systemic Residual / Excluded</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-tabular-lg text-tabular-lg text-on-surface" id="metric-excluded-capital">0.00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Excluded/Unmatched Capital</span>
+</div>
+<div class="mt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-xs text-label-xs">Omission guard</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Silent drops blocked</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl mb-space-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md"><div class="flex items-start gap-space-md"><span class="material-symbols-outlined text-tertiary-container text-[20px] mt-0.5">info</span><div class="flex flex-col"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface">Validation Protocol</span><span class="bg-surface-container-highest px-space-xs py-0.5 text-on-surface-variant font-label-xs text-label-xs uppercase rounded">Audit Notice</span></div><p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Validation Protocol — Checks entity ticker matching, non-negative amounts, INR currency integrity, and deduplication. Does not certify regulatory or ESG standards compliance.</p></div></div><div class="flex items-center gap-space-sm shrink-0"><span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Status:</span><span class="px-space-sm py-0.5 bg-surface-container-highest text-on-surface font-tabular-md text-tabular-md rounded">Integrity Verified</span></div></div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-lg">
+<div class="px-space-lg py-space-md bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<span class="font-headline-md text-headline-md text-on-surface">Modeled Allocation Table</span>
+<span class="px-space-sm py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded font-medium">Unit: INR Lakhs</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1.5 text-[16px] text-secondary">search</span>
+<input class="pl-8 pr-space-md py-1 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-lg focus:outline-none focus:bg-surface-container-high w-64" id="filter-holdings-input" placeholder="Search entity, ticker, or sector..." type="text">
+</div>
+<button class="inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container text-on-surface-variant hover:text-on-surface font-label-xs text-label-xs uppercase tracking-wider rounded-lg transition-colors" id="download-template-link">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span class="">Sample CSV</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="holdings-table">
+<thead>
+<tr class="bg-surface-container text-secondary font-label-sm text-label-sm uppercase tracking-wider h-9">
+<th class="w-12 px-space-md text-center">#</th>
+<th class="px-space-md">Company Entity</th>
+<th class="px-space-md">Ticker / Mic</th>
+<th class="px-space-md">Sector &amp; Segment</th>
+<th class="px-space-md text-right">Amount (INR Lakh)</th>
+<th class="px-space-md text-right">Weight</th>
+<th class="px-space-md">Sectivia Resolution</th>
+<th class="px-space-md">Facility Linked</th>
+<th class="px-space-md text-center w-24">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md text-on-surface" id="holdings-tbody">
+<tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="1">
+<td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">01</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<input class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" type="text" value="Aster Motors Ltd">
+<span class="font-label-xs text-label-xs text-secondary px-1">LEI: 335800QW4721P9Z98211</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">ASTER.NS</span>
+<span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Automotive &amp; Assemblies</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Heavy Transport EV</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<span class="font-label-xs text-label-xs text-secondary">₹</span>
+<input class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" step="0.1" type="number" value="40.00">
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">40.0%</span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+<span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 2 Facilities Linked
+              </span>
+</td>
+<td class="px-space-md py-space-sm text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors" title="Inspect Dependency Node">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</button>
+<button class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors" title="Remove Row">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="2">
+<td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">02</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<input class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" type="text" value="Beacon Logistics Corp">
+<span class="font-label-xs text-label-xs text-secondary px-1">LEI: 213800889P20194L9033</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">BEACON.NS</span>
+<span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Logistics &amp; Cold Chain</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Coastal Corridors</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<span class="font-label-xs text-label-xs text-secondary">₹</span>
+<input class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" step="0.1" type="number" value="30.00">
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">30.0%</span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+<span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 2 Facilities Linked
+              </span>
+</td>
+<td class="px-space-md py-space-sm text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors" title="Inspect Dependency Node">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</button>
+<button class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors" title="Remove Row">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="3">
+<td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">03</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<input class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" type="text" value="Cedar Retail Warehousing">
+<span class="font-label-xs text-label-xs text-secondary px-1">LEI: 549300VLM8920OPN8112</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">CEDAR.NS</span>
+<span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Consumer Discretionary</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Regional Fulfillment</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<span class="font-label-xs text-label-xs text-secondary">₹</span>
+<input class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" step="0.1" type="number" value="20.00">
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">20.0%</span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+<span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 1 Facility Linked
+              </span>
+</td>
+<td class="px-space-md py-space-sm text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors" title="Inspect Dependency Node">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</button>
+<button class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors" title="Remove Row">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="4">
+<td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">04</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<input class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" type="text" value="Evergreen Cloud Services">
+<span class="font-label-xs text-label-xs text-secondary px-1">LEI: 98450098TYUI76123489</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">EVERGREEN.BO</span>
+<span class="font-label-xs text-label-xs text-secondary ml-1">BSE</span>
+</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Technology Infrastructure</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Hyperscale Datacenters</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<div class="inline-flex items-center justify-end gap-1">
+<span class="font-label-xs text-label-xs text-secondary">₹</span>
+<input class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" step="0.1" type="number" value="10.00">
+</div>
+</td>
+<td class="px-space-md py-space-sm text-right">
+<span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">10.0%</span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs rounded font-medium">
+<span class="material-symbols-outlined text-[13px]">published_with_changes</span> Operational Nodes Available
+              </span>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+<span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 1 Facility Linked
+              </span>
+</td>
+<td class="px-space-md py-space-sm text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors" title="Inspect Dependency Node">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</button>
+<button class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors" title="Remove Row">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container font-headline-sm text-headline-sm text-on-surface">
+<td class="px-space-md py-space-md" colspan="4">
+<div class="flex items-center gap-space-lg">
+<span class="font-headline-sm text-headline-sm uppercase tracking-wider text-secondary">Summary Aggregates</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant"><span id="table-row-count" class="">4</span> Modeled Positions</span>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 bg-surface-container-highest text-on-surface font-label-xs text-label-xs rounded">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> 100% Capital Accounted
+                </span>
+</div>
+</td>
+<td class="px-space-md py-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Sum Allocated</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface">₹ <span id="table-total-amount" class="">100.00</span> L</span>
+</div>
+</td>
+<td class="px-space-md py-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Sum Weight</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface" id="table-total-weight">100.0%</span>
+</div>
+</td>
+<td class="px-space-md py-space-md text-right text-on-surface-variant font-label-xs text-label-xs" colspan="3">
+              Direct physical risk modeled at facility resolution.
+            </td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Exposure Distribution</span>
+<span class="font-label-xs text-label-xs text-secondary uppercase">INR Lakhs</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Top-tier weights determine simulated facility flood &amp; heat stress propagation.</p>
+<div class="mt-space-md flex flex-col gap-space-sm">
+<div>
+<div class="flex justify-between font-label-xs text-label-xs mb-1">
+<span class="text-on-surface font-medium">Aster Motors (Automotive)</span>
+<span class="font-tabular-md text-tabular-md text-primary">₹ 40.00 L · 40%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-xs text-label-xs mb-1">
+<span class="text-on-surface font-medium">Beacon Logistics (Supply Chain)</span>
+<span class="font-tabular-md text-tabular-md text-primary-container">₹ 30.00 L · 30%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-xs text-label-xs mb-1">
+<span class="text-on-surface font-medium">Cedar Retail (Consumer Warehousing)</span>
+<span class="font-tabular-md text-tabular-md text-tertiary-container">₹ 20.00 L · 20%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-xs text-label-xs mb-1">
+<span class="text-on-surface font-medium">Evergreen Cloud (Data Infra)</span>
+<span class="font-tabular-md text-tabular-md text-secondary">₹ 10.00 L · 10%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Simulation Baseline</span>
+<span class="font-label-xs text-label-xs text-on-surface font-medium">IPCC SSP2-4.5 (2030)</span>
+</div>
+</div>
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">account_tree</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Operational Location Coverage</span>
+</div>
+<span class="px-space-xs py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">4 of 4 Entities Resolved</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Direct facilities linked below feed the geospatial risk raster and scenario screening calculators. Unmapped entities fall back to administrative headquarters centroids.
+        </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase font-semibold text-secondary">Aster Motors Ltd</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Sanand Plant &amp; Chennai Port Yard</h2>
+</div>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">2 Sites</span>
+</div>
+<div class="mt-space-sm pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span class="">Risk exposure: Cyclone &amp; Heat</span>
+<span class="text-primary font-semibold">Illustrative Demo Coordinates</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase font-semibold text-secondary">Beacon Logistics Corp</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">JNPT Corridor &amp; Bhiwandi Hub</h2>
+</div>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">2 Sites</span>
+</div>
+<div class="mt-space-sm pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span class="">Risk exposure: Pluvial Inundation</span>
+<span class="text-primary font-semibold">Illustrative Demo Coordinates</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase font-semibold text-secondary">Cedar Retail Warehousing</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Gurugram Logistics Depot #4</h2>
+</div>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">1 Site</span>
+</div>
+<div class="mt-space-sm pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span class="">Risk exposure: Severe Drought Stress</span>
+<span class="text-primary font-semibold">Illustrative Demo Coordinates</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase font-semibold text-secondary">Evergreen Cloud Services</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Navi Mumbai Hyperscale Unit A</h2>
+</div>
+<span class="font-tabular-md text-tabular-md text-primary font-bold">1 Site</span>
+</div>
+<div class="mt-space-sm pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span class="">Risk exposure: Grid Cooling Deficit</span>
+<span class="text-primary font-semibold">Illustrative Demo Coordinates</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between pt-space-sm text-on-surface-variant font-label-xs text-label-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">sync</span> Simulated Open-Meteo Grid Mapping (Illustrative demo fixture)</span>
+<a class="text-primary hover:underline font-semibold flex items-center gap-0.5" href="#">
+<span class="">Open Operational Locations</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="upload-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">upload_file</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface">Portfolio Upload &amp; Review Drawer</h2>
+<span class="font-label-xs text-label-xs text-secondary">Papa Parse Format Engine · Strict INR Lakh Standard</span>
+</div>
+</div>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container transition-colors" id="close-modal-btn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-lg overflow-y-auto flex flex-col gap-space-lg">
+<div class="bg-surface-container-low hover:bg-surface-container transition-colors rounded-xl p-space-lg text-center cursor-pointer flex flex-col items-center justify-center gap-space-xs" id="dropzone">
+<span class="material-symbols-outlined text-[36px] text-primary">cloud_upload</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Drag &amp; Drop CSV File, or Click to Browse</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Expected Headers: <code class="bg-surface-container-highest px-1 py-0.5 font-label-xs text-label-xs rounded">ticker,amount,currency</code></span>
+<div class="mt-space-xs flex items-center gap-space-sm text-secondary font-label-xs text-label-xs">
+<span class="">• Max file size: 5MB</span>
+<span class="">• Encoding: UTF-8</span>
+<span class="">• Currencies allowed: INR</span>
+</div>
+<input accept=".csv" class="hidden" id="csv-file-input" type="file">
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Ambiguous &amp; Unmatched Review</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">1 Conflict Staged</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Reconcile tickers against Sectivia registry master identifiers. Discarded duplicates can be excluded or merged.
+          </p>
+<div class="overflow-x-auto rounded-lg bg-surface-container-low">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container text-secondary font-label-xs text-label-xs uppercase">
+<tr>
+<th class="px-space-md py-space-xs">Incoming Ticker</th>
+<th class="px-space-md py-space-xs">Parsed Amount</th>
+<th class="px-space-md py-space-xs">Sectivia Candidate Match</th>
+<th class="px-space-md py-space-xs">Confidence</th>
+<th class="px-space-md py-space-xs text-center">Resolution</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high font-body-sm text-body-sm text-on-surface">
+<tr>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md font-semibold">TATACHEM.NS</td>
+<td class="px-space-md py-space-sm font-tabular-md text-tabular-md">₹ 15.00 L</td>
+<td class="px-space-md py-space-sm">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Tata Chemicals Ltd</span>
+<span class="font-label-xs text-label-xs text-secondary">Basic Materials · Mithapur Plant</span>
+</div>
+</td>
+<td class="px-space-md py-space-sm">
+<span class="px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-semibold">98% Match</span>
+</td>
+<td class="px-space-md py-space-sm text-center">
+<div class="flex items-center justify-center gap-space-xs">
+<button class="px-space-sm py-1 bg-primary text-on-primary font-label-xs text-label-xs rounded hover:opacity-90">Merge</button>
+<button class="px-space-sm py-1 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded hover:bg-surface-container-highest">Exclude</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">policy</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Exclusion &amp; Transparency Guarantee</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Unsupported holdings remain visible and excluded from modeled totals with explicit excluded capital. Never silently omit them. This preserves analytical integrity during risk roll-ups.
+            </p>
+</div>
+</div>
+</div>
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<button class="px-space-md py-space-sm bg-surface-container text-on-surface font-body-md text-body-md rounded-lg hover:bg-surface-container-high transition-colors" id="cancel-modal-btn">
+          Cancel
+        </button>
+<button class="px-space-md py-space-sm bg-primary-container text-on-primary-container font-headline-sm text-headline-sm rounded-lg hover:opacity-90 transition-opacity" id="confirm-upload-btn">
+          Confirm &amp; Apply to Portfolio
+        </button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-space-lg right-space-lg bg-inverse-surface text-inverse-on-surface px-space-lg py-space-sm rounded-lg shadow-xl hidden items-center gap-space-sm z-50 font-body-sm text-body-sm" id="toast">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">check_circle</span>
+<span id="toast-message" class="">Local draft saved successfully.</span>
+</div>
+</div>
+<script>
+  (function initPortfolioHoldings() {
+    const tableBody = document.getElementById('holdings-tbody');
+    const tableRowCount = document.getElementById('table-row-count');
+    const tableTotalAmount = document.getElementById('table-total-amount');
+    const tableTotalWeight = document.getElementById('table-total-weight');
+    const metricTotalAmount = document.getElementById('metric-total-amount');
+    const metricHoldingCount = document.getElementById('metric-holding-count');
+    const filterInput = document.getElementById('filter-holdings-input');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-message');
+
+    function showToast(text) {
+      if (!toast) return;
+      toastMsg.textContent = text;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3500);
+    }
+
+    function recalculateWeights() {
+      const rows = tableBody.querySelectorAll('tr.holding-row');
+      let grandTotal = 0;
+
+      rows.forEach(row => {
+        const amtInput = row.querySelector('.holding-amount-input');
+        if (amtInput) {
+          let val = parseFloat(amtInput.value) || 0;
+          if (val < 0) {
+            val = 0;
+            amtInput.value = '0.00';
+          }
+          grandTotal += val;
+        }
+      });
+
+      rows.forEach(row => {
+        const amtInput = row.querySelector('.holding-amount-input');
+        const weightSpan = row.querySelector('.holding-weight');
+        if (amtInput && weightSpan) {
+          const val = parseFloat(amtInput.value) || 0;
+          const weight = grandTotal > 0 ? ((val / grandTotal) * 100).toFixed(1) : '0.0';
+          weightSpan.textContent = weight + '%';
+        }
+      });
+
+      const formattedTotal = grandTotal.toFixed(2);
+      if (tableTotalAmount) tableTotalAmount.textContent = formattedTotal;
+      if (metricTotalAmount) metricTotalAmount.textContent = formattedTotal;
+      if (tableRowCount) tableRowCount.textContent = rows.length;
+      if (metricHoldingCount) metricHoldingCount.textContent = rows.length;
+      if (tableTotalWeight) tableTotalWeight.textContent = grandTotal > 0 ? '100.0%' : '0.0%';
+    }
+
+    tableBody.addEventListener('input', (e) => {
+      if (e.target.classList.contains('holding-amount-input')) {
+        recalculateWeights();
+      }
+    });
+
+    tableBody.addEventListener('click', (e) => {
+      const deleteBtn = e.target.closest('.delete-row-btn');
+      if (deleteBtn) {
+        const row = deleteBtn.closest('tr');
+        if (row) {
+          row.remove();
+          recalculateWeights();
+          showToast('Holding allocation removed. Sectivia operational network nodes preserved.');
+        }
+      }
+
+      const viewBtn = e.target.closest('.view-node-btn');
+      if (viewBtn) {
+        const row = viewBtn.closest('tr');
+        const name = row.querySelector('.entity-name-input')?.value || 'Entity';
+        showToast('Navigating to graph focus: ' + name);
+      }
+    });
+
+    const addRowBtn = document.getElementById('add-holding-row-btn');
+    if (addRowBtn) {
+      addRowBtn.addEventListener('click', () => {
+        const rowCount = tableBody.querySelectorAll('tr.holding-row').length + 1;
+        const padIndex = rowCount < 10 ? '0' + rowCount : rowCount;
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container-low transition-colors holding-row';
+        tr.innerHTML = `
+          <td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">${padIndex}</td>
+          <td class="px-space-md py-space-sm">
+            <div class="flex flex-col">
+              <input type="text" value="New Enterprise Entity" class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" />
+              <span class="font-label-xs text-label-xs text-secondary px-1">LEI: PENDING-PROV-MATCH</span>
+            </div>
+          </td>
+          <td class="px-space-md py-space-sm">
+            <span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">NEW.NS</span>
+            <span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+          </td>
+          <td class="px-space-md py-space-sm">
+            <div class="flex flex-col">
+              <span class="text-on-surface font-medium">Diversified Industrial</span>
+              <span class="font-label-xs text-label-xs text-on-surface-variant">General Manufacturing</span>
+            </div>
+          </td>
+          <td class="px-space-md py-space-sm text-right">
+            <div class="inline-flex items-center justify-end gap-1">
+              <span class="font-label-xs text-label-xs text-secondary">₹</span>
+              <input type="number" step="0.1" value="10.00" class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" />
+            </div>
+          </td>
+          <td class="px-space-md py-space-sm text-right">
+            <span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">10.0%</span>
+          </td>
+          <td class="px-space-md py-space-sm">
+            <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs rounded font-medium">
+              <span class="material-symbols-outlined text-[13px]">published_with_changes</span> Operational Nodes Available
+            </span>
+          </td>
+          <td class="px-space-md py-space-sm">
+            <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+              <span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 1 Facility Linked
+            </span>
+          </td>
+          <td class="px-space-md py-space-sm text-center">
+            <div class="flex items-center justify-center gap-1">
+              <button title="Inspect Dependency Node" class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[18px]">hub</span>
+              </button>
+              <button title="Remove Row" class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </div>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+        recalculateWeights();
+        showToast('Added holding row. Please specify Ticker & Amount.');
+      });
+    }
+
+    const resetDemoBtn = document.getElementById('reset-demo-btn');
+    if (resetDemoBtn) {
+      resetDemoBtn.addEventListener('click', () => {
+        tableBody.innerHTML = `
+          <tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="1">
+            <td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">01</td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <input type="text" value="Aster Motors Ltd" class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" />
+                <span class="font-label-xs text-label-xs text-secondary px-1">LEI: 335800QW4721P9Z98211</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">ASTER.NS</span>
+              <span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <span class="text-on-surface font-medium">Automotive & Assemblies</span>
+                <span class="font-label-xs text-label-xs text-on-surface-variant">Heavy Transport EV</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <div class="inline-flex items-center justify-end gap-1">
+                <span class="font-label-xs text-label-xs text-secondary">₹</span>
+                <input type="number" step="0.1" value="40.00" class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" />
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">40.0%</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+                <span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 2 Facilities Linked
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm text-center">
+              <div class="flex items-center justify-center gap-1">
+                <button title="Inspect Dependency Node" class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                </button>
+                <button title="Remove Row" class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="2">
+            <td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">02</td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <input type="text" value="Beacon Logistics Corp" class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" />
+                <span class="font-label-xs text-label-xs text-secondary px-1">LEI: 213800889P20194L9033</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">BEACON.NS</span>
+              <span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <span class="text-on-surface font-medium">Logistics & Cold Chain</span>
+                <span class="font-label-xs text-label-xs text-on-surface-variant">Coastal Corridors</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <div class="inline-flex items-center justify-end gap-1">
+                <span class="font-label-xs text-label-xs text-secondary">₹</span>
+                <input type="number" step="0.1" value="30.00" class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" />
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">30.0%</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+                <span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 2 Facilities Linked
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm text-center">
+              <div class="flex items-center justify-center gap-1">
+                <button title="Inspect Dependency Node" class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                </button>
+                <button title="Remove Row" class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="3">
+            <td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">03</td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <input type="text" value="Cedar Retail Warehousing" class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" />
+                <span class="font-label-xs text-label-xs text-secondary px-1">LEI: 549300VLM8920OPN8112</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">CEDAR.NS</span>
+              <span class="font-label-xs text-label-xs text-secondary ml-1">NSE</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <span class="text-on-surface font-medium">Consumer Discretionary</span>
+                <span class="font-label-xs text-label-xs text-on-surface-variant">Regional Fulfillment</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <div class="inline-flex items-center justify-end gap-1">
+                <span class="font-label-xs text-label-xs text-secondary">₹</span>
+                <input type="number" step="0.1" value="20.00" class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" />
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">20.0%</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed-variant font-label-xs text-label-xs rounded font-medium">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Sectivia Matched
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+                <span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 1 Facility Linked
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm text-center">
+              <div class="flex items-center justify-center gap-1">
+                <button title="Inspect Dependency Node" class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                </button>
+                <button title="Remove Row" class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-surface-container-low transition-colors holding-row" data-id="4">
+            <td class="px-space-md py-space-sm text-center font-tabular-md text-tabular-md text-secondary">04</td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <input type="text" value="Evergreen Cloud Services" class="entity-name-input bg-transparent font-headline-sm text-headline-sm text-on-surface focus:bg-surface-container px-1 py-0.5 rounded focus:outline-none" />
+                <span class="font-label-xs text-label-xs text-secondary px-1">LEI: 98450098TYUI76123489</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-block px-1.5 py-0.5 bg-surface-container-high font-tabular-md text-tabular-md text-on-surface rounded">EVERGREEN.BO</span>
+              <span class="font-label-xs text-label-xs text-secondary ml-1">BSE</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <div class="flex flex-col">
+                <span class="text-on-surface font-medium">Technology Infrastructure</span>
+                <span class="font-label-xs text-label-xs text-on-surface-variant">Hyperscale Datacenters</span>
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <div class="inline-flex items-center justify-end gap-1">
+                <span class="font-label-xs text-label-xs text-secondary">₹</span>
+                <input type="number" step="0.1" value="10.00" class="holding-amount-input w-24 text-right font-tabular-md text-tabular-md text-on-surface bg-surface-container px-1.5 py-0.5 rounded focus:outline-none focus:bg-surface-container-high" />
+              </div>
+            </td>
+            <td class="px-space-md py-space-sm text-right">
+              <span class="holding-weight font-tabular-md text-tabular-md text-on-surface font-semibold">10.0%</span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs rounded font-medium">
+                <span class="material-symbols-outlined text-[13px]">published_with_changes</span> Operational Nodes Available
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm">
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs rounded">
+                <span class="material-symbols-outlined text-[13px] text-primary">pin_drop</span> 1 Facility Linked
+              </span>
+            </td>
+            <td class="px-space-md py-space-sm text-center">
+              <div class="flex items-center justify-center gap-1">
+                <button title="Inspect Dependency Node" class="view-node-btn p-1 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">hub</span>
+                </button>
+                <button title="Remove Row" class="delete-row-btn p-1 text-on-surface-variant hover:text-error rounded hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+        recalculateWeights();
+        showToast('Restored Demo Reference Portfolio Alpha (INR 100 Lakh).');
+      });
+    }
+
+    const saveDraftBtn = document.getElementById('save-draft-btn');
+    if (saveDraftBtn) {
+      saveDraftBtn.addEventListener('click', () => {
+        showToast('Local snapshot committed: INR ' + (metricTotalAmount?.textContent || '100.00') + ' Lakhs across ' + (metricHoldingCount?.textContent || '4') + ' holdings.');
+      });
+    }
+
+    if (filterInput) {
+      filterInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const rows = tableBody.querySelectorAll('tr.holding-row');
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    }
+
+    const modal = document.getElementById('upload-modal');
+    const openUploadBtn = document.getElementById('open-upload-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const cancelModalBtn = document.getElementById('cancel-modal-btn');
+    const confirmUploadBtn = document.getElementById('confirm-upload-btn');
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('csv-file-input');
+    const downloadTemplateLink = document.getElementById('download-template-link');
+
+    function openModal() {
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+    function closeModal() {
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    if (openUploadBtn) openUploadBtn.addEventListener('click', openModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeModal);
+    
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length) {
+          showToast('Parsed CSV fixture: ' + fileInput.files[0].name);
+        }
+      });
+    }
+
+    if (confirmUploadBtn) {
+      confirmUploadBtn.addEventListener('click', () => {
+        closeModal();
+        showToast('CSV batch integrated with Sectivia master entity graph.');
+      });
+    }
+
+    if (downloadTemplateLink) {
+      downloadTemplateLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const csvContent = "data:text/csv;charset=utf-8,ticker,amount,currency\nASTER.NS,40.00,INR\nBEACON.NS,30.00,INR\nCEDAR.NS,20.00,INR\nEVERGREEN.BO,10.00,INR\n";
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "meghdrishti_holdings_template.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Template downloaded: ticker,amount,currency');
+      });
+    }
+
+    recalculateWeights();
+  })();
+</script></main></div>
+
+
+
+</body></html>

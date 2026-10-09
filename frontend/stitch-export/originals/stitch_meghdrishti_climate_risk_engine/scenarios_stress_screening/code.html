@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-surface":"#1b1b1e","inverse-surface":"#303033","on-secondary":"#ffffff","surface-variant":"#e4e1e6","background":"#fbf8fc","primary-fixed-dim":"#8fd3ca","surface":"#fbf8fc","primary-container":"#397d76","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed-variant":"#46464f","on-tertiary-container":"#fff7f5","tertiary-container":"#b8560d","secondary":"#5e5e67","secondary-container":"#e0dee9","on-primary-fixed-variant":"#00504a","on-primary-fixed":"#00201d","surface-container-lowest":"#ffffff","outline":"#6f7977","surface-tint":"#216962","on-tertiary":"#ffffff","surface-container-highest":"#e4e1e6","surface-container":"#f0edf1","on-surface-variant":"#3f4947","inverse-on-surface":"#f3f0f4","on-tertiary-fixed":"#331200","primary":"#1b645d","on-background":"#1b1b1e","primary-fixed":"#abefe6","surface-container-high":"#eae7eb","tertiary-fixed":"#ffdbca","on-secondary-fixed":"#1a1b23","surface-container-low":"#f6f2f7","on-primary":"#ffffff","error-container":"#ffdad6","on-primary-container":"#e0fffa","outline-variant":"#bec9c6","tertiary":"#944100","tertiary-fixed-dim":"#ffb68e","on-secondary-container":"#62626b","surface-bright":"#fbf8fc","surface-dim":"#dcd9dd","secondary-fixed":"#e3e1ec","on-tertiary-fixed-variant":"#763300","secondary-fixed-dim":"#c7c5d0","inverse-primary":"#8fd3ca"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1rem","margin":"1rem","gutter-lg":"1rem","margin-lg":"1.5rem","space-md":"0.75rem","space-sm":"0.5rem","gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"tabular-lg":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"label-md":["JetBrains Mono"],"tabular-md":["JetBrains Mono"],"headline-xl":["Geist"],"headline-sm":["Geist"],"headline-lg":["Geist"],"headline-md":["Geist"],"body-sm":["Geist"],"label-xs":["JetBrains Mono"],"body-md":["Geist"],"body-lg":["Geist"]},"fontSize":{"tabular-lg":["16px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"tabular-md":["13px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.02em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-[72px] z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-margin-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="MeghDrishti Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Un6gZaDYLat3kQ9tG_Zi_Nybdmwx8FsTErhWQcfyDYDKKx3Q2GOEG6ZyVOJWQGUHPiLmBVdiVj5aCXzdUpPNppi_bfR18719TLlUhbVA_8OBBA75Zm2xTgCBMGbQowhWNoGFWTUYrnMZ0X4PpzS1-mS_gTX_FK5xMqxX_gnQTs5arITfJHeu6dA4JaxZxU4_WFjS_P7VD6y6901iieRhuLFkiRmgXllUvAPxoVLBubM8etQV0oWBITwMyn"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface tracking-tight leading-none">MeghDrishti</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Climate Portfolio Intelligence</span></div></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Active Entity</span><span class="font-tabular-md text-tabular-md text-on-surface font-semibold">Demo Portfolio Alpha (INR 100L)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[16px] ml-space-xs">expand_more</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-tertiary-fixed px-space-sm py-0.5 rounded-lg text-on-tertiary-fixed-variant"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span><span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Demo simulation</span></div><span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg border border-surface-container-highest uppercase font-medium">Synthetic fixture: v1.0</span></div><div class="hidden xl:flex items-center gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Sectivia</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Synthetic</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Open-Meteo</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Demo cache</span></div></div><div class="flex items-center gap-space-md pl-space-sm border-l border-surface-container-high"><div class="flex flex-col text-right"><span class="font-body-sm text-body-sm text-on-surface font-semibold leading-tight">P. Sundaram</span><span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">Lead Climate Risk Analyst</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiiV8t_qNxEjM9vNWWpeh5aN9usctVNAFd9utDsW3WpOqe3-ZBLCGbuDGAOAOSPlJE_mnwYznVypI4Jakf__D-o_PGX3ESiW_yLd2UYEcbVWsqx7AQDq4b5uYJViVzbK49jt-mkpztWIWqmF64CPUBLtvro3PNmmoCMGZfI1Rw5W4TqWZXknLylY8G2_Dp_lT9QMiR57x21GataOG7vI9L-1YjD2esVt-_IudO35TmT6WfZcgnr6xBw"/></div></div></header><aside class="fixed left-0 top-[72px] bottom-0 w-60 z-40 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-lg mb-space-sm"><span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Risk Navigation</span></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="portfolio-holdings" href="#"><span class="material-symbols-outlined text-[18px]">pie_chart</span><span class="font-body-md text-body-md">Portfolio Holdings</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="exposure-graph" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-md text-body-md">Exposure Graph</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="operational-locations" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-body-md text-body-md">Operational Locations</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scenarios-screening" href="#"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">Scenarios &amp; Screening</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="analysis-results" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span class="font-body-md text-body-md">Analysis Results</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="allocation-compare" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span class="font-body-md text-body-md">Allocation Compare</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evidence-provenance" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-md text-body-md">Evidence &amp; Provenance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="saved-reports" href="#"><span class="material-symbols-outlined text-[18px]">folder</span><span class="font-body-md text-body-md">Saved Reports</span></a></nav></div><div class="p-space-md mx-space-sm mb-space-md bg-surface-container-low rounded-lg"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs font-semibold text-secondary uppercase">Environment</span><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span></div><div class="font-label-xs text-label-xs text-on-surface font-medium truncate">Auth: Demo Mode (Unconfigured)</div><div class="font-label-xs text-label-xs text-on-surface-variant mt-1">2025-05-18T09:42:14Z IST</div></div></aside><div class="pl-60"><main class="relative w-full pt-[72px] px-gutter-lg pb-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg w-full max-w-[1440px] mx-auto">
+<!-- Header Context Strip -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-xs text-label-xs text-primary font-semibold uppercase tracking-wider">Module 07 // Stress Testing</span>
+<span class="text-outline-variant font-label-xs text-label-xs">/</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Physical Risk Engine</span>
+</div>
+<div class="flex items-baseline gap-space-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Scenarios &amp; Stress Screening</h1>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">FIXTURE: IND-GJ-SYN-2025</span>
+</div>
+</div>
+<!-- Tab Switcher Navigation -->
+<div class="inline-flex p-1 bg-surface-container rounded-xl shadow-sm self-start md:self-auto">
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-on-primary-container bg-surface-container-lowest font-headline-sm text-headline-sm shadow-sm transition-all" id="tab-btn-1" onclick="switchScenarioTab(1)">
+<span class="material-symbols-outlined text-[16px] text-primary">sensors</span>
+<span>Automatic Screening</span>
+<span class="ml-1 w-2 h-2 rounded-full bg-primary-container inline-block"></span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-secondary font-headline-sm text-headline-sm hover:text-on-surface transition-all" id="tab-btn-2" onclick="switchScenarioTab(2)">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>What-If Modeling</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-secondary font-headline-sm text-headline-sm hover:text-on-surface transition-all" id="tab-btn-3" onclick="switchScenarioTab(3)">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span>CMIP6 Climate Context</span>
+</button>
+</div>
+</div>
+<!-- TAB 1: AUTOMATIC SCREENING -->
+<div class="flex flex-col gap-space-lg w-full" id="tab-content-1">
+<!-- Status Notice Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Automatic Operational Screening: Evaluated via Stored Synthetic Event</span>
+<span class="font-label-xs text-label-xs bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded font-semibold uppercase tracking-wide">Synthetically Verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5 max-w-4xl">
+              Evaluates registered operational nodes against active threshold criteria when the Open-Meteo adapter is live. Execution currently draws against reference benchmark fixture <span class="font-label-xs text-label-xs text-on-surface font-semibold bg-surface-container px-1 rounded">SYN-GJ-HEATWAVE-2024</span>.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-medium">Cadence:</span>
+<span class="font-tabular-md text-tabular-md text-on-surface bg-surface-container-low px-2 py-1 rounded">Daily Tmax Scan</span>
+</div>
+</div>
+<!-- Main Bento Grid: Event Card + Micro Topology Visualizer -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Event Detail Panel (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-xs text-label-xs text-tertiary-container uppercase tracking-wider font-semibold">Active Benchmark Hazard</span>
+<span class="text-outline-variant font-label-xs text-label-xs">•</span>
+<span class="font-label-xs text-label-xs text-secondary font-medium">Trigger ID: EVT-992-01</span>
+</div>
+<span class="font-label-xs text-label-xs bg-error-container text-on-error-container px-2 py-0.5 rounded font-bold uppercase tracking-wider">Severity Level: Elevated</span>
+</div>
+<div class="mt-space-sm flex flex-col md:flex-row md:items-baseline justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Extreme Heat Wave Exceedance</h2>
+<div class="flex items-center gap-space-xs mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">location_on</span>
+<span>Gujarat Industrial Corridor (Sanand / Viramgam / Ahmedabad Special Investment Region)</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-tabular-lg text-tabular-lg text-tertiary font-bold">43.0 °C</div>
+<div class="font-label-xs text-label-xs text-secondary uppercase">Peak 7-Day Tmax</div>
+</div>
+</div>
+<!-- Metrics Quad -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm mt-space-lg">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Exceedance Days</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface mt-1 font-semibold">6 / 7</span>
+<span class="font-label-xs text-label-xs text-tertiary font-medium mt-0.5">&gt; 35.0 °C threshold</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Calculated Intensity</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface mt-1 font-semibold">0.80</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium mt-0.5">Normalized score</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Seed Stress</span>
+<span class="font-tabular-lg text-tabular-lg text-error mt-1 font-semibold">0.60</span>
+<span class="font-label-xs text-label-xs text-secondary font-medium mt-0.5">Direct site penalty</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Network Hops</span>
+<span class="font-tabular-lg text-tabular-lg text-primary mt-1 font-semibold">3 Hops</span>
+<span class="font-label-xs text-label-xs text-secondary font-medium mt-0.5">Cascade reach</span>
+</div>
+</div>
+<!-- Sparkline Visual Component: 7-Day Temperature Trend -->
+<div class="mt-space-lg bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">7-Day Observed Diurnal Profile vs Baseline Threshold (35°C)</span>
+<span class="font-label-xs text-label-xs text-tertiary font-medium">Max Anomaly: +8.0°C</span>
+</div>
+<div class="h-24 w-full flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 700 80">
+<!-- Threshold line at 35°C (normalized around y=48) -->
+<line class="text-outline-variant stroke-[1.5]" stroke="currentColor" stroke-dasharray="4 3" x1="0" x2="700" y1="48" y2="48"></line>
+<text class="font-label-xs text-[10px] fill-current text-secondary" x="5" y="44">35°C Operating Safety Threshold</text>
+<!-- Shaded exceedance area -->
+<polygon class="text-tertiary-fixed opacity-60" fill="currentColor" points="0,52 100,42 200,30 300,12 400,8 500,15 600,28 700,38 700,80 0,80"></polygon>
+<!-- Hazard curve -->
+<polyline class="text-tertiary stroke-[2.5] stroke-linecap-round stroke-linejoin-round" fill="none" points="0,52 100,42 200,30 300,12 400,8 500,15 600,28 700,38" stroke="currentColor"></polyline>
+<!-- Data points -->
+<circle class="text-tertiary" cx="0" cy="52" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary" cx="100" cy="42" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary" cx="200" cy="30" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary" cx="300" cy="12" fill="currentColor" r="3.5"></circle>
+<circle class="text-error" cx="400" cy="8" fill="currentColor" r="4.5"></circle>
+<circle class="text-tertiary" cx="500" cy="15" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary" cx="600" cy="28" fill="currentColor" r="3.5"></circle>
+<circle class="text-tertiary" cx="700" cy="38" fill="currentColor" r="3.5"></circle>
+</svg>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs text-secondary pt-1">
+<span>D-6 (34.2°C)</span>
+<span>D-5 (36.1°C)</span>
+<span>D-4 (38.5°C)</span>
+<span>D-3 (42.0°C)</span>
+<span class="text-error font-semibold">Peak D-2 (43.0°C)</span>
+<span>D-1 (41.4°C)</span>
+<span>Yesterday (38.8°C)</span>
+<span>Today (37.1°C)</span>
+</div>
+</div>
+</div>
+<!-- Impacted Node Card Summary -->
+<div class="mt-space-lg pt-space-md bg-surface-container-high/40 p-space-md rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded bg-error-container text-on-error-container flex items-center justify-center font-bold font-label-sm">
+                01
+              </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Delta Components Facility A (Seed Point)</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Sanand GIDC • Automotive Electronics Tier-2 Supplier</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex flex-col text-right">
+<span class="font-label-xs text-label-xs text-secondary uppercase">Attributed Capital At Risk</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">₹ 14.20 Lakhs</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Geospatial & Pipeline Context (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Geospatial Map Container -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col h-full justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Geospatial Ingestion Context</span>
+<span class="font-label-xs text-label-xs bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">23.0225° N, 72.5714° E</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sanand Industrial Zone Climatology Tile</h3>
+</div>
+<!-- Map View Trigger -->
+<div class="w-full h-48 bg-cover bg-center rounded-lg mt-space-md relative overflow-hidden shadow-inner" data-location="Sanand, Gujarat, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWJlwvOqqIttVheX3GPaGN6u04NU84hw_rTDJwzsloZlvgAeh3YOzhzNHoziLhUxHSsO5AUIlzn0bwBrSft-98v1pa9PdHyjm-HEAhAFFJY6klXwDJrjPoskJANVRuVJzHJwne7n-42Pmc0_P-_IpuRyeGbW3d4XdVX50ZL7Ig4qM70N0PyNFEiTAkfjOaeVjuaov94UqzFwm-GJmE0HI1acAyCeY2rlMSOUQgpGRaHmj67nYq_DAxLA')">
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex flex-col justify-end p-space-md text-inverse-on-surface">
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs text-primary-fixed">
+<span class="h-2 w-2 rounded-full bg-error animate-ping"></span>
+<span>Primary Seed Anomaly Zone: 15km Radius</span>
+</div>
+<div class="font-headline-sm text-headline-sm mt-0.5">Sanand Automobile &amp; Micro-Forging Hub</div>
+</div>
+</div>
+<!-- Node Propagation Table -->
+<div class="flex flex-col mt-space-md">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold mb-2">Automated Shock Propagation Traversal</span>
+<div class="flex flex-col gap-1.5 font-body-sm text-body-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs bg-surface-container text-secondary px-1.5 py-0.5 rounded">T-0</span>
+<span class="font-medium text-on-surface truncate max-w-[160px]">Delta Components</span>
+</div>
+<span class="font-tabular-sm text-label-sm text-error font-semibold">Direct Seed: 0.60</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs bg-surface-container text-secondary px-1.5 py-0.5 rounded">Hop-1</span>
+<span class="font-medium text-on-surface truncate max-w-[160px]">Apex Kinetic Motors</span>
+</div>
+<span class="font-tabular-sm text-label-sm text-tertiary font-semibold">Tier-1 Attenuation: 0.42</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs bg-surface-container text-secondary px-1.5 py-0.5 rounded">Hop-2</span>
+<span class="font-medium text-on-surface truncate max-w-[160px]">Bharat Logistic Carriers</span>
+</div>
+<span class="font-tabular-sm text-label-sm text-on-surface-variant font-semibold">Tier-2 Attenuation: 0.29</span>
+</div>
+</div>
+</div>
+<!-- Provenance Footer -->
+<div class="mt-space-md pt-space-sm flex items-center justify-between font-label-xs text-label-xs text-secondary">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                Synthetic Deterministic Model
+              </span>
+<span>Updated: 2025-05-18 09:42 IST</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 2: WHAT-IF EVENT MODELING -->
+<div class="hidden flex-col gap-space-lg w-full" id="tab-content-2">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-xs text-label-xs text-primary font-semibold uppercase tracking-wider">Hypothetical Simulation Engine</span>
+<span class="text-outline-variant font-label-xs text-label-xs">•</span>
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-1.5 py-0.5 rounded font-medium">User Scenario Session</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">What-If Shock Parameter Setup</h2>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">info</span>
+<span class="font-label-xs text-label-xs text-secondary">Modifications operate on memory clones; audit ledger remains unaltered.</span>
+</div>
+</div>
+<!-- 3-Column Parameter Formulation Form -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl">
+<!-- Column 1: Target Entity & Hazard Type -->
+<div class="flex flex-col gap-space-lg">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-xs text-label-xs text-secondary uppercase font-semibold">1. Simulation Target Facility</label>
+<select class="h-9 px-space-md bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:outline-none focus:ring-1 focus:ring-primary" id="target-picker">
+<option selected="" value="delta_sanand">Delta Components — Sanand Facility A (GIDC)</option>
+<option value="apex_pune">Apex Kinetic Motors — Chakan Assembly (Tier-1)</option>
+<option value="bharat_nh8">Bharat Logistics — NH48 Logistics Terminal</option>
+<option value="custom_route">Custom Supply Route Multi-Point</option>
+</select>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Primary operational facility receiving root climate stress vector.</span>
+</div>
+<!-- Hazard Selection -->
+<div class="flex flex-col gap-2">
+<label class="font-label-xs text-label-xs text-secondary uppercase font-semibold">2. Hazard Shock Profile</label>
+<!-- Option: Extreme Heat (Active) -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container cursor-pointer">
+<div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary"></div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Extreme Heat Wave</span>
+<span class="font-label-xs text-label-xs text-primary font-semibold">ACTIVE</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Thermal threshold stress exceeding 35.0°C sustained limits.</span>
+</div>
+</div>
+<!-- Option: Pluvial Flood (Disabled) -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-low opacity-60 cursor-not-allowed">
+<div class="w-4 h-4 rounded-full bg-surface-variant shrink-0 mt-0.5"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-secondary">Pluvial Flooding</span>
+<span class="font-label-xs text-label-xs bg-surface-variant text-on-surface-variant px-1.5 rounded">LOCKED</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary mt-0.5">Requires calibrated hydrological runoff model (Phase 2).</span>
+</div>
+</div>
+<!-- Option: Tropical Cyclone (Disabled) -->
+<div class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-low opacity-60 cursor-not-allowed">
+<div class="w-4 h-4 rounded-full bg-surface-variant shrink-0 mt-0.5"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-secondary">Tropical Cyclone Wind</span>
+<span class="font-label-xs text-label-xs bg-surface-variant text-on-surface-variant px-1.5 rounded">LOCKED</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary mt-0.5">Requires gust structural fragility curves (Phase 2).</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: Physical & Asset Assumption Sliders -->
+<div class="flex flex-col gap-space-lg">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Physical Parameters</span>
+<span class="font-label-xs text-label-xs text-tertiary font-semibold uppercase">USER ASSUMPTIONS</span>
+</div>
+<!-- Hazard Intensity Slider -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="intensity-slider">Hazard Intensity</label>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="intensity-val">0.80</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" id="intensity-slider" max="100" min="0" oninput="updateSliderVal('intensity-slider', 'intensity-val', 100)" type="range" value="80"/>
+<div class="flex justify-between font-label-xs text-label-xs text-secondary">
+<span>0.00 (Nominal)</span>
+<span>Scale 0.0 – 1.0</span>
+<span>1.00 (Extreme Peak)</span>
+</div>
+</div>
+<!-- Asset Vulnerability Slider -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="vuln-slider">Asset Vulnerability</label>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="vuln-val">0.75</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" id="vuln-slider" max="100" min="0" oninput="updateSliderVal('vuln-slider', 'vuln-val', 100)" type="range" value="75"/>
+<div class="flex justify-between font-label-xs text-label-xs text-secondary">
+<span>0.00 (Fully Hardened)</span>
+<span>Assumed Physical Fragility</span>
+<span>1.00 (Unmitigated)</span>
+</div>
+</div>
+<!-- Operational Share Slider -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="share-slider">Operational Share</label>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="share-val">1.00</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" id="share-slider" max="100" min="10" oninput="updateSliderVal('share-slider', 'share-val', 100)" type="range" value="100"/>
+<div class="flex justify-between font-label-xs text-label-xs text-secondary">
+<span>0.10 (Redundant Line)</span>
+<span>Facility Revenue Contribution</span>
+<span>1.00 (Sole Plant)</span>
+</div>
+</div>
+</div>
+<!-- Column 3: Network Transmission & Propagation Depth -->
+<div class="flex flex-col gap-space-lg">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Cascade Dynamics</span>
+<span class="font-label-xs text-label-xs text-secondary font-medium uppercase">Propagation Model</span>
+</div>
+<!-- Commercial Transmission Multiplier (λ) -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="lambda-slider">Transmission Multiplier (λ)</label>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="lambda-val">0.70</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer" id="lambda-slider" max="100" min="10" oninput="updateSliderVal('lambda-slider', 'lambda-val', 100)" type="range" value="70"/>
+<div class="flex justify-between font-label-xs text-label-xs text-secondary">
+<span>0.10 (High Dampening)</span>
+<span>Hop-to-Hop Attenuation</span>
+<span>1.00 (Undampened)</span>
+</div>
+</div>
+<!-- Traversal Hop Depth Stepper -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded-lg">
+<label class="font-headline-sm text-headline-sm text-on-surface">Traversal Hop Depth</label>
+<div class="grid grid-cols-3 gap-space-xs mt-1">
+<button class="hop-select-btn py-2 text-center rounded-lg bg-surface-container text-secondary font-tabular-md text-tabular-md hover:bg-surface-variant transition-colors" id="hop-btn-1" onclick="setHopDepth(1)" type="button">
+                  1 Hop
+                </button>
+<button class="hop-select-btn py-2 text-center rounded-lg bg-surface-container text-secondary font-tabular-md text-tabular-md hover:bg-surface-variant transition-colors" id="hop-btn-2" onclick="setHopDepth(2)" type="button">
+                  2 Hops
+                </button>
+<button class="hop-select-btn py-2 text-center rounded-lg bg-primary text-on-primary font-tabular-md text-tabular-md font-semibold transition-colors" id="hop-btn-3" onclick="setHopDepth(3)" type="button">
+                  3 Hops
+                </button>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Evaluates tier dependencies through tier-1 assemblers and tier-2 distribution nodes.</span>
+</div>
+<!-- Formula Reference Tile -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Shock Attenuation Formula</span>
+<div class="font-tabular-md text-tabular-md text-on-surface font-semibold tracking-wide">
+                S<sub>hop(k)</sub> = I<sub>hazard</sub> × V<sub>asset</sub> × (λ)<sup>k</sup>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Deterministic exponential decay over unhedged supplier transactions.</span>
+</div>
+</div>
+</div>
+<!-- Action Row & Validation Notice -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md bg-surface-container-low p-space-lg rounded-xl">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-tertiary text-[20px]">warning</span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Hypothetical parameters do not alter underlying historical records or source evidence.</span>
+<span class="font-label-xs text-label-xs text-secondary">Simulation outputs are temporary and flagged with synthetic watermark in downstream export packs.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md w-full sm:w-auto">
+<button class="w-full sm:w-auto px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-variant font-headline-sm text-headline-sm transition-all shadow-sm" onclick="resetDefaults()" type="button">
+              Reset Baseline
+            </button>
+<button class="w-full sm:w-auto px-space-lg py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-headline-sm text-headline-sm transition-all shadow-sm flex items-center justify-center gap-space-xs" onclick="triggerSimulationNotice()" type="button">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Run What-If Simulation</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 3: FUTURE CLIMATE CONTEXT (CMIP6) -->
+<div class="hidden flex-col gap-space-lg w-full" id="tab-content-3">
+<!-- CMIP6 Header Bar -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-xs text-label-xs text-primary font-semibold uppercase tracking-wider">Scientific Projection Module</span>
+<span class="text-outline-variant font-label-xs text-label-xs">•</span>
+<span class="font-label-xs text-label-xs text-secondary uppercase font-medium">World Bank CCKP Climatology</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">CMIP6 Future Climate Projections</h2>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Grid:</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">0.25° × 0.25° (~27 km)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Ensemble:</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">32-Model Multi-Median</span>
+</div>
+</div>
+</div>
+<!-- Main Layout: Selector Controls + Projection Matrix -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Control Selectors (4 Cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Physical Climate Indicator</label>
+<div class="flex flex-col gap-2">
+<label class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container cursor-pointer">
+<input checked="" class="accent-primary mt-1" name="cmip-indicator" type="radio"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">hd35 — Days Tmax &gt; 35°C</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Critical automotive &amp; precision component assembly heat threshold.</span>
+</div>
+</label>
+<label class="flex items-start gap-space-md p-space-md rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="accent-primary mt-1" name="cmip-indicator" type="radio"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">tasmax — Mean Daily Tmax</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Sustained climatological ambient daytime heating average.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Scenario Comparison Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Shared Socioeconomic Pathway</label>
+<select class="h-9 px-space-md bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg focus:outline-none focus:ring-1 focus:ring-primary">
+<option selected="">SSP2-4.5 vs SSP5-8.5 (Middle-of-Road vs High Emission)</option>
+<option>SSP1-2.6 (Paris Ambitious Mitigation)</option>
+<option>SSP3-7.0 (Regional Rivalry Scenario)</option>
+</select>
+</div>
+<!-- Projections Timeline Scope -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Assessment Window</label>
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between font-headline-sm text-headline-sm text-on-surface">
+<span>Mid-Century Era</span>
+<span class="font-tabular-md text-tabular-md font-bold text-primary">2040 – 2059</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aligned with 30-year long-term industrial infrastructure lifecycles.</span>
+</div>
+</div>
+<!-- Geographic Region Note -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">travel_explore</span>
+<div class="flex flex-col font-body-sm text-body-sm text-secondary">
+<span class="font-semibold text-on-surface">Regional Context Scope</span>
+<span>Western India / Gujarat Industrial Belt (Grid Cell Centroid: 23.25°N, 72.25°E).</span>
+</div>
+</div>
+</div>
+<!-- Climatology Projection Visualizer & Comparative Matrix (8 Cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs text-secondary uppercase font-semibold">Comparative Trajectory Analysis</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-0.5">hd35: Annual Days Exceeding 35°C (Gujarat Sub-Region)</h3>
+</div>
+<span class="font-label-xs text-label-xs bg-surface-container text-on-surface-variant px-2 py-1 rounded font-medium">Metric: Multi-Model Median Days/Year</span>
+</div>
+<!-- Visual Bar Comparison Matrix -->
+<div class="flex flex-col gap-space-md bg-surface-container-low p-space-lg rounded-xl">
+<!-- Baseline Bar -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-secondary inline-block"></span>
+<span class="font-medium text-on-surface">Historical Reference Baseline (1995 – 2014)</span>
+</div>
+<span class="font-tabular-lg text-tabular-lg text-on-surface font-bold">84.2 <span class="font-label-xs text-label-xs font-normal text-secondary">days/yr</span></span>
+</div>
+<div class="w-full bg-surface-container-highest h-4 rounded overflow-hidden">
+<div class="bg-secondary h-full rounded" style="width: 44.3%;"></div>
+</div>
+</div>
+<!-- SSP2-4.5 Bar -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-primary inline-block"></span>
+<span class="font-medium text-on-surface">SSP2-4.5 Intermediate Pathway (2040 – 2059)</span>
+<span class="font-label-xs text-label-xs bg-primary-fixed text-on-primary-fixed-variant px-1 rounded font-semibold">+40.7% Anomaly</span>
+</div>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold">118.5 <span class="font-label-xs text-label-xs font-normal text-secondary">days/yr</span></span>
+</div>
+<div class="w-full bg-surface-container-highest h-4 rounded overflow-hidden">
+<div class="bg-primary h-full rounded" style="width: 62.3%;"></div>
+</div>
+</div>
+<!-- SSP5-8.5 Bar -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-baseline font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-tertiary-container inline-block"></span>
+<span class="font-medium text-on-surface">SSP5-8.5 High-Emissions Pathway (2040 – 2059)</span>
+<span class="font-label-xs text-label-xs bg-tertiary-fixed text-on-tertiary-fixed-variant px-1 rounded font-semibold">+68.8% Anomaly</span>
+</div>
+<span class="font-tabular-lg text-tabular-lg text-tertiary font-bold">142.1 <span class="font-label-xs text-label-xs font-normal text-secondary">days/yr</span></span>
+</div>
+<div class="w-full bg-surface-container-highest h-4 rounded overflow-hidden">
+<div class="bg-tertiary-container h-full rounded" style="width: 74.8%;"></div>
+</div>
+</div>
+</div>
+<!-- Tabular Breakdown -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container text-secondary font-label-xs text-label-xs uppercase">
+<th class="p-space-sm font-semibold">Climate Epoch</th>
+<th class="p-space-sm font-semibold">Scenario Profile</th>
+<th class="p-space-sm font-semibold text-right">hd35 (Median)</th>
+<th class="p-space-sm font-semibold text-right">10th – 90th Pctl</th>
+<th class="p-space-sm font-semibold text-right">Mean tasmax Anomaly</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-tabular-md text-tabular-md">
+<tr class="hover:bg-surface-container-low">
+<td class="p-space-sm font-medium text-on-surface">1995 – 2014</td>
+<td class="p-space-sm text-secondary font-body-sm">Historical CMIP6</td>
+<td class="p-space-sm text-right font-semibold">84.2 d</td>
+<td class="p-space-sm text-right text-secondary">72.4 – 96.1 d</td>
+<td class="p-space-sm text-right text-secondary">0.0 °C (Ref)</td>
+</tr>
+<tr class="hover:bg-surface-container-low">
+<td class="p-space-sm font-medium text-primary">2040 – 2059</td>
+<td class="p-space-sm text-secondary font-body-sm">SSP2-4.5 (Moderate)</td>
+<td class="p-space-sm text-right font-semibold text-primary">118.5 d</td>
+<td class="p-space-sm text-right text-secondary">104.2 – 134.8 d</td>
+<td class="p-space-sm text-right text-primary font-semibold">+1.85 °C</td>
+</tr>
+<tr class="hover:bg-surface-container-low">
+<td class="p-space-sm font-medium text-tertiary">2040 – 2059</td>
+<td class="p-space-sm text-secondary font-body-sm">SSP5-8.5 (Fossil Fuel)</td>
+<td class="p-space-sm text-right font-semibold text-tertiary">142.1 d</td>
+<td class="p-space-sm text-right text-secondary">121.0 – 165.4 d</td>
+<td class="p-space-sm text-right text-tertiary font-semibold">+2.64 °C</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Scientific & Methodological Disclaimers (Strict Institutional Standards) -->
+<div class="mt-space-lg p-space-md bg-surface-container rounded-lg flex flex-col gap-1.5 border-l-2 border-primary">
+<div class="flex items-center gap-1.5 font-label-xs text-label-xs text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[15px] text-primary">science</span>
+<span>SCIENTIFIC DISCLOSURE &amp; METHODOLOGY NOTICE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Long-term CMIP6 climatology represents 20-year multi-model statistical medians. It cannot predict weather on exact future dates, and does not constitute an automatic stock price loss forecast.
+            </p>
+<div class="flex items-center justify-between font-label-xs text-label-xs text-secondary pt-1">
+<span>Data Status: World Bank CCKP dataset not connected in local demo. Values reflect published reference fixtures.</span>
+<span class="bg-surface-container-highest px-1.5 py-0.5 rounded font-mono">CMIP6-CCKP-IND-V2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast for Simulated Actions -->
+<div class="fixed bottom-6 right-6 hidden bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded-xl shadow-xl flex items-center gap-space-md z-50" id="sim-toast">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Simulation Pipeline Initialized</span>
+<span class="font-label-xs text-label-xs text-secondary-fixed">Parameters mapped to active graph canvas cache.</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchScenarioTab(tabIndex) {
+    // Hide all tab contents
+    document.getElementById('tab-content-1').classList.add('hidden');
+    document.getElementById('tab-content-2').classList.add('hidden');
+    document.getElementById('tab-content-3').classList.add('hidden');
+
+    document.getElementById('tab-content-1').classList.remove('flex');
+    document.getElementById('tab-content-2').classList.remove('flex');
+    document.getElementById('tab-content-3').classList.remove('flex');
+
+    // Reset button states
+    const btn1 = document.getElementById('tab-btn-1');
+    const btn2 = document.getElementById('tab-btn-2');
+    const btn3 = document.getElementById('tab-btn-3');
+
+    [btn1, btn2, btn3].forEach(btn => {
+      btn.className = "flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-secondary font-headline-sm text-headline-sm hover:text-on-surface transition-all";
+    });
+
+    // Activate selected tab
+    const activeContent = document.getElementById('tab-content-' + tabIndex);
+    activeContent.classList.remove('hidden');
+    activeContent.classList.add('flex');
+
+    const activeBtn = document.getElementById('tab-btn-' + tabIndex);
+    activeBtn.className = "flex items-center gap-space-xs px-space-md py-1.5 rounded-lg text-on-primary-container bg-surface-container-lowest font-headline-sm text-headline-sm shadow-sm transition-all";
+  }
+
+  function updateSliderVal(sliderId, displayId, divisor) {
+    const slider = document.getElementById(sliderId);
+    const display = document.getElementById(displayId);
+    const val = (slider.value / divisor).toFixed(2);
+    display.textContent = val;
+  }
+
+  function setHopDepth(hops) {
+    for (let i = 1; i <= 3; i++) {
+      const btn = document.getElementById('hop-btn-' + i);
+      if (i === hops) {
+        btn.className = "hop-select-btn py-2 text-center rounded-lg bg-primary text-on-primary font-tabular-md text-tabular-md font-semibold transition-colors";
+      } else {
+        btn.className = "hop-select-btn py-2 text-center rounded-lg bg-surface-container text-secondary font-tabular-md text-tabular-md hover:bg-surface-variant transition-colors";
+      }
+    }
+  }
+
+  function resetDefaults() {
+    document.getElementById('intensity-slider').value = 80;
+    document.getElementById('intensity-val').textContent = "0.80";
+
+    document.getElementById('vuln-slider').value = 75;
+    document.getElementById('vuln-val').textContent = "0.75";
+
+    document.getElementById('share-slider').value = 100;
+    document.getElementById('share-val').textContent = "1.00";
+
+    document.getElementById('lambda-slider').value = 70;
+    document.getElementById('lambda-val').textContent = "0.70";
+
+    setHopDepth(3);
+  }
+
+  function triggerSimulationNotice() {
+    const toast = document.getElementById('sim-toast');
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 3800);
+  }
+</script></main></div></body></html>

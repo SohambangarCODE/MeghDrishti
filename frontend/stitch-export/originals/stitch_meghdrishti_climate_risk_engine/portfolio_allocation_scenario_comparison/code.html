@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-surface":"#1b1b1e","inverse-surface":"#303033","on-secondary":"#ffffff","surface-variant":"#e4e1e6","background":"#fbf8fc","primary-fixed-dim":"#8fd3ca","surface":"#fbf8fc","primary-container":"#397d76","on-error":"#ffffff","error":"#ba1a1a","on-secondary-fixed-variant":"#46464f","on-tertiary-container":"#fff7f5","tertiary-container":"#b8560d","secondary":"#5e5e67","secondary-container":"#e0dee9","on-primary-fixed-variant":"#00504a","on-primary-fixed":"#00201d","surface-container-lowest":"#ffffff","outline":"#6f7977","surface-tint":"#216962","on-tertiary":"#ffffff","surface-container-highest":"#e4e1e6","surface-container":"#f0edf1","on-surface-variant":"#3f4947","inverse-on-surface":"#f3f0f4","on-tertiary-fixed":"#331200","primary":"#1b645d","on-background":"#1b1b1e","primary-fixed":"#abefe6","surface-container-high":"#eae7eb","tertiary-fixed":"#ffdbca","on-secondary-fixed":"#1a1b23","surface-container-low":"#f6f2f7","on-primary":"#ffffff","error-container":"#ffdad6","on-primary-container":"#e0fffa","outline-variant":"#bec9c6","tertiary":"#944100","tertiary-fixed-dim":"#ffb68e","on-secondary-container":"#62626b","surface-bright":"#fbf8fc","surface-dim":"#dcd9dd","secondary-fixed":"#e3e1ec","on-tertiary-fixed-variant":"#763300","secondary-fixed-dim":"#c7c5d0","inverse-primary":"#8fd3ca"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1rem","margin":"1rem","gutter-lg":"1rem","margin-lg":"1.5rem","space-md":"0.75rem","space-sm":"0.5rem","gutter":"0.75rem","space-xl":"1.5rem","space-xs":"0.25rem"},"fontFamily":{"tabular-lg":["JetBrains Mono"],"label-sm":["JetBrains Mono"],"label-md":["JetBrains Mono"],"tabular-md":["JetBrains Mono"],"headline-xl":["Geist"],"headline-sm":["Geist"],"headline-lg":["Geist"],"headline-md":["Geist"],"body-sm":["Geist"],"label-xs":["JetBrains Mono"],"body-md":["Geist"],"body-lg":["Geist"]},"fontSize":{"tabular-lg":["16px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"tabular-md":["13px",{"lineHeight":"16px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-xl":["24px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.02em","fontWeight":"400"}],"body-md":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-[72px] z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-margin-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md"><img alt="MeghDrishti Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Un6gZaDYLat3kQ9tG_Zi_Nybdmwx8FsTErhWQcfyDYDKKx3Q2GOEG6ZyVOJWQGUHPiLmBVdiVj5aCXzdUpPNppi_bfR18719TLlUhbVA_8OBBA75Zm2xTgCBMGbQowhWNoGFWTUYrnMZ0X4PpzS1-mS_gTX_FK5xMqxX_gnQTs5arITfJHeu6dA4JaxZxU4_WFjS_P7VD6y6901iieRhuLFkiRmgXllUvAPxoVLBubM8etQV0oWBITwMyn"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface tracking-tight leading-none">MeghDrishti</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mt-0.5">Climate Portfolio Intelligence</span></div></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-xs text-label-xs text-on-surface-variant uppercase font-medium">Active Entity</span><span class="font-tabular-md text-tabular-md text-on-surface font-semibold">Demo Portfolio Alpha (INR 100L)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[16px] ml-space-xs">expand_more</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-tertiary-fixed px-space-sm py-0.5 rounded-lg text-on-tertiary-fixed-variant"><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span><span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Demo simulation</span></div><span class="font-label-xs text-label-xs bg-surface-container-high text-on-surface-variant px-space-sm py-0.5 rounded-lg border border-surface-container-highest uppercase font-medium">Synthetic fixture: v1.0</span></div><div class="hidden xl:flex items-center gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg"><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Sectivia</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Synthetic</span></div><div class="h-3 w-px bg-surface-container-highest"></div><div class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-xs text-label-xs text-on-surface-variant">Open-Meteo</span><span class="font-label-xs text-label-xs text-secondary-container bg-surface-variant px-1 rounded">Demo cache</span></div></div><div class="flex items-center gap-space-md pl-space-sm border-l border-surface-container-high"><div class="flex flex-col text-right"><span class="font-body-sm text-body-sm text-on-surface font-semibold leading-tight">P. Sundaram</span><span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">Lead Climate Risk Analyst</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiiV8t_qNxEjM9vNWWpeh5aN9usctVNAFd9utDsW3WpOqe3-ZBLCGbuDGAOAOSPlJE_mnwYznVypI4Jakf__D-o_PGX3ESiW_yLd2UYEcbVWsqx7AQDq4b5uYJViVzbK49jt-mkpztWIWqmF64CPUBLtvro3PNmmoCMGZfI1Rw5W4TqWZXknLylY8G2_Dp_lT9QMiR57x21GataOG7vI9L-1YjD2esVt-_IudO35TmT6WfZcgnr6xBw"/></div></div></header><aside class="fixed left-0 top-[72px] bottom-0 w-60 z-40 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-lg mb-space-sm"><span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Risk Navigation</span></div><nav class="flex flex-col px-space-sm gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="portfolio-holdings" href="#"><span class="material-symbols-outlined text-[18px]">pie_chart</span><span class="font-body-md text-body-md">Portfolio Holdings</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="exposure-graph" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-md text-body-md">Exposure Graph</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="operational-locations" href="#"><span class="material-symbols-outlined text-[18px]">location_on</span><span class="font-body-md text-body-md">Operational Locations</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scenarios-screening" href="#"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">Scenarios &amp; Screening</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="analysis-results" href="#"><span class="material-symbols-outlined text-[18px]">assessment</span><span class="font-body-md text-body-md">Analysis Results</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="allocation-compare" href="#"><span class="material-symbols-outlined text-[18px]">compare_arrows</span><span class="font-body-md text-body-md">Allocation Compare</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="evidence-provenance" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-md text-body-md">Evidence &amp; Provenance</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="saved-reports" href="#"><span class="material-symbols-outlined text-[18px]">folder</span><span class="font-body-md text-body-md">Saved Reports</span></a></nav></div><div class="p-space-md mx-space-sm mb-space-md bg-surface-container-low rounded-lg"><div class="flex items-center justify-between mb-1"><span class="font-label-xs text-label-xs font-semibold text-secondary uppercase">Environment</span><span class="h-1.5 w-1.5 rounded-full bg-tertiary"></span></div><div class="font-label-xs text-label-xs text-on-surface font-medium truncate">Auth: Demo Mode (Unconfigured)</div><div class="font-label-xs text-label-xs text-on-surface-variant mt-1">2025-05-18T09:42:14Z IST</div></div></aside><div class="pl-60"><main class="relative w-full pt-[72px] px-gutter-lg pb-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-lg mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant uppercase tracking-wider font-semibold">Decision Engine P09</span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium">Model: Deterministic Hazard Propagation v2.4</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-semibold">Portfolio Allocation &amp; Scenario Comparison</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-0.5">Evaluate hypothetical capital reallocations and supplier redundancy overlays while holding climate event and evidence parameters fixed.</p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-all font-body-sm text-body-sm font-medium" id="reset-btn">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+          Reset to Baseline (₹100L)
+        </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all font-body-sm text-body-sm font-semibold shadow-sm" id="draft-scenario-btn">
+<span class="material-symbols-outlined text-[16px]">save_as</span>
+          Apply as Draft Scenario
+        </button>
+</div>
+</div>
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">warning</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-xs text-label-xs font-semibold tracking-wider uppercase text-tertiary">Demo Simulation Protocol</span>
+<span class="h-1 w-1 rounded-full bg-tertiary"></span>
+<span class="font-label-xs text-label-xs text-on-tertiary-fixed-variant">Regulatory Pre-trade Sandbox</span>
+</div>
+<p class="font-body-sm text-body-sm mt-0.5">
+          DEMO SIMULATION — Hypothetical comparisons are decision-support models and do not constitute investment recommendations or procurement proposals. Disconnected holdings (e.g. Evergreen) represent absence of recorded paths, not proven safety.
+        </p>
+</div>
+</div>
+</div>
+<div class="flex flex-col p-space-lg rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between pb-space-md mb-space-md bg-surface-container-low px-space-md py-space-sm rounded-lg gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">swap_horiz</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Capital Reallocation Simulator</span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary-fixed-dim text-on-primary-fixed uppercase font-semibold">Strict Conservation Invariant</span>
+</div>
+<div class="flex items-center gap-space-md font-tabular-md text-tabular-md">
+<span class="text-on-surface-variant font-label-xs text-label-xs uppercase tracking-wider">Total Portfolio Capital:</span>
+<span class="font-bold text-on-surface bg-surface-container-lowest px-2.5 py-0.5 rounded shadow-sm">₹ 100.00 Lakh</span>
+<span class="font-label-xs text-label-xs text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Invariant Maintained
+        </span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<div class="lg:col-span-4 flex flex-col gap-1.5 p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Source Holding (Divest)</span>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Aster Motors Ltd</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tier-1 OEM · Heavy Auto Assembly</span>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant">Tier-1</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-lowest px-2 py-1 rounded">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Baseline Capital</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">₹ 40.00 Lakh</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest px-2 py-1 rounded">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Simulated Capital</span>
+<span class="font-tabular-md text-tabular-md text-tertiary font-bold" id="source-sim-val">₹ 30.00 Lakh</span>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-sm px-space-md py-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-on-surface-variant font-semibold">Transfer Capital Vector</span>
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="slider-display">₹ 10.00 Lakh</span>
+</div>
+<div class="relative flex items-center w-full py-2">
+<input class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" id="transfer-slider" max="30" min="0" step="1" type="range" value="10"/>
+</div>
+<div class="flex justify-between font-label-xs text-label-xs text-on-surface-variant">
+<span>₹ 0.00 L (Hold)</span>
+<span>₹ 15.00 L</span>
+<span>₹ 30.00 L (Max Divest)</span>
+</div>
+<div class="flex items-center justify-center gap-space-md mt-1">
+<button class="w-7 h-7 flex items-center justify-center rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-sm font-bold" id="decrement-btn">-1L</button>
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Adjustment Step</span>
+<button class="w-7 h-7 flex items-center justify-center rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-sm font-bold" id="increment-btn">+1L</button>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-1.5 p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Target Holding (Reallocate)</span>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Evergreen Services</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">IT &amp; Strategic Digital Consulting</span>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-secondary">Zero Recorded Path</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-lowest px-2 py-1 rounded">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Baseline Capital</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">₹ 10.00 Lakh</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest px-2 py-1 rounded">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Simulated Capital</span>
+<span class="font-tabular-md text-tabular-md text-primary font-bold" id="target-sim-val">₹ 20.00 Lakh</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<div class="xl:col-span-4 flex flex-col p-space-lg rounded-xl bg-surface-container-lowest shadow-sm justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Baseline Allocation</span>
+</div>
+<span class="font-label-xs text-label-xs font-semibold px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant">UNSTRESSED BASE</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total Capital Asset Base</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface font-bold">₹ 100.00 L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Connected Physical Value</span>
+<span class="font-tabular-md text-tabular-md text-on-surface font-semibold">₹ 90.00 L <span class="text-secondary font-label-xs text-label-xs">(90.0%)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 90%;"></div>
+</div>
+<span class="font-label-xs text-label-xs text-secondary">3 of 4 Holdings exposed to graph hazards</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Assumed Stress Exposure</span>
+<div class="flex items-baseline gap-2">
+<span class="font-tabular-lg text-tabular-lg text-tertiary font-bold">₹ 13.3434 L</span>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">13.34% of portfolio</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Deterministic path propagation under 48h flood fixture</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span>Fixture: MH-Coastal-2025</span>
+<span class="font-mono">SEED: 0x88F2A1</span>
+</div>
+</div>
+<div class="xl:col-span-4 flex flex-col p-space-lg rounded-xl bg-surface-container-lowest shadow-sm justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-primary-fixed-dim px-space-md py-space-xs rounded-lg text-on-primary-fixed">
+<div class="flex items-center gap-space-xs">
+<span class="h-2 w-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm font-semibold">Simulated Overlay</span>
+</div>
+<span class="font-label-xs text-label-xs font-bold px-2 py-0.5 rounded bg-surface-container-lowest text-primary">PROPOSED REALLOCATION</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total Capital Asset Base</span>
+<span class="font-tabular-lg text-tabular-lg text-on-surface font-bold">₹ 100.00 L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Connected Physical Value</span>
+<span class="font-tabular-md text-tabular-md text-primary font-semibold" id="card-sim-conn">₹ 80.00 L <span class="text-primary font-label-xs text-label-xs">(80.0%)</span></span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-300" id="card-sim-bar" style="width: 80%;"></div>
+</div>
+<span class="font-label-xs text-label-xs text-primary font-medium" id="card-sim-conn-sub">₹10.00L reduction in path-connected exposure</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-primary font-semibold">Simulated Stress Exposure</span>
+<div class="flex items-baseline gap-2">
+<span class="font-tabular-lg text-tabular-lg text-primary font-bold" id="card-sim-stress">₹ 10.8234 L</span>
+<span class="font-label-sm text-label-sm text-primary font-medium" id="card-sim-pct">10.82% of portfolio</span>
+</div>
+<div class="flex items-center gap-1 font-label-xs text-label-xs text-primary font-semibold mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_down</span>
+<span id="card-sim-delta">-₹ 2.5200 L (-18.89%) Disruption Delta</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs">
+<span>Overlay State: Active Draft</span>
+<span class="font-label-xs text-label-xs text-primary font-semibold">Invariant Checked</span>
+</div>
+</div>
+<div class="xl:col-span-4 flex flex-col p-space-lg rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">bar_chart</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Capital &amp; Risk Delta Comparison</span>
+</div>
+<div class="flex items-center gap-3 font-label-xs text-label-xs">
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-secondary"></span>
+<span class="text-secondary">Base</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded bg-primary"></span>
+<span class="text-primary">Sim</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-md flex-1 justify-center">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface font-medium">Aster Motors (Tier-1 OEM)</span>
+<span class="text-on-surface-variant font-mono" id="chart-aster-label">₹40L → ₹30L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-secondary h-full rounded" style="width: 80%;"></div>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-primary h-full rounded transition-all duration-300" id="bar-aster-sim" style="width: 60%;"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface font-medium">Evergreen Services (Consulting)</span>
+<span class="text-on-surface-variant font-mono" id="chart-evergreen-label">₹10L → ₹20L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-secondary h-full rounded" style="width: 20%;"></div>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-primary h-full rounded transition-all duration-300" id="bar-evergreen-sim" style="width: 40%;"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-on-surface font-medium">Connected Portfolio Hazard Base</span>
+<span class="text-on-surface-variant font-mono" id="chart-conn-label">₹90L → ₹80L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-secondary h-full rounded" style="width: 90%;"></div>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-primary h-full rounded transition-all duration-300" id="bar-conn-sim" style="width: 80%;"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 pt-1">
+<div class="flex justify-between font-label-xs text-label-xs">
+<span class="text-tertiary font-semibold">Modeled Portfolio Stress Exposure</span>
+<span class="text-tertiary font-mono" id="chart-stress-label">₹13.34L → ₹10.82L</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-tertiary-fixed-dim h-full rounded" style="width: 66.7%;"></div>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded flex items-center">
+<div class="bg-primary-container h-full rounded transition-all duration-300" id="bar-stress-sim" style="width: 54.1%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg mt-space-sm flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant">Overall Assumed Risk Reduction</span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-semibold" id="chart-summary-badge">-18.89% Volatility Mitigation</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg overflow-hidden">
+<div class="p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">table_chart</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Holding-by-Holding Comparison Matrix</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unit-level exposure propagation before and after simulated capital adjustments</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm font-label-xs text-label-xs">
+<span class="text-on-surface-variant">Values denominated in</span>
+<span class="font-semibold px-2 py-0.5 rounded bg-surface-container-highest text-on-surface">INR Lakhs (₹ L)</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm uppercase tracking-wider text-secondary">
+<th class="py-space-sm px-space-lg font-semibold">Holding Entity</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Baseline Capital</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Proposed Capital</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Modeled Stress (%)</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Baseline Exposure</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Proposed Exposure</th>
+<th class="py-space-sm px-space-lg font-semibold text-right">Net Delta</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Aster Motors Ltd</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Tier-1 OEM Automotive Assembly</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 40.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-primary font-semibold" id="tbl-aster-prop-cap">₹ 30.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-tertiary font-medium">25.20%</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 10.0800 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-primary font-semibold" id="tbl-aster-prop-exp">₹ 7.5600 L</td>
+<td class="py-space-md px-space-lg font-tabular-md text-tabular-md text-right text-primary font-bold" id="tbl-aster-delta">-₹ 2.5200 L</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-tint"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Beacon Logistics</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Cold Chain &amp; Coastal Hubs</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 30.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface font-semibold">₹ 30.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface-variant">8.82%</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 2.6460 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 2.6460 L</td>
+<td class="py-space-md px-space-lg font-tabular-md text-tabular-md text-right text-on-surface-variant">₹ 0.0000 L</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Cedar Retail Group</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Omnichannel Distribution Centres</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 20.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface font-semibold">₹ 20.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface-variant">3.087%</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 0.6174 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 0.6174 L</td>
+<td class="py-space-md px-space-lg font-tabular-md text-tabular-md text-right text-on-surface-variant">₹ 0.0000 L</td>
+</tr>
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">Evergreen Services</span>
+<span class="font-label-xs text-label-xs px-1.5 py-0.2 rounded bg-surface-container-highest text-secondary">UNCONNECTED</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant">IT Consulting &amp; Remote Architecture</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-on-surface">₹ 10.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-primary font-semibold" id="tbl-evergreen-prop-cap">₹ 20.00 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-secondary">0.00%</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-secondary">₹ 0.0000 L</td>
+<td class="py-space-md px-space-md font-tabular-md text-tabular-md text-right text-secondary">₹ 0.0000 L</td>
+<td class="py-space-md px-space-lg font-tabular-md text-tabular-md text-right text-secondary">₹ 0.0000 L</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-high font-tabular-md text-tabular-md font-bold text-on-surface">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>Portfolio Aggregates (100L Invariant)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right">₹ 100.00 L</td>
+<td class="py-space-md px-space-md text-right text-primary">₹ 100.00 L</td>
+<td class="py-space-md px-space-md text-right font-label-sm text-label-sm text-on-surface-variant font-normal">Weighted</td>
+<td class="py-space-md px-space-md text-right">₹ 13.3434 L</td>
+<td class="py-space-md px-space-md text-right text-primary" id="tbl-tot-prop-exp">₹ 10.8234 L</td>
+<td class="py-space-md px-space-lg text-right text-primary font-bold" id="tbl-tot-delta">-₹ 2.5200 L</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="flex flex-col p-space-lg rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between pb-space-md mb-space-md bg-surface-container-low px-space-md py-space-sm rounded-lg gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary-container text-[22px]">alt_route</span>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Hypothetical Dependency Overlay</h3>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant uppercase font-semibold">Assumptions Only — Non-Mutating</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Simulate supply chain buffering and alternate sourcing without altering verified physical asset ledgers.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-body-sm text-body-sm font-medium hover:bg-surface-container-highest transition-all" id="toggle-overlay-btn">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Toggle Graph Preview</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-5 flex flex-col gap-space-md p-space-md rounded-lg bg-surface-container-low">
+<div class="flex flex-col gap-1">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Targeted Node Buffering</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Aster Motors Tier-1 Secondary Sourcing</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Inject an assumed dual-sourcing node in central inland corridor (Nashik Auto Cluster) to absorb 50% critical transmission component flow.</p>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-primary bg-surface-container rounded border-0 focus:ring-0 cursor-pointer accent-primary" id="secondary-source-check" type="checkbox"/>
+<div class="flex flex-col">
+<label class="font-body-sm text-body-sm text-on-surface font-semibold cursor-pointer" for="secondary-source-check">Simulate 50% Tier-1 Alternative Supplier</label>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Dampens coastal hazard transmission edge by 50.0%</span>
+</div>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-semibold">ACTIVE</span>
+</div>
+<div class="flex flex-col gap-2 p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex justify-between font-label-xs text-label-xs text-on-surface-variant">
+<span>Redundancy Dampening Factor</span>
+<span class="font-mono font-semibold text-primary">0.50x</span>
+</div>
+<div class="flex items-center justify-between font-tabular-md text-tabular-md">
+<span class="font-body-sm text-body-sm text-on-surface">Unbuffered Aster Stress</span>
+<span class="text-tertiary font-bold">25.20%</span>
+</div>
+<div class="flex items-center justify-between font-tabular-md text-tabular-md pt-1 bg-surface-container-low px-2 py-1 rounded">
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Overlay Attenuated Stress</span>
+<span class="text-primary font-bold">12.60% (-12.60% Delta)</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-lg text-on-surface-variant font-label-xs text-label-xs flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+<span>Underlying ESG and physical register records remain completely untouched in production store.</span>
+</div>
+</div>
+<div class="lg:col-span-7 flex flex-col p-space-md rounded-lg bg-surface-container-low justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-secondary font-semibold">Hypothetical Propagation Flow Diagram</span>
+<span class="font-label-xs text-label-xs text-primary font-medium flex items-center gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span> Dynamic Path Dampener
+          </span>
+</div>
+<div class="relative w-full h-52 bg-surface-container-lowest rounded-lg p-space-md flex items-center justify-between overflow-hidden shadow-inner">
+<div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#1b645d_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<div class="z-10 flex flex-col items-center p-space-sm bg-surface-container rounded-lg text-center w-36 shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[20px]">flood</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Coastal Flood</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Konkan Sub-basin</span>
+<span class="font-tabular-md text-tabular-md text-tertiary font-bold mt-1">100% Hazard</span>
+</div>
+<div class="z-10 flex flex-col items-center gap-1">
+<div class="flex items-center gap-1">
+<span class="h-0.5 w-8 bg-tertiary"></span>
+<span class="material-symbols-outlined text-tertiary text-[14px]">arrow_forward</span>
+</div>
+<span class="font-label-xs text-label-xs text-tertiary font-semibold font-mono">w=0.40</span>
+</div>
+<div class="z-10 flex flex-col gap-2">
+<div class="flex flex-col items-center p-2 bg-surface-container-high rounded text-center w-40 shadow-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Primary Supplier</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Kalyan Casting Facility</span>
+<span class="font-tabular-md text-tabular-md text-tertiary font-bold">50% Load (Exposed)</span>
+</div>
+<div class="flex flex-col items-center p-2 bg-primary-fixed-dim text-on-primary-fixed rounded text-center w-40 shadow-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+<span class="font-headline-sm text-headline-sm font-semibold">Overlay Redundancy</span>
+</div>
+<span class="font-label-xs text-label-xs">Nashik Dual-Source Hub</span>
+<span class="font-tabular-md text-tabular-md font-bold text-primary">50% Load (Safe)</span>
+</div>
+</div>
+<div class="z-10 flex flex-col items-center gap-1">
+<div class="flex items-center gap-1">
+<span class="h-0.5 w-8 bg-primary"></span>
+<span class="material-symbols-outlined text-primary text-[14px]">arrow_forward</span>
+</div>
+<span class="font-label-xs text-label-xs text-primary font-semibold font-mono">w=0.20 (Attenuated)</span>
+</div>
+<div class="z-10 flex flex-col items-center p-space-sm bg-surface-container rounded-lg text-center w-36 shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">directions_car</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Aster Motors</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">Chakan Plant</span>
+<span class="font-tabular-md text-tabular-md text-primary font-bold mt-1">12.60% Net Stress</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-space-xs font-label-xs text-label-xs text-on-surface-variant">
+<span>Graph Traversal Engine: Directed Acyclic Propagation (DAG)</span>
+<span class="text-primary font-medium">Attenuation Applied: -50.00% on Edge E_104</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between p-space-md rounded-xl bg-surface-container-low text-on-surface-variant gap-space-md text-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span>Provenance Fingerprint: SHA256 <span class="font-mono text-on-surface">d9e4a81bc...77c2</span> · Calculated 2025-05-18T09:42:14Z IST</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-label-xs text-label-xs uppercase">Holdings Model: 4 Nodes · 7 Active Edges</span>
+<span class="font-label-xs text-label-xs bg-surface-container-highest px-2 py-0.5 rounded text-on-surface font-mono">SEBI Discl. Compliant</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const slider = document.getElementById('transfer-slider');
+    const sliderDisplay = document.getElementById('slider-display');
+    const sourceSimVal = document.getElementById('source-sim-val');
+    const targetSimVal = document.getElementById('target-sim-val');
+    const cardSimConn = document.getElementById('card-sim-conn');
+    const cardSimBar = document.getElementById('card-sim-bar');
+    const cardSimConnSub = document.getElementById('card-sim-conn-sub');
+    const cardSimStress = document.getElementById('card-sim-stress');
+    const cardSimPct = document.getElementById('card-sim-pct');
+    const cardSimDelta = document.getElementById('card-sim-delta');
+    
+    const chartAsterLabel = document.getElementById('chart-aster-label');
+    const chartEvergreenLabel = document.getElementById('chart-evergreen-label');
+    const chartConnLabel = document.getElementById('chart-conn-label');
+    const chartStressLabel = document.getElementById('chart-stress-label');
+    const chartSummaryBadge = document.getElementById('chart-summary-badge');
+    const barAsterSim = document.getElementById('bar-aster-sim');
+    const barEvergreenSim = document.getElementById('bar-evergreen-sim');
+    const barConnSim = document.getElementById('bar-conn-sim');
+    const barStressSim = document.getElementById('bar-stress-sim');
+
+    const tblAsterPropCap = document.getElementById('tbl-aster-prop-cap');
+    const tblAsterPropExp = document.getElementById('tbl-aster-prop-exp');
+    const tblAsterDelta = document.getElementById('tbl-aster-delta');
+    const tblEvergreenPropCap = document.getElementById('tbl-evergreen-prop-cap');
+    const tblTotPropExp = document.getElementById('tbl-tot-prop-exp');
+    const tblTotDelta = document.getElementById('tbl-tot-delta');
+
+    const resetBtn = document.getElementById('reset-btn');
+    const decBtn = document.getElementById('decrement-btn');
+    const incBtn = document.getElementById('increment-btn');
+    const draftScenarioBtn = document.getElementById('draft-scenario-btn');
+
+    // Baseline Fixed Metrics
+    const BASELINE_ASTER = 40.0;
+    const BASELINE_EVERGREEN = 10.0;
+    const BASELINE_TOTAL_EXP = 13.3434;
+    const ASTER_STRESS_RATE = 0.2520; // 25.20%
+
+    function updateSimulation(transferVal) {
+      const transfer = parseFloat(transferVal);
+      const proposedAsterCap = BASELINE_ASTER - transfer;
+      const proposedEvergreenCap = BASELINE_EVERGREEN + transfer;
+      const proposedConnected = 90.0 - transfer;
+      
+      const asterBaseExp = 10.0800;
+      const asterPropExp = proposedAsterCap * ASTER_STRESS_RATE;
+      const asterDelta = asterPropExp - asterBaseExp;
+      
+      const proposedTotalExp = BASELINE_TOTAL_EXP + asterDelta;
+      const totalDelta = proposedTotalExp - BASELINE_TOTAL_EXP;
+      const deltaPct = ((totalDelta / BASELINE_TOTAL_EXP) * 100);
+
+      sliderDisplay.textContent = `₹ ${transfer.toFixed(2)} Lakh`;
+      sourceSimVal.textContent = `₹ ${proposedAsterCap.toFixed(2)} Lakh`;
+      targetSimVal.textContent = `₹ ${proposedEvergreenCap.toFixed(2)} Lakh`;
+
+      cardSimConn.innerHTML = `₹ ${proposedConnected.toFixed(2)} L <span class="text-primary font-label-xs text-label-xs">(${proposedConnected.toFixed(1)}%)</span>`;
+      cardSimBar.style.width = `${proposedConnected}%`;
+      cardSimConnSub.textContent = `₹${transfer.toFixed(2)}L reduction in path-connected exposure`;
+
+      cardSimStress.textContent = `₹ ${proposedTotalExp.toFixed(4)} L`;
+      cardSimPct.textContent = `${proposedTotalExp.toFixed(2)}% of portfolio`;
+      cardSimDelta.textContent = `${totalDelta.toFixed(4)} L (${deltaPct.toFixed(2)}%) Disruption Delta`;
+
+      chartAsterLabel.textContent = `₹40L → ₹${proposedAsterCap.toFixed(0)}L`;
+      chartEvergreenLabel.textContent = `₹10L → ₹${proposedEvergreenCap.toFixed(0)}L`;
+      chartConnLabel.textContent = `₹90L → ₹${proposedConnected.toFixed(0)}L`;
+      chartStressLabel.textContent = `₹13.34L → ₹${proposedTotalExp.toFixed(2)}L`;
+      chartSummaryBadge.textContent = `${deltaPct.toFixed(2)}% Volatility Mitigation`;
+
+      barAsterSim.style.width = `${(proposedAsterCap / 50) * 100}%`;
+      barEvergreenSim.style.width = `${(proposedEvergreenCap / 50) * 100}%`;
+      barConnSim.style.width = `${proposedConnected}%`;
+      barStressSim.style.width = `${(proposedTotalExp / 20) * 100}%`;
+
+      tblAsterPropCap.textContent = `₹ ${proposedAsterCap.toFixed(2)} L`;
+      tblAsterPropExp.textContent = `₹ ${asterPropExp.toFixed(4)} L`;
+      tblAsterDelta.textContent = `${asterDelta.toFixed(4)} L`;
+      tblEvergreenPropCap.textContent = `₹ ${proposedEvergreenCap.toFixed(2)} L`;
+      tblTotPropExp.textContent = `₹ ${proposedTotalExp.toFixed(4)} L`;
+      tblTotDelta.textContent = `${totalDelta.toFixed(4)} L`;
+    }
+
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        updateSimulation(e.target.value);
+      });
+    }
+
+    if (decBtn && slider) {
+      decBtn.addEventListener('click', () => {
+        let val = Math.max(0, parseInt(slider.value) - 1);
+        slider.value = val;
+        updateSimulation(val);
+      });
+    }
+
+    if (incBtn && slider) {
+      incBtn.addEventListener('click', () => {
+        let val = Math.min(30, parseInt(slider.value) + 1);
+        slider.value = val;
+        updateSimulation(val);
+      });
+    }
+
+    if (resetBtn && slider) {
+      resetBtn.addEventListener('click', () => {
+        slider.value = 0;
+        updateSimulation(0);
+      });
+    }
+
+    if (draftScenarioBtn) {
+      draftScenarioBtn.addEventListener('click', () => {
+        const originalText = draftScenarioBtn.innerHTML;
+        draftScenarioBtn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">sync</span> Saving Draft...`;
+        draftScenarioBtn.disabled = true;
+        setTimeout(() => {
+          draftScenarioBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]">check</span> Draft Scenario Stored`;
+          setTimeout(() => {
+            draftScenarioBtn.innerHTML = originalText;
+            draftScenarioBtn.disabled = false;
+          }, 1800);
+        }, 600);
+      });
+    }
+  })();
+</script></main></div></body></html>

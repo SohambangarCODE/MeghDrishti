@@ -21,6 +21,11 @@ export class RunHistory {
     try {this.storage?.setItem('meghdrishti:runs:v1',JSON.stringify(this.runs));}
     catch {this.storage=null;this.warning='Local storage denied or full; history lasts for this session only.';}
   }
+  delete(id) {
+    this.runs=this.runs.filter(run=>run.id!==id);
+    try {this.storage?.setItem('meghdrishti:runs:v1',JSON.stringify(this.runs));}
+    catch {this.storage=null;this.warning='Deletion applies to this session only; browser storage could not be updated.';}
+  }
   list() {return structuredClone(this.runs);}
   get(id) {return structuredClone(this.runs.find(r=>r.id===id)??null);}
 }

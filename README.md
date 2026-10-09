@@ -1,8 +1,8 @@
 # MeghDrishti
 
-Synthetic portfolio dependency evaluator for analysts. Includes a Python/FastAPI/NetworkX engine and a credential-free browser engine, with a temporary functional React UI. This is **not** a calibrated climate-damage or investment-loss model.
+Synthetic portfolio dependency evaluator for analysts. Includes a Python/FastAPI/NetworkX engine and a credential-free browser engine, with a Stitch-based React UI. This is **not** a calibrated climate-damage or investment-loss model.
 
-The user authorized backend-first implementation and a temporary UI after confirming no Stitch exports or handoff exist. `PRD.md`, `DESIGN.md` and `STITCH_PROMPTS.md` were extracted from the supplied document. `frontend/stitch-export/` is the future destination, not an existing design export.
+The eleven local Stitch HTML exports are preserved under `frontend/stitch-export/`, with route mappings and source hash in `manifest.json`. Ten PNG previews are readable; the original Portfolio PNG contains a failed-fetch placeholder, so its HTML supplies the layout. No remote project or screen IDs were exposed. See [Stitch integration and API mapping](docs/STITCH_INTEGRATION.md). `PRD.md`, `DESIGN.md` and `STITCH_PROMPTS.md` preserve the original specification.
 
 ## Run the browser-only demo
 
@@ -68,7 +68,7 @@ On macOS/Linux use `.venv/bin/python -m pytest -q`. Parity tests invoke Node and
 
 ## Browser tests
 
-With the frontend running, use `npm run test:e2e --workspace frontend`. Tests use installed Microsoft Edge by default, including 1440px desktop and 390px mobile viewports. Change the Playwright `channel` to an installed Chromium browser if necessary; browser installation is not part of the demo runtime. Screenshots, downloaded exports and failed traces go to ignored `artifacts/playwright/`.
+With both services running (`npm run dev:full`), use `npm run test:e2e --workspace frontend`. Tests use installed Microsoft Edge by default, including 1440px desktop and 390px mobile viewports. Change the Playwright `channel` to an installed Chromium browser if necessary; browser installation is not part of the demo runtime. Screenshots, downloaded exports and failed traces go to ignored `artifacts/playwright/`.
 
 ## Supabase preparation
 

@@ -3,7 +3,7 @@ export function csvSafe(value) {const text=String(value??'');return /^[\s]*[=+\-
 export function exportJson(run) {return JSON.stringify(run,null,2);}
 export function exportCsv(run) {
   const rows=run.holdingsResults.map(r=>({runId:run.id,mode:run.mode,source:'Synthetic / assumed',modelVersion:run.scenarioSnapshot.modelVersion,
-    datasetVersion:run.scenarioSnapshot.datasetVersion,scenario:run.scenarioSnapshot.id,inputHash:run.inputHash,currency:r.currency,
+    datasetVersion:run.scenarioSnapshot.datasetVersion,scenario:run.scenarioSnapshot.id,inputHash:run.inputHash,currency:r.currency,unit:'rupees',
     name:r.originalInputName,companyId:r.companyId,amount:r.amount,matchingStatus:r.matchingStatus,exclusionReason:r.exclusionReason,
     directStress:r.directStress,indirectStress:r.indirectStress,totalStress:r.totalStress,connectedAmount:r.connectedAmount,
     assumedWeightedExposure:r.assumedWeightedExposure,evidenceStatus:r.evidenceStatus,missingFields:r.missingFields.join('; '),
