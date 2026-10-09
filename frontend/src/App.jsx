@@ -15,7 +15,7 @@ const Cloud=lazy(()=>import('./pages/Cloud.jsx'));
 import {Welcome,Overview,Evidence,Reports} from './pages/WorkspacePages.jsx';
 const links=[['overview','Overview'],['portfolio','Portfolio'],['graph','Exposure graph'],['locations','Locations'],['scenarios','Scenarios'],['compare','Compare'],['evidence','Evidence'],['reports','Reports']];
 export default function App(){const auth=useAuth(),app=useApp(),[menu,setMenu]=useState(false),location=useLocation();
-  if(!app.data&&location.pathname.startsWith('/auth'))return <><AccountControl/><main><Suspense fallback={<Notice>Loading authentication...</Notice>}><Auth/></Suspense></main></>;
+  if(!app.data&&location.pathname.startsWith('/auth'))return <><header className="app-header"><NavLink className="brand" to="/welcome"><span className="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M6 18a4 4 0 0 1-1-8 7 7 0 0 1 13-1 4.5 4.5 0 0 1 0 9Z"/><path d="m8 14 3-3 3 3 3-2"/></svg></span><span><strong>MeghDrishti</strong><small>Climate Portfolio Intelligence</small></span></NavLink><div style={{marginLeft:'auto'}}></div><AccountControl/></header><main><Suspense fallback={<Notice>Loading authentication...</Notice>}><Auth/></Suspense></main></>;
   if(!app.data)return <main><h1>MeghDrishti</h1><Notice error={!!app.error}>{app.error||'Loading validated synthetic fixture…'}</Notice>{app.error&&<button onClick={()=>window.location.reload()}>Retry connection</button>}</main>;
   const publicPage=location.pathname==='/welcome';
   const latest=app.history.list()[0];
