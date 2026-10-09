@@ -1,0 +1,19 @@
+import { useState } from 'react';
+import { Link,useParams } from 'react-router-dom';
+import { ResponsiveContainer,BarChart,Bar,XAxis,YAxis,Tooltip,CartesianGrid } from 'recharts';
+import { useApp } from '../state/AppState.jsx';
+import { Empty,Metrics,ResultsTable,Exports,PathList,Notice } from '../components.jsx';
+export default function Results() {
+  const {runId}=useParams(),app=useApp(),run=app.history.get(runId);const [path,setPath]=useState(null);
+  if(!run)return <><h1>Result snapshot unavailable</h1><Empty>This run is not in local history. It may have expired, been cleared, or belong to another browser.</Empty></>;
+  return <><h1>Analysis results</h1><p>Immutable demo snapshot · <span className="mono">{run.id}</span></p><p>{run.completedAt} · {run.scenarioSnapshot.modelVersion} · {run.scenarioSnapshot.datasetVersion}</p>
+    {app.outdated&&<Notice>The draft has changed. These snapshot results remain unchanged; rerun for the current draft.</Notice>}{run.warnings.map(w=><Notice key={w}>{w}</Notice>)}<Metrics run={run}/>
+    <Notice>Assumed exposure calculations, not investment-loss forecasts. No recorded affected path does not establish safety. Positive-stress connected capital: {run.totals.positiveStressConnectedCapital.toLocaleString('en-IN')} INR.</Notice>
+    <section><h2>Holding-level results</h2><ResultsTable run={run}/><p>Mapped capital: {run.totals.mappedCapital.toLocaleString('en-IN')} INR. Unmapped capital: {run.totals.unmappedCapital.toLocaleString('en-IN')} INR. Own-operation coverage known for {run.coverage.directKnownHoldingCount} of {run.coverage.holdingCount} holdings.</p>
+    <div className="chart" aria-label="Assumed stress by holding, numeric alternative in table above"><ResponsiveContainer width="100%" height="100%"><BarChart data={run.holdingsResults.map(r=>({name:r.originalInputName.replace(/ .*/,''),stress:r.totalStress===null?null:r.totalStress*100}))}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="name"/><YAxis label={{value:'Stress / 100',angle:-90,position:'insideLeft'}}/><Tooltip/><Bar dataKey="stress" fill="#397d76" isAnimationActive={false}/></BarChart></ResponsiveContainer></div></section>
+    <section><h2>Paths</h2><p>Only the strongest supported path contributes to each holding’s total. Alternative paths remain available for explanation.</p><PathList run={run} onSelect={setPath}/>{path&&<pre>{JSON.stringify(path,null,2)}</pre>}</section>
+    <section><h2>Shared dependencies</h2>{run.sharedDependencies.length?<ul>{run.sharedDependencies.map(s=><li key={s.companyId}>{run.sourceSnapshot.companies.find(c=>c.id===s.companyId)?.name}: shared by {s.holdingCompanyIds.map(id=>run.sourceSnapshot.companies.find(c=>c.id===id)?.name).join(', ')}</li>)}</ul>:<p>No shared dependency recorded in these paths.</p>}<p>Electronic components describe the Delta → Aster supply item. They do not create a second numerical disruption channel.</p></section>
+    <section><h2>Explanation and assumptions</h2><p>Facility and route mapping create initial company stress. Supplier-to-customer paths transmit that stress through the selected commercial hop limit. The maximum supported path is used for each holding; source and path stresses are not added.</p><p>Gemini: not connected. This deterministic explanation is always available.</p><pre>{JSON.stringify(run.scenarioSnapshot,null,2)}</pre><details><summary>Source seeds, factors and missing inputs</summary><pre>{JSON.stringify(run.seeds,null,2)}</pre></details></section>
+    <Exports run={run}/><div className="actions no-print"><Link to={`/compare?run=${run.id}`}>Compare this snapshot</Link><Link to={`/graph?run=${run.id}`}>Inspect graph</Link><Link to="/reports">Local reports</Link></div>
+  </>;
+}

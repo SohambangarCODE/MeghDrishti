@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+networkx
+pydantic
+pandas
+numpy
+pytest
+httpx
+PyJWT[crypto]

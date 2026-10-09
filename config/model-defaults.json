@@ -1,0 +1,16 @@
+{
+  "modelVersion": "demo-1.0.0",
+  "schemaVersion": "1.0.0",
+  "transmissionMultiplier": 0.7,
+  "maxCommercialHops": 3,
+  "maxPaths": 10000,
+  "maxCompanies": 1000,
+  "maxEdges": 10000,
+  "historyLimit": 20,
+  "heatScreen": {"thresholdCelsius": 35, "spanCelsius": 10},
+  "facilityFormula": "intensity * vulnerability * operationalShare",
+  "routeFormula": "intensity * vulnerability * shipmentShare * (1 - replacementFraction)",
+  "aggregation": "maximum; ties use shortest commercial depth then stable path ID",
+  "units": "dimensionless assumed operational disruption in [0,1]; capital in INR",
+  "rationale": "Transparent synthetic sensitivity model. No calibrated physical damage or financial loss prediction. Unknown factors remain null."
+}
