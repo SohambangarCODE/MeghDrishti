@@ -1,9 +1,15 @@
-import { createClient } from '@supabase/supabase-js';
-const url=import.meta.env.VITE_SUPABASE_URL,key=import.meta.env.VITE_SUPABASE_ANON_KEY;
-// Session stays in memory by default; no private portfolio cache on shared browsers.
-export const supabase=url&&key?createClient(url,key,{auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}}):null;
-export const privateRepository={
-  async listPortfolios(){if(!supabase)throw new Error('Supabase not configured');const {data,error}=await supabase.from('portfolios').select('id,name,currency');if(error)throw error;return data;},
-  async createPortfolio(name){if(!supabase)throw new Error('Supabase not configured');const {data:{user},error:authError}=await supabase.auth.getUser();if(authError||!user)throw new Error('Sign in to save private portfolios');const {data,error}=await supabase.from('portfolios').insert({name,currency:'INR',owner_id:user.id}).select().single();if(error)throw error;return data;},
-  async listRuns(){if(!supabase)throw new Error('Supabase not configured');const {data,error}=await supabase.from('analysis_runs').select('id,created_at,snapshot').order('created_at',{ascending:false}).limit(20);if(error)throw error;return data;},
-};
+﻿import { createClient } from '@supabase/supabase-js';
+const url=import.meta.env.VITE_SUPABASE_URL,key=import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY||import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Supabase owns auth-token storage/refresh. Private portfolio data is never cached here.
+export const supabase=url&&key?createClient(url,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}}):null;
+export async function cloudRequest(path,options={}){
+  if(!supabase)throw new Error('Supabase not configured');
+  const {data,error}=await supabase.auth.getSession();
+  if(error||!data.session)throw new Error('Sign in to access private records');
+  const base=import.meta.env.VITE_API_BASE_URL;
+  if(!base)throw new Error('Private persistence requires the FastAPI backend');
+  const response=await fetch(`${base}/api/v1/private${path}`,{...options,signal:AbortSignal.timeout(30000),headers:{'Content-Type':'application/json',Authorization:`Bearer ${data.session.access_token}`,...options.headers}});
+  const body=await response.json();
+  if(!response.ok){if(response.status===401)window.dispatchEvent(new Event('meghdrishti:session-expired'));throw new Error(body.error?.message||'Private operation failed');}
+  return body;
+}

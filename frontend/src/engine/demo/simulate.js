@@ -78,7 +78,7 @@ export function simulate(dataset, holdings, scenario, {maxPaths=defaults.maxPath
     for (const r of d.routes) {
       if (!event.affectedEntityIds.includes(r.id) && !r.waypointIds.some(k=>event.affectedEntityIds.includes(k)) && !r.regionIds.some(k=>event.geographicTargets.includes(k))) continue;
       for (const u of d.routeUsage.filter(u=>u.routeId===r.id)) seed(event,u,u.companyId,{intensity:event.intensity,
-        vulnerability:r.vulnerabilityByHazard?.[event.hazardType]??null,shipmentShare:u.shipmentShare,
+        vulnerability:(u.vulnerabilityByHazard??r.vulnerabilityByHazard)?.[event.hazardType]??null,shipmentShare:u.shipmentShare,
         remainingFraction:u.substitutability===null?null:1-u.substitutability},'route');
     }
   }

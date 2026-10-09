@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { digest } from '../mock/BrowserSimulationService.js';
 import { Scenario, Dataset, Holding } from '../../schemas/contracts.js';
 const responseSchema=z.object({schemaVersion:z.literal('1.0.0'),mode:z.literal('demo'),id:z.string(),requestId:z.string(),draftRevision:z.number(),
   scenarioSnapshot:Scenario,sourceSnapshot:Dataset,portfolioSnapshot:z.array(Holding),
@@ -26,6 +27,7 @@ export class FastApiSimulationService {
   async compare(run,fromCompanyId,toCompanyId,amount) {
     // Imported local snapshots may not exist in this process. Persist the exact baseline first.
     const baseline=await this.analyze({holdings:run.portfolioSnapshot,scenario:run.scenarioSnapshot,requestId:`compare-${run.id}`,draftRevision:0});
+    if(await digest(baseline.sourceSnapshot)!==await digest(run.sourceSnapshot))throw new Error('Dataset contents changed; comparison requires the original immutable source version');
     return this.request('/compare',{method:'POST',body:JSON.stringify({runId:baseline.id,fromCompanyId,toCompanyId,amount,requestId:crypto.randomUUID()})});
   }
 }

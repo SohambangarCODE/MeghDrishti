@@ -1,4 +1,10 @@
-# Implementation and acceptance status
+# Current implementation and acceptance status
+
+The historical page matrix below describes the earlier Stitch baseline. The authoritative current requirement/status table is [REMAINING_WORK.md](REMAINING_WORK.md), with actual commands in [VERIFICATION.md](VERIFICATION.md).
+
+Since that baseline, the corrected ClimateWeb dataset is integrated across the API/UI; `/cloud`, `/auth/callback` and `/auth/reset` are implemented; weather/projection query panels and dependency overlays are connected; atomic private persistence and comparison use caller JWTs. Actual hosted cloud authentication/RLS remains unverified. Projection files and verified operational inputs are absent. Optional Gemini is implemented and fixture-tested, externally unverified. No deployment is active.
+
+## Historical baseline (superseded where noted above)
 
 The current deliverable is an end-to-end synthetic evaluator with the eleven local Stitch designs adapted to the working React routes. It is not a connected sourced-data platform. Export provenance, corrections and API mappings are documented in STITCH_INTEGRATION.md.
 

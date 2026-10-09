@@ -98,7 +98,7 @@ def simulate(dataset, holdings, scenario, max_paths=None):
             for usage in d['routeUsage']:
                 if usage['routeId'] != route['id']: continue
                 seed(event, usage, usage['companyId'], {'intensity':event['intensity'],
-                     'vulnerability':(route['vulnerabilityByHazard'] or {}).get(event['hazardType']),
+                     'vulnerability':(usage.get('vulnerabilityByHazard') if usage.get('vulnerabilityByHazard') is not None else (route['vulnerabilityByHazard'] or {})).get(event['hazardType']),
                      'shipmentShare':usage['shipmentShare'],
                      'remainingFraction':None if usage['substitutability'] is None else 1-usage['substitutability']}, 'route')
     paths = []

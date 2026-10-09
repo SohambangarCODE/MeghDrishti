@@ -8,7 +8,7 @@ def signing_keys(issuer):
     return jwt.PyJWKClient(issuer.rstrip('/')+'/.well-known/jwks.json',cache_keys=True,lifespan=300,timeout=5)
 
 def verify_token(token):
-    issuer=os.getenv('SUPABASE_JWT_ISSUER','')
+    issuer=os.getenv('SUPABASE_JWT_ISSUER') or (os.getenv('SUPABASE_URL','').rstrip('/')+'/auth/v1' if os.getenv('SUPABASE_URL') else '')
     if not issuer: raise HTTPException(503,detail='Authentication not configured')
     try:
         key=signing_keys(issuer).get_signing_key_from_jwt(token)

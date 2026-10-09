@@ -23,7 +23,8 @@ test('reference workflow, paths, fixed comparison, exports and responsive naviga
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:testInfo.outputPath('graph.png'),fullPage:true});
   await page.goto('/locations');await expect(page.getByRole('heading',{name:'Location list and offline fallback'})).toBeVisible();
-  await page.goto('/auth');await expect(page.getByText('Authentication not connected.',{exact:false})).toBeVisible();
+  await page.goto('/auth');await expect(page.getByRole('heading',{name:'Authentication',exact:true})).toBeVisible();
+  await expect(page.getByRole('link',{name:'Continue to demo',exact:true})).toBeVisible();
   if(testInfo.project.name==='mobile'){await page.getByRole('button',{name:'Menu',exact:true}).click();await expect(page.getByRole('navigation')).toBeVisible();}
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:testInfo.outputPath('auth.png'),fullPage:true});
@@ -85,6 +86,7 @@ test('reports restore and delete; linked locations and all routes',async({page},
  await expect(page.getByText('No saved local snapshots.',{exact:false})).toBeVisible();
  await page.goto('/locations');await page.getByLabel('Company selection').selectOption('demo:evergreen');
  await expect(page.getByText('No recorded facility for this company.',{exact:false})).toBeVisible();
+ await page.getByLabel('Company selection').selectOption('demo:delta');
  await page.getByRole('button',{name:'Select facility'}).click();
  await expect(page).toHaveURL(/entity=demo%3Afacility/);
  await page.getByRole('link',{name:'Inspect selection in graph'}).click();

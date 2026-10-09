@@ -6,6 +6,7 @@ const fraction = z.number().finite().min(0).max(1);
 const nullableFraction = fraction.nullable();
 const meta = {
   provenance: z.enum(['synthetic', 'dataset_reported', 'sourced', 'assumed', 'unknown']),
+  sourceFields: z.record(z.string(),z.unknown()).nullable().optional(),
   evidenceIds: z.array(id), missingFields: z.array(id), datasetVersion: id,
 };
 export const Company = z.object({ ...meta, id, externalId: id.nullable(), name: id,
@@ -25,7 +26,7 @@ export const Route = z.object({ ...meta, id, name: id, mode: id, waypointIds: z.
 export const Waypoint = z.object({ ...meta, id, regionId: id.nullable(),
   coordinates: z.tuple([z.number().min(-180).max(180), z.number().min(-90).max(90)]).nullable(), role: id });
 export const RouteUsage = z.object({ ...meta, id, companyId: id, routeId: id,
-  shipmentShare: nullableFraction, substitutability: nullableFraction });
+  shipmentShare: nullableFraction, substitutability: nullableFraction, vulnerabilityByHazard:z.record(z.string(),nullableFraction).nullable().optional() });
 export const Commodity = z.object({ ...meta, id, name: id, category: id.nullable() });
 export const SupplyItem = z.object({ ...meta, id, supplierId: id, customerId: id,
   commodityId: id.nullable(), facilityIds: z.array(id), routeIds: z.array(id) });
@@ -49,7 +50,7 @@ export const Scenario = z.object({ id, mode: z.literal('demo'), eventIds: z.arra
   maxCommercialHops: z.number().int().min(1).max(3), transmissionMultiplier: fraction,
   assumptionOverrides: z.array(Overlay), futureProjectionQuery: z.null(), modelVersion: id, datasetVersion: id,
   eventOverrides: z.record(z.string(), fraction).default({}) });
-export const Dataset = z.object({ schemaVersion: z.literal(SCHEMA_VERSION), datasetVersion: id,
+export const Dataset = z.object({ schemaVersion: z.literal(SCHEMA_VERSION), datasetVersion: id, dataState:z.enum(['fictional_reference','synthetic_operational_demo','sourced_operational']).default('fictional_reference'),sourceMetadata:z.record(z.string(),z.unknown()).nullable().optional(),
   companies: z.array(Company), regions: z.array(Region), facilities: z.array(Facility),
   routes: z.array(Route), waypoints: z.array(Waypoint), routeUsage: z.array(RouteUsage),
   commodities: z.array(Commodity), supplyItems: z.array(SupplyItem), commercialEdges: z.array(CommercialEdge),

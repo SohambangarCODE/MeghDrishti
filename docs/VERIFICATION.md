@@ -1,3 +1,38 @@
+# Current verification - 2026-10-09
+
+Actual local results after corrected-data/cloud/climate continuation:
+
+- Backend: from `backend`, `.venv/Scripts/python.exe -m pytest tests -q` - **47 passed**. Includes independent supplied scenario/reference arithmetic through FastAPI, CSV/JSON parity and global configuration scanning, raw hashes/atomic failures, private identity/snapshot/comparison contracts, JWT checks, concurrent weather dedup/retry/stale expiry, projection mapping/integrity/overlap rejection, body limits/readiness and grounded explanation rejection/fallback.
+- Frontend: `npm test` - **22 passed**. Existing engine, CSV/money/export safety, immutable history and stale response checks retained.
+- Browser: `npm run test:e2e --workspace frontend` - **14 passed** on Microsoft Edge at desktop 1440x1000 and mobile 390x844. Includes imported dataset selection/search/CSV review/map/graph/scenario/evidence/comparison/save/reopen/export through the backend, fictional regression, unsupported climate responses and dependency overlay zero/reset. A prior run had two ambiguous test-selector failures; scoping Sign in to main fixed those without changing app behavior or numerical assertions.
+- Final integration-status correction was checked with two additional desktop/mobile all-route/report tests: **2 passed**. Final UI HTTP 200; `/ready` reports two loaded datasets and cloudConfigured false.
+- Production frontend build passed. Upstream Zod annotation notices are nonfatal. No framework migration.
+- Open-Meteo external connectivity: HTTP 200 at public ocean coordinate (0,0), one-day request, expected degrees Celsius/mm/km/h units. No company identity/holding/location was sent. This is not sourced company screening.
+- Supabase: URL and administrator URI stored in ignored local configuration; public key absent. Direct database hostname failed DNS, including outside sandbox. **No migrations, hosted RLS, authenticated database persistence, email recovery or two-user restart checks have run.**
+- Actual CCKP downloads/geography mappings absent. Parser tests use explicitly synthetic local fixtures. No native downloaded schema claimed verified.
+- Gemini uses mock provider tests only; disabled locally and externally unverified.
+- Docker CLI unavailable; container file prepared but unbuilt. No external deployment, backups, monitoring or restore drill active.
+- Codex browser and Windows automation both failed initialization with a kernel-assets/path error. Supabase dashboard was launched in the default browser using the OS; no dashboard interaction was performed.
+
+## Dataset-sized benchmark
+
+Command: `backend/.venv/Scripts/python.exe scripts/benchmark_backend.py`. Python 3.13.1; 20 sequential local runs with all dataset companies held; validation/traversal included, network/browser/database excluded.
+
+| Dataset | Companies | Commercial edges | Holdings | Enumerated paths | p50 | p95 | Max |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Fictional reference | 5 | 3 | 5 | 4 | 0.50 ms | 1.17 ms | 1.43 ms |
+| Corrected ClimateWeb | 215 | 350 | 215 | 17 | 194.49 ms | 600.91 ms | 666.10 ms |
+
+These are sequential local measurements, not multi-user hosting/SLA guarantees. Raw measurement output is ignored `artifacts/backend-benchmark.json`.
+
+## Outstanding acceptance
+
+Follow MANUAL_SETUP.md and OPERATIONS.md. Apply both migrations with the prepared administrator script or SQL Editor; run rolled-back SQL isolation checks and `scripts/verify_cloud.py` with two actual accounts. Restart services and use `--reopen`; verify signup/confirmation/recovery/refresh/signout in a real configured browser. Supplying configuration alone is not verification. Real sourced operating analysis and CCKP products require actual inputs. Choose hosting only after local cloud acceptance.
+
+## Historical verification before this continuation
+
+The following record is retained as historical evidence; the current results and limits above supersede its unconnected-source statuses.
+
 # Verification record
 
 Performed locally on Windows with Node 24.13.1 and Python 3.13.1. Tests validate the synthetic mechanism, not empirical climate or financial accuracy.

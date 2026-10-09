@@ -1,0 +1,25 @@
+import {test,expect} from '@playwright/test';
+test('transport corridor connects map, weather, graph and scenario',async({page},testInfo)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/locations');
+ await page.getByLabel('Dataset',{exact:true}).selectOption('climateweb');
+ await page.getByLabel('Transport corridor',{exact:true}).selectOption('demo-route-01');
+ await expect(page).toHaveURL(/entity=demo-route-01/);
+ await expect(page.getByText('Start: 32, -98 → End: 38, -88')).toBeVisible();
+ await page.getByRole('button',{name:'Weather at route start',exact:true}).click();
+ await expect(page.getByLabel('Weather latitude')).toHaveValue('32');
+ await expect(page.getByLabel('Weather longitude')).toHaveValue('-98');
+ await page.getByRole('link',{name:'Inspect selected route in graph'}).click();
+ await expect(page.locator('main pre')).toContainText('demo-route-01');
+ await page.goto('/locations?entity=demo-route-01');
+ await page.getByRole('button',{name:'Load online map tiles'}).click();
+ await expect(page.locator('.leaflet-overlay-pane path[stroke="#b8560d"]')).toHaveCount(3);
+ await page.screenshot({path:testInfo.outputPath('corridor.png'),fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.getByRole('button',{name:'Configure route disruption'}).click();
+ const response=page.waitForResponse(r=>r.url().endsWith('/api/v1/analysis')&&r.request().method()==='POST');
+ await page.getByRole('button',{name:'Run synthetic analysis'}).click();
+ const run=await(await response).json();
+ expect(run.totals.assumedWeightedExposure).toBeCloseTo(849000,5);
+ expect(errors).toEqual([]);
+});

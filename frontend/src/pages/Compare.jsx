@@ -1,17 +1,185 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useApp } from '../state/AppState.jsx';
-import { parseAmount } from '../services/portfolio.js';
-import { Empty,Metrics,Notice,ResultsTable,money,stress } from '../components.jsx';
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useApp } from "../state/AppState.jsx";
+import { parseAmount } from "../services/portfolio.js";
+import {
+  Empty,
+  Metrics,
+  Notice,
+  ResultsTable,
+  money,
+  stress,
+} from "../components.jsx";
 export default function Compare() {
-  const app=useApp(),[params]=useSearchParams(),runs=app.history.list();
-  const [runId,setRunId]=useState(params.get('run')||runs[0]?.id||''),[from,setFrom]=useState('demo:aster'),[to,setTo]=useState('demo:evergreen'),[amount,setAmount]=useState('1000000'),[result,setResult]=useState(null),[error,setError]=useState(''),[pending,setPending]=useState(false);
-  const run=app.history.get(runId);
-  if(!run)return <><h1>Compare allocations</h1><Empty/></>;
-  const compare=async()=>{setPending(true);setError('');setResult(null);try{setResult(await app.compare(run,from,to,parseAmount(amount)));}catch(e){setError(e.message);}finally{setPending(false);}};
-  const change=setter=>e=>{setter(e.target.value);setResult(null);};
-  return <><h1>Compare allocations</h1><p>Hypothetical sensitivity analysis with the baseline event, evidence, graph, and parameters held fixed.</p><label>Baseline snapshot<select disabled={pending} value={runId} onChange={change(setRunId)}>{runs.map(r=><option key={r.id} value={r.id}>{r.completedAt} · {r.id.slice(0,8)}</option>)}</select></label>
-    <section><h2>Capital-preserving transfer</h2><div className="fields"><label>From holding<select disabled={pending} value={from} onChange={change(setFrom)}>{run.portfolioSnapshot.filter(h=>h.matchingStatus==='matched').map(h=><option key={h.id} value={h.companyId}>{h.originalInputName}</option>)}</select></label><label>To holding<select disabled={pending} value={to} onChange={change(setTo)}>{run.portfolioSnapshot.filter(h=>h.matchingStatus==='matched').map(h=><option key={h.id} value={h.companyId}>{h.originalInputName}</option>)}</select></label><label>Transfer amount (INR)<input disabled={pending} value={amount} onChange={change(setAmount)} inputMode="decimal"/></label></div><button disabled={pending} onClick={compare}>{pending?'Comparing…':'Compare transfer'}</button>{error&&<Notice error>{error}</Notice>}</section>
-    <div className="allocation-grid"><section><h2>Baseline</h2><Metrics run={run}/></section><section><h2>Proposed allocation</h2>{result?<Metrics run={result.proposed}/>:<p>Compare a transfer to inspect the proposed allocation with identical model inputs.</p>}</section></div>{result&&<><section><h2>Holding-by-holding comparison matrix</h2><div className="table-scroll"><table><thead><tr><th>Holding</th><th>Baseline capital (INR)</th><th>Proposed capital (INR)</th><th>Fixed stress</th></tr></thead><tbody>{run.holdingsResults.map(h=><tr key={h.id}><th>{h.originalInputName}</th><td>{money(h.amount)}</td><td>{money(result.proposed.holdingsResults.find(p=>p.id===h.id)?.amount)}</td><td>{stress(h.totalStress)}</td></tr>)}</tbody></table></div></section><ResultsTable run={result.proposed}/><Notice>Total capital preserved. Event, source snapshot and scenario remain fixed. Evergreen’s lack of a recorded path is not evidence that it is safe.</Notice><p className="mono">Fixed inputs: {result.fixedInputHash}</p><div className="actions"><button onClick={()=>{app.setHoldings(result.proposed.portfolioSnapshot);setResult(null);}}>Apply allocation to draft</button><button className="secondary" onClick={()=>setResult(null)}>Reset comparison</button></div></>}
-  </>;
+  const app = useApp(),
+    [params] = useSearchParams(),
+    runs = app.history.list();
+  const [runId, setRunId] = useState(params.get("run") || runs[0]?.id || ""),
+    [from, setFrom] = useState(
+      runs[0]?.portfolioSnapshot.find((h) => h.companyId === "demo:aster")
+        ?.companyId ||
+        runs[0]?.portfolioSnapshot[1]?.companyId ||
+        "",
+    ),
+    [to, setTo] = useState(runs[0]?.portfolioSnapshot.at(-1)?.companyId || ""),
+    [amount, setAmount] = useState("1000000"),
+    [result, setResult] = useState(null),
+    [error, setError] = useState(""),
+    [pending, setPending] = useState(false);
+  const run = app.history.get(runId);
+  if (!run)
+    return (
+      <>
+        <h1>Compare allocations</h1>
+        <Empty />
+      </>
+    );
+  const compare = async () => {
+    setPending(true);
+    setError("");
+    setResult(null);
+    try {
+      setResult(await app.compare(run, from, to, parseAmount(amount)));
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setPending(false);
+    }
+  };
+  const change = (setter) => (e) => {
+    setter(e.target.value);
+    setResult(null);
+  };
+  return (
+    <>
+      <h1>Compare allocations</h1>
+      <p>
+        Hypothetical sensitivity analysis with the baseline event, evidence,
+        graph, and parameters held fixed.
+      </p>
+      <label>
+        Baseline snapshot
+        <select disabled={pending} value={runId} onChange={change(setRunId)}>
+          {runs.map((r) => (
+            <option key={r.id} value={r.id}>
+              {r.completedAt} · {r.id.slice(0, 8)}
+            </option>
+          ))}
+        </select>
+      </label>
+      <section>
+        <h2>Capital-preserving transfer</h2>
+        <div className="fields">
+          <label>
+            From holding
+            <select disabled={pending} value={from} onChange={change(setFrom)}>
+              {run.portfolioSnapshot
+                .filter((h) => h.matchingStatus === "matched")
+                .map((h) => (
+                  <option key={h.id} value={h.companyId}>
+                    {h.originalInputName}
+                  </option>
+                ))}
+            </select>
+          </label>
+          <label>
+            To holding
+            <select disabled={pending} value={to} onChange={change(setTo)}>
+              {run.portfolioSnapshot
+                .filter((h) => h.matchingStatus === "matched")
+                .map((h) => (
+                  <option key={h.id} value={h.companyId}>
+                    {h.originalInputName}
+                  </option>
+                ))}
+            </select>
+          </label>
+          <label>
+            Transfer amount (INR)
+            <input
+              disabled={pending}
+              value={amount}
+              onChange={change(setAmount)}
+              inputMode="decimal"
+            />
+          </label>
+        </div>
+        <button disabled={pending} onClick={compare}>
+          {pending ? "Comparing…" : "Compare transfer"}
+        </button>
+        {error && <Notice error>{error}</Notice>}
+      </section>
+      <div className="allocation-grid">
+        <section>
+          <h2>Baseline</h2>
+          <Metrics run={run} />
+        </section>
+        <section>
+          <h2>Proposed allocation</h2>
+          {result ? (
+            <Metrics run={result.proposed} />
+          ) : (
+            <p>
+              Compare a transfer to inspect the proposed allocation with
+              identical model inputs.
+            </p>
+          )}
+        </section>
+      </div>
+      {result && (
+        <>
+          <section>
+            <h2>Holding-by-holding comparison matrix</h2>
+            <div className="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Holding</th>
+                    <th>Baseline capital (INR)</th>
+                    <th>Proposed capital (INR)</th>
+                    <th>Fixed stress</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {run.holdingsResults.map((h) => (
+                    <tr key={h.id}>
+                      <th>{h.originalInputName}</th>
+                      <td>{money(h.amount)}</td>
+                      <td>
+                        {money(
+                          result.proposed.holdingsResults.find(
+                            (p) => p.id === h.id,
+                          )?.amount,
+                        )}
+                      </td>
+                      <td>{stress(h.totalStress)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <ResultsTable run={result.proposed} />
+          <Notice>
+            Total capital preserved. Event, source snapshot and scenario remain
+            fixed. A lack of a recorded path is not evidence of safety.
+          </Notice>
+          <p className="mono">Fixed inputs: {result.fixedInputHash}</p>
+          <div className="actions">
+            <button
+              onClick={() => {
+                app.setHoldings(result.proposed.portfolioSnapshot);
+                setResult(null);
+              }}
+            >
+              Apply allocation to draft
+            </button>
+            <button className="secondary" onClick={() => setResult(null)}>
+              Reset comparison
+            </button>
+          </div>
+        </>
+      )}
+    </>
+  );
 }

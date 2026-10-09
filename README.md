@@ -55,7 +55,7 @@ VITE_API_BASE_URL=http://127.0.0.1:8000
 
 Restart `npm run dev`. Overview now identifies **FastAPI / NetworkX**. A backend failure is shown as an error; it never silently switches engines. Both engines use the same synthetic dataset and fixture values. Remove the variable and restart to return to browser-only mode.
 
-For a different frontend port, set backend `ALLOWED_ORIGINS` to the exact origin, including hostname and port. Backend environment variables are supplied by the shell/process; `.env.example` is a template, not an automatically loaded secret file.
+For a different frontend port, set backend `ALLOWED_ORIGINS` to the exact origin, including hostname and port. `npm run dev:full` loads `backend/.env.local`; standalone uvicorn requires environment variables supplied by the shell/process. Examples are templates, never credentials.
 
 API documentation: http://127.0.0.1:8000/docs. Backend tests:
 
@@ -70,18 +70,16 @@ On macOS/Linux use `.venv/bin/python -m pytest -q`. Parity tests invoke Node and
 
 With both services running (`npm run dev:full`), use `npm run test:e2e --workspace frontend`. Tests use installed Microsoft Edge by default, including 1440px desktop and 390px mobile viewports. Change the Playwright `channel` to an installed Chromium browser if necessary; browser installation is not part of the demo runtime. Screenshots, downloaded exports and failed traces go to ignored `artifacts/playwright/`.
 
-## Supabase preparation
+## Cloud setup and imported data
 
-No Supabase connection is claimed. Apply `supabase/migrations/202610090001_initial.sql` to a disposable/local project, then run `supabase/tests/owner_isolation.sql` there. This SQL test is not a substitute for actually running the migration against Postgres.
+Use [manual setup](docs/MANUAL_SETUP.md) for the prepared migrations, local environment files, auth redirects and two test accounts. `/cloud` provides explicitly imported private drafts, atomic saves, saved analysis snapshots, fixed-snapshot comparison, exports and deletion. Authentication supports persisted/refreshed sessions and callback/recovery routes. Actual database persistence and hosted RLS remain unverified until the connection/key and two accounts are available. Runtime requests use the public key plus caller JWT, never an administrator credential.
 
-Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `frontend/.env.local` to enable authentication. Sessions are memory-only by default. Configure email confirmation/reset redirects in Supabase. Server JWT verification requires `SUPABASE_JWT_ISSUER` (normally the project URL plus `/auth/v1`) and `SUPABASE_JWT_AUDIENCE=authenticated`. Use asymmetric signing keys supported by the JWKS verifier (ES256/RS256); legacy shared-secret JWT validation is deliberately not inferred.
+The corrected ClimateWeb files are preserved unchanged in `data/raw/climateweb/`, with hashes in `manifest.json`. JSON is the active representation; the CSV pair is a tested alternative, never combined with it. The imported backend dataset contains 215 real identities, 350 dataset-reported relationships, 327 synthetic facilities, four shared routes and 215 route usages. Select **Sectivia + synthetic operations** in the header to exercise the complete imported-data workflow. Measured operational/dependence shares remain null; demo assumptions are explicit. The fictional reference demo and its independent arithmetic remain available.
 
-Public operational records are read-only to browser roles. Portfolios, child holdings, overlays and run records use owner/parent checks. Run snapshots have no client update/delete grants. `SupabaseRepository` uses the user's JWT, never a service-role key. The current analysis UI remains a synthetic demo even when auth is configured. Private persistence adapters are prepared; the full sourced portfolio workflow awaits a verified dataset and database integration tests.
+To reimport the same source: `backend/.venv/Scripts/python.exe scripts/import_climateweb.py --json data/raw/climateweb/climateweb-supply-chain-enriched.json --accept-synthetic-demo`. See the command's `--help` for the CSV-pair alternative. Validation precedes atomic promotion; restart the backend after promotion.
 
-## Data and integrations
+Weather and future-context controls call backend adapters. Synthetic sites and unsupported geography produce unavailable responses. Live Open-Meteo connectivity was checked separately; sourced company screening still requires verified operating inputs. The projection importer uses explicit inspected-column/geography mappings; no actual CCKP file has been supplied. Optional Gemini path selection is gated and validated with deterministic fallback; external generation is unverified.
 
-Supply real datasets later. The raw-data directory is currently empty. A company-only staging importer accepts explicit column mappings after the actual schema is inspected; it does not invent relationships, operational sites, routes or shares. Operational enrichment belongs in `data/enrichment/`.
-
-Open-Meteo adapter code is disabled by default, tested with a captured-contract fixture, and rejects synthetic coordinates. It implements seven-day heat screening, original timestamps, caching and explicit stale/unavailable states. It is not wired as a live feed for fictional facilities. CCKP projection validation preserves periods/scenarios; no projection values were supplied. Gemini is not connected; deterministic explanations are implemented.
+Use [operations](docs/OPERATIONS.md) for startup, request limits, logging, benchmark, backup/restore procedure and deployment preparation. No external deployment is active.
 
 See [implementation status](docs/IMPLEMENTATION_STATUS.md), [architecture](docs/ARCHITECTURE.md), [data notes](docs/DATA_NOTES.md), [assumptions](docs/ASSUMPTIONS.md), and [demo walkthrough](docs/DEMO.md).

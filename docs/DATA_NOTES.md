@@ -1,10 +1,14 @@
 # Data notes
 
-All usable demo data is fictional, created from PRD section 9 in `frontend/src/fixtures/reference.json`. `scripts/create-fixture.mjs` reproduces it. The illustrative facility coordinate (20,78) is not a verified real operating site. No actual weather or projection values are bundled.
+Two independent datasets are available. `frontend/src/fixtures/reference.json` is the original fictional reference. `data/raw/climateweb/` preserves all three user-supplied corrected files byte-for-byte with SHA-256 manifest. Active representation: enriched JSON. The two CSVs represent the same source and are used only for importer parity tests or as an alternative import.
 
-The initial workspace listing briefly contained `sectivia-companies.csv`, but the file was absent when read and on subsequent inspection. No bytes were imported and no source schema was claimed. The user subsequently confirmed that real datasets will be supplied later. `data/raw/sectivia/` is an empty destination.
+`backend/app/climateweb_importer.py` preserves company IDs exactly, maps JSON supplier/customer and CSV supplier_id/customer_id, parses JSON cells, scans all company rows for global configuration, and resolves only the simulation asset/route arrays. It does not add original arrays as duplicate nodes. Effective dependency weights already include replacement. Shared routes remain single entities; company-scoped route vulnerability is retained in route usage. Commodity links are visual context only.
 
-The staging importer accepts an explicit ID/name column mapping and preserves source bytes under a SHA-256 filename, validates unique IDs, retains leading zeros, namespaces IDs as `sectivia:`, and reports unmapped fields. It imports one base source rather than combining CSV and JSON. Relationships and operational enrichment are deliberately not inferred. A source-specific relationship importer remains pending actual files/schema.
+Imported counts: 215 companies, 350 reported commercial edges, 327 synthetic facilities, four routes, 215 usages. Real company identity and dataset-reported topology do not verify operational locations, measured shares or weather. Original measured fields remain null in source metadata. Demo modeling explicitly uses assumed operational shares, vulnerabilities and effective commercial weights. No sourced operational dataset is installed.
+
+Hash-addressed normalized artifacts live under `data/normalized/climateweb/`; `active.json` is atomically replaced only after validation. Invalid input cannot replace the active pointer. Backend snapshots retain their original source data, model and scenario. The supplied three reference calculations and allocation comparison are independently exercised through actual API calls. The original fictional reference suite is retained.
+
+The generic company-only Sectivia staging importer remains separate legacy support; its namespacing policy is not applied to this corrected source adapter. No identity renaming or CSV+JSON concatenation is used here.
 
 Official documentation consulted during implementation:
 

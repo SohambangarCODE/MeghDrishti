@@ -7,3 +7,4 @@ numpy
 pytest
 httpx
 PyJWT[crypto]
+psycopg[binary]

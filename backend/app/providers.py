@@ -7,11 +7,11 @@ from time import monotonic
 import httpx
 from .engine import DEFAULTS
 
-def heat_intensity(temperatures,threshold=None,span=None):
+def heat_intensity(temperatures,threshold=None,span=None,expected_days=7):
     threshold=DEFAULTS['heatScreen']['thresholdCelsius'] if threshold is None else threshold
     span=DEFAULTS['heatScreen']['spanCelsius'] if span is None else span
     if not math.isfinite(threshold) or not math.isfinite(span) or span<=0: raise ValueError('Invalid heat thresholds')
-    if len(temperatures)!=7 or any(v is None or not isinstance(v,(int,float)) or not math.isfinite(v) for v in temperatures): return None
+    if len(temperatures)!=expected_days or any(v is None or not isinstance(v,(int,float)) or not math.isfinite(v) for v in temperatures): return None
     return max(0,min(1,(max(temperatures)-threshold)/span))
 
 class OpenMeteoAdapter:
@@ -20,12 +20,22 @@ class OpenMeteoAdapter:
     Enable only for verified operations and review provider commercial terms.
     No nearest-city or HQ substitution and no spatial deduplication assumption.
     """
-    def __init__(self,enabled=False,transport=None,ttl=3600):
-        self.enabled=enabled;self.transport=transport;self.ttl=ttl;self.cache={}
+    def __init__(self,enabled=False,transport=None,ttl=3600,forecast_days=7,max_stale=21600):
+        if not 1<=forecast_days<=16: raise ValueError('Forecast window must be 1-16 days')
+        self.enabled=enabled;self.transport=transport;self.ttl=ttl;self.cache={};self.forecast_days=forecast_days;self.max_stale=max_stale;self.locks={};self.semaphore=asyncio.Semaphore(4)
 
     async def screen(self,latitude,longitude,provenance):
+        if provenance not in ('sourced','dataset_reported','selected_coordinate'):
+            return {'status':'unavailable','data':None,'reason':'Verified operational coordinates required'}
+        key=(latitude,longitude)
+        lock=self.locks.setdefault(key,asyncio.Lock())
+        async with lock:
+            async with self.semaphore:
+                return await self._screen(latitude,longitude,provenance)
+
+    async def _screen(self,latitude,longitude,provenance):
         if not self.enabled: return {'status':'not configured','data':None}
-        if provenance not in ('sourced','dataset_reported') or latitude is None or longitude is None:
+        if provenance not in ('sourced','dataset_reported','selected_coordinate') or latitude is None or longitude is None:
             return {'status':'unavailable','data':None,'reason':'Verified operational coordinates required'}
         if not (-90<=latitude<=90 and -180<=longitude<=180): raise ValueError('Invalid coordinates')
         key=(latitude,longitude)
@@ -35,7 +45,7 @@ class OpenMeteoAdapter:
             async with httpx.AsyncClient(timeout=8,transport=self.transport) as client:
                 for attempt in range(3):
                     response=await client.get('https://api.open-meteo.com/v1/forecast',params={
-                        'latitude':latitude,'longitude':longitude,'forecast_days':7,'timezone':'UTC',
+                        'latitude':latitude,'longitude':longitude,'forecast_days':self.forecast_days,'timezone':'UTC',
                         'temperature_unit':'celsius','wind_speed_unit':'kmh','precipitation_unit':'mm',
                         'daily':'temperature_2m_max,precipitation_sum,wind_gusts_10m_max'})
                     if response.status_code not in (429,500,502,503,504) or attempt==2: break
@@ -47,19 +57,19 @@ class OpenMeteoAdapter:
             daily=raw['daily'];units=raw['daily_units']
             expected={'temperature_2m_max':'°C','precipitation_sum':'mm','wind_gusts_10m_max':'km/h'}
             if any(units.get(k)!=v for k,v in expected.items()): raise ValueError('Unexpected provider units')
-            if len(daily['time'])!=7: raise ValueError('Incomplete valid dates')
-            intensity=heat_intensity(daily['temperature_2m_max'])
+            if len(daily['time'])!=self.forecast_days: raise ValueError('Incomplete valid dates')
+            intensity=heat_intensity(daily['temperature_2m_max'],expected_days=self.forecast_days)
             if intensity is None: raise ValueError('Incomplete forecast temperature coverage')
             value={'status':'available','provenance':'sourced','provider':'Open-Meteo','cached':False,'stale':False,
                    'coordinates':[latitude,longitude],'gridCoordinates':[raw['latitude'],raw['longitude']],
-                   'model':None,'validTimes':daily['time'],'fetchedAt':datetime.now(timezone.utc).isoformat(),
+                   'model':'Open-Meteo automatic model selection','validTimes':daily['time'],'fetchedAt':datetime.now(timezone.utc).isoformat(),
                    'data':daily,'units':units,'heatIntensity':intensity,
                    'assumptions':DEFAULTS['heatScreen'],'contextOnly':['precipitation_sum','wind_gusts_10m_max']}
             if len(self.cache)>=1000: self.cache.pop(next(iter(self.cache)))
             self.cache[key]={'time':monotonic(),'value':value}
             return deepcopy(value)
         except (httpx.HTTPError,KeyError,ValueError,TypeError) as exc:
-            if cached:return {**deepcopy(cached['value']),'cached':True,'stale':True,'status':'stale','refreshError':str(exc)}
+            if cached and monotonic()-cached['time']<=self.max_stale:return {**deepcopy(cached['value']),'cached':True,'stale':True,'status':'stale','refreshError':str(exc)}
             return {'status':'unavailable','data':None,'reason':str(exc)}
 
 def validate_projection(record):

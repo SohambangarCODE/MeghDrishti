@@ -1,0 +1,20 @@
+{
+  "activeRepresentation": "json",
+  "files": [
+    {
+      "file": "climateweb-companies-enriched.csv",
+      "bytes": 1751460,
+      "sha256": "71e3aa99a785d0ce4acb45e709d9e94d93b8fd00042cf2b434a513b9e34448d1"
+    },
+    {
+      "file": "climateweb-relations-enriched.csv",
+      "bytes": 410503,
+      "sha256": "b47c236cc6383648babfd3b041cd76016897f5ed045f3ba33aeaa3723e3ce16a"
+    },
+    {
+      "file": "climateweb-supply-chain-enriched.json",
+      "bytes": 3218100,
+      "sha256": "64ea410b979aef78931111c3695c53de5becc62eafe1f334e4cb584fc293586d"
+    }
+  ]
+}

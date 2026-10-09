@@ -1,4 +1,6 @@
 import os
+import asyncio
+from contextlib import asynccontextmanager,suppress
 from datetime import datetime, timezone
 from uuid import uuid4
 from fastapi import FastAPI, Depends, Header, HTTPException, Request
@@ -12,9 +14,25 @@ from .repositories import DemoRepository
 from .auth import identity
 from .graph import graph_payload
 
-app=FastAPI(title='MeghDrishti synthetic analysis API',version='1.0.0')
+@asynccontextmanager
+async def lifespan(app):
+    from .climate_api import refresh_loop
+    interval=int(os.getenv('WEATHER_REFRESH_SECONDS','0'))
+    task=asyncio.create_task(refresh_loop(interval)) if interval>0 else None
+    yield
+    if task:
+        task.cancel()
+        with suppress(asyncio.CancelledError): await task
+
+app=FastAPI(lifespan=lifespan,title='MeghDrishti synthetic analysis API',version='1.0.0')
+from .private_api import router as private_router
+app.include_router(private_router)
+from .climate_api import router as climate_router
+app.include_router(climate_router)
 app.add_middleware(CORSMiddleware,allow_origins=os.getenv('ALLOWED_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(','),
-                   allow_credentials=False,allow_methods=['GET','POST'],allow_headers=['Content-Type','Authorization','X-Demo-Session','Idempotency-Key'])
+                   allow_credentials=False,allow_methods=['GET','POST','DELETE'],allow_headers=['Content-Type','Authorization','X-Demo-Session','Idempotency-Key'])
+from .operations import RequestBoundary
+app.add_middleware(RequestBoundary)
 repository=DemoRepository()
 
 @app.exception_handler(HTTPException)
@@ -32,20 +50,38 @@ async def request_error(request,exc):
 @app.get('/health')
 def health(): return {'status':'ok','mode':'demo','schemaVersion':'1.0.0','modelVersion':DEFAULTS['modelVersion']}
 
+@app.get('/ready')
+def readiness():
+    catalog=repository.catalog()
+    return {'status':'ready' if catalog else 'unavailable','datasets':len(catalog),
+            'cloudConfigured':bool(os.getenv('SUPABASE_URL') and (os.getenv('SUPABASE_PUBLISHABLE_KEY') or os.getenv('SUPABASE_ANON_KEY'))),
+            'cloudVerification':'Requires authenticated /api/v1/private/session and two-user persistence verification'}
+
 @app.get('/api/v1/datasets')
 def datasets():
-    return {'schemaVersion':'1.0.0','mode':'demo','datasets':[{'id':repository.dataset()['datasetVersion'],'provenance':'synthetic'}],
-            'services':{'Sectivia':'not supplied','Open-Meteo':'not configured','World Bank CCKP':'not supplied',
-                        'Supabase':'configured, unverified' if os.getenv('SUPABASE_URL') else 'not configured','Gemini':'not configured'}}
+    return {'schemaVersion':'1.0.0','mode':'demo','datasets':repository.catalog(),
+            'services':{'Sectivia':'reported relationships and synthetic operations installed' if 'climateweb' in repository.fixtures else 'not supplied',
+                        'Open-Meteo':'enabled; verified sites required' if os.getenv('OPEN_METEO_ENABLED','false').lower()=='true' else 'not configured',
+                        'World Bank CCKP':'file query available; requires imported product and verified geography',
+                        'Supabase':'configured, unverified' if os.getenv('SUPABASE_URL') and (os.getenv('SUPABASE_PUBLISHABLE_KEY') or os.getenv('SUPABASE_ANON_KEY')) else 'incomplete configuration',
+                        'Gemini':'enabled, unverified' if os.getenv('GEMINI_ENABLED','false').lower()=='true' and os.getenv('GEMINI_API_KEY') and os.getenv('GEMINI_MODEL') else 'not configured; deterministic fallback'}}
 
 @app.get('/api/v1/demo')
-def defaults(): return repository.defaults()
+def defaults(datasetId: str | None=None): return repository.defaults(datasetId)
+
+@app.get('/api/v1/companies')
+def search_companies(datasetId:str | None=None,q:str='',limit:int=50):
+    if not 1<=limit<=100: raise ValueError('Company search limit must be 1-100')
+    rows=repository.dataset(datasetId)['companies']
+    matched=[c for c in rows if q.casefold() in ' '.join(str(c.get(k) or '') for k in ['id','name','ticker','sectorId']).casefold()]
+    return {'schemaVersion':'1.0.0','companies':matched[:limit],'total':len(matched)}
 
 @app.get('/api/v1/graph')
-def graph(portfolioId: str | None=None,offset:int=0,limit:int=100,owner=Depends(identity)):
+def graph(portfolioId: str | None=None,offset:int=0,limit:int=100,datasetId:str | None=None,owner=Depends(identity)):
     if offset<0 or not 1<=limit<=100: raise ValueError('Use offset >= 0 and limit 1–100')
-    if portfolioId and portfolioId!='demo:portfolio': raise HTTPException(404,'Portfolio not found')
-    result=graph_payload(repository.dataset(),repository.defaults()['holdings'])
+    fixture=repository.defaults(datasetId)
+    if portfolioId and portfolioId!=fixture['holdings'][0]['portfolioId']: raise HTTPException(404,'Portfolio not found')
+    result=graph_payload(fixture['dataset'],fixture['holdings'])
     all_nodes=result['nodes']; result['nodes']=all_nodes[offset:offset+limit]
     ids={n['id'] for n in result['nodes']}
     result['edges']=[e for e in result['edges'] if e['sourceId'] in ids and e['targetId'] in ids]
@@ -54,30 +90,33 @@ def graph(portfolioId: str | None=None,offset:int=0,limit:int=100,owner=Depends(
 
 class PortfolioRequest(BaseModel):
     holdings:list[Holding]=Field(max_length=1000)
+    datasetVersion:str | None=None
 
 @app.post('/api/v1/portfolio/validate')
 def validate(request:PortfolioRequest):
-    holdings=normalize_holdings([h.model_dump() for h in request.holdings],repository.dataset()['companies'])
+    holdings=normalize_holdings([h.model_dump() for h in request.holdings],repository.dataset(request.datasetVersion)['companies'])
     return {'schemaVersion':'1.0.0','holdings':holdings,'duplicateRowsMerged':len(request.holdings)-len(holdings),
             'excludedCapital':sum(h['amount'] for h in holdings if h['matchingStatus']!='matched')}
 
 class MatchRequest(BaseModel):
     names:list[str]=Field(max_length=1000)
+    datasetVersion:str | None=None
 
 @app.post('/api/v1/portfolio/match')
 def match(request:MatchRequest):
-    companies=repository.dataset()['companies']
+    companies=repository.dataset(request.datasetVersion)['companies']
     return {'schemaVersion':'1.0.0','matches':[{'input':name,'candidates':[c for c in companies if name.strip().casefold() in [c['id'].casefold(),c['name'].casefold(),(c['ticker'] or '').casefold()]]} for name in request.names]}
 
 @app.get('/api/v1/events')
-def events(portfolioId:str | None=None):
-    if portfolioId and portfolioId!='demo:portfolio': raise HTTPException(404,'Portfolio not found')
-    return {'schemaVersion':'1.0.0','mode':'demo','events':repository.dataset()['events'],'weatherStatus':'not configured'}
+def events(portfolioId:str | None=None,datasetId:str | None=None):
+    fixture=repository.defaults(datasetId)
+    if portfolioId and portfolioId!=fixture['holdings'][0]['portfolioId']: raise HTTPException(404,'Portfolio not found')
+    return {'schemaVersion':'1.0.0','mode':'demo','events':fixture['dataset']['events'],'weatherStatus':'not configured'}
 
 @app.post('/api/v1/analysis',response_model=RunResponse)
 def analysis(request:AnalysisRequest,owner=Depends(identity),idempotency_key:str | None=Header(default=None)):
     if not idempotency_key or len(idempotency_key)>128: raise HTTPException(400,'Idempotency-Key of 1–128 characters required')
-    d=repository.dataset(); holdings=[h.model_dump() for h in request.holdings]; scenario=request.scenario.model_dump()
+    d=repository.dataset(request.scenario.datasetVersion); holdings=[h.model_dump() for h in request.holdings]; scenario=request.scenario.model_dump()
     digest=input_hash(d,holdings,scenario)
     key=(owner,idempotency_key)
     with repository.lock:
@@ -113,9 +152,6 @@ def compare(request:CompareRequest,owner=Depends(identity)):
     return {**compare_run(run,request.fromCompanyId,request.toCompanyId,request.amount),'requestId':request.requestId,'schemaVersion':'1.0.0'}
 
 @app.post('/api/v1/runs/{run_id}/explanation')
-def explanation(run_id:str,owner=Depends(identity)):
-    run=get_run(run_id,owner)
-    return {'schemaVersion':'1.0.0','provider':'deterministic','summary':f"Demo simulation: INR {run['totals']['connectedCapital']:,.2f} has a supported assumed path. The stress-weighted exposure is not a loss forecast.",
-            'affectedPaths':[p for r in run['holdingsResults'] for p in r['selectedPathIds']],
-            'limitations':['Synthetic assumptions; unrecorded paths do not establish safety','Unknown direct exposure remains unknown'],
-            'analystChecks':['Verify operational locations and dependency shares before sourced analysis']}
+async def explanation(run_id:str,owner=Depends(identity)):
+    from .explanations import explain
+    return await explain(get_run(run_id,owner))

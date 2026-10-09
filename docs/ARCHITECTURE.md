@@ -14,6 +14,14 @@ Frontend routes match P01–P11. The UI adapts the eleven local Stitch exports p
 
 Browser history stores at most 20 validated synthetic snapshots; failures use in-memory fallback. Drafts are validated on restore. There is no persistent authenticated portfolio cache. JSON exports include complete snapshots; CSV includes source labels, assumptions, exclusions and formula-prefix protection. Print uses the result page with navigation hidden.
 
-Engine limits: 1,000 companies, 10,000 commercial edges, 10,000 enumerated paths; graph view displays at most 100 nodes. Default fixture: five companies, three commercial edges, four holdings, one facility, one route. Larger-network performance is not claimed.
+Engine limits: 1,000 companies, 10,000 commercial edges, 10,000 enumerated paths; graph view displays at most 100 nodes. Default fixture: five companies, three commercial edges, four holdings, one facility, one route. The corrected dataset has 215 companies and 350 edges; sequential dataset-sized timings are recorded in VERIFICATION.md. Production concurrency is not established.
 
 Build compatibility: Vite 7.3.7 and Vitest 4.1.11 are resolved in the lockfile. Tailwind 4.1.18 uses a small Vite adapter calling its pure `compile`/`build` API and scanning local source candidates. The standard Tailwind Node plugin's ESM reload hooks stalled even outside the sandbox on this host. The adapter avoids those hooks without patching dependencies or keeping Tailwind 3's vulnerable transitive tree. JSX/style sources are watched; restart the dev server after adding entirely new source directories. Graph, map, authentication and chart pages load on demand.
+
+## Imported datasets and private boundaries
+
+The canonical corrected-source adapter stages and validates either enriched JSON or the CSV pair, then atomically promotes a hash-checked normalized artifact. `DemoRepository` serves both independent synthetic datasets. Backend climate services refuse synthetic coordinates/geography. Projection parsing requires an explicit inspected-column mapping; imported values remain annual context.
+
+`private_api.PrivateStore` is the single cloud data-access boundary. It sends public key + caller JWT to SECURITY INVOKER Postgres functions for atomic portfolio/holding/overlay and immutable run/result writes. Owner identity comes from verified JWT/auth.uid(), and RLS checks parent ownership. Private UI state is memory-only and cleared on account changes; Supabase SDK owns persisted auth tokens and refresh. Anonymous local demo history remains separate.
+
+Request middleware bounds bodies and emits only metadata logs. `/ready` reports local readiness and distinguishes cloud configuration from external verification. Optional Gemini selects among computed paths; server validation rejects altered numbers/references and renders deterministic text.

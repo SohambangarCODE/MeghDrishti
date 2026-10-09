@@ -26,9 +26,11 @@ export function layoutGraph(nodes,edges) {
   }
   const lanes=new Map();
   const kindLayer={hazard:0,region:0,facility:1,route:1,waypoint:0,commodity:2,portfolio:0};
-  return nodes.map(n=>{
+  const positioned=nodes.map(n=>{
     const layer=n.kind==='company'?2+(depth.get(n.id)||0):kindLayer[n.kind]??0;
     const row=lanes.get(layer)||0;lanes.set(layer,row+1);
-    return {...n,position:{x:layer*270,y:row*130}};
+    return {...n,position:{x:layer*310,y:row*145}};
   });
+  const maxRows=Math.max(1,...lanes.values());
+  return positioned.map(n=>({...n,position:{...n.position,y:n.position.y+(maxRows-(lanes.get(n.position.x/310)||1))*72.5}}));
 }

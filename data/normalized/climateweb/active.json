@@ -1,0 +1,12 @@
+{
+  "datasetVersion": "climateweb:demo-operational-v1-commercial-v1-resolved-v2",
+  "file": "b606b2eb66c080275eec82d5b7f4e32c457816ee2fb5d69b331af7f2c17970e5.json",
+  "sha256": "b606b2eb66c080275eec82d5b7f4e32c457816ee2fb5d69b331af7f2c17970e5",
+  "counts": {
+    "companies": 215,
+    "commercialEdges": 350,
+    "facilities": 327,
+    "routes": 4,
+    "routeUsage": 215
+  }
+}

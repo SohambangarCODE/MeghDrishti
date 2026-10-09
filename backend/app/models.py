@@ -13,6 +13,7 @@ class Metadata(Contract):
     evidenceIds: list[str]
     missingFields: list[str]
     datasetVersion: Identifier
+    sourceFields: dict | None = None
 
 class Company(Metadata):
     id: Identifier
@@ -74,6 +75,7 @@ class RouteUsage(Metadata):
     routeId: Identifier
     shipmentShare: Fraction | None
     substitutability: Fraction | None
+    vulnerabilityByHazard: dict[str, Fraction | None] | None = None
 
 class Commodity(Metadata):
     id: Identifier
@@ -171,6 +173,8 @@ class Scenario(Contract):
 class Dataset(Contract):
     schemaVersion: Literal['1.0.0']
     datasetVersion: Identifier
+    dataState: Literal['fictional_reference', 'synthetic_operational_demo', 'sourced_operational'] = 'fictional_reference'
+    sourceMetadata: dict | None = None
     companies: list[Company]
     regions: list[Region]
     facilities: list[Facility]
@@ -185,7 +189,7 @@ class Dataset(Contract):
 
     @model_validator(mode='after')
     def references_and_shares(self):
-        records = [r for k in type(self).model_fields for r in getattr(self, k) if isinstance(getattr(self, k), list)]
+        records = [r for k in type(self).model_fields if isinstance(getattr(self, k), list) for r in getattr(self, k)]
         ids = [r.id for r in records]
         if len(ids) != len(set(ids)):
             raise ValueError('Duplicate record ID')

@@ -1,15 +1,17 @@
+"""Dataset-sized local engine timings; not an external concurrency/SLA claim."""
+import json,platform,sys,time
 from pathlib import Path
-import json
-import platform
-import sys
-from time import perf_counter
-import numpy as np
 sys.path.insert(0,str(Path(__file__).parents[1]/'backend'))
+from app.repositories import DemoRepository
 from app.engine import simulate
-fixture=json.loads((Path(__file__).parents[1]/'frontend/src/fixtures/reference.json').read_text())
-def evaluate():return simulate(fixture['dataset'],fixture['holdings'],fixture['scenario'])
-for _ in range(20):evaluate()
-times=[]
-for _ in range(500):
-    start=perf_counter();evaluate();times.append((perf_counter()-start)*1000)
-print(json.dumps({'engine':'Python / NetworkX','python':platform.python_version(),'companies':5,'edges':3,'holdings':4,'iterations':500,'p50ms':float(np.percentile(times,50)),'p95ms':float(np.percentile(times,95))},indent=2))
+
+repo=DemoRepository();rows=[]
+for name in ('reference','climateweb'):
+    f=repo.defaults(name);d=f['dataset']
+    holdings=[{'id':'bench-'+c['id'],'portfolioId':'benchmark','companyId':c['id'],'originalInputName':c['name'],'amount':1000000,'currency':'INR','matchingStatus':'matched','exclusionReason':None} for c in d['companies']]
+    simulate(d,holdings,f['scenario']);times=[]
+    for _ in range(20):
+        start=time.perf_counter();result=simulate(d,holdings,f['scenario']);times.append((time.perf_counter()-start)*1000)
+    times.sort();rows.append({'dataset':name,'companies':len(d['companies']),'relationships':len(d['commercialEdges']),'holdings':len(holdings),'paths':len(result['paths']),'iterations':len(times),'p50Ms':round(times[10],2),'p95Ms':round(times[18],2),'maxMs':round(times[-1],2)})
+output={'python':platform.python_version(),'kind':'single-process sequential local engine','measurements':rows}
+target=Path(__file__).parents[1]/'artifacts/backend-benchmark.json';target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(output,indent=2),encoding='utf-8');print(json.dumps(output,indent=2))
