@@ -249,3 +249,46 @@ private analysis remains available. Increment 2 must integrate saved private
 portfolio analysis, private results/comparison/export and reopen behavior without
 persisting private snapshots in local browser history. Weather, projections,
 datasets and simulation mathematics were not changed here.
+
+## Task 02, Increment 2: private analysis and reports
+
+This supersedes the Increment 1 analysis restriction above. Save or explicitly
+open a private portfolio, then click **Analyze saved portfolio**. Unsaved changes
+must be saved first. Analysis calls the existing authenticated private API, which
+reads the saved draft and persists the computed snapshot. Only explicit sample
+mode uses the existing local demo analytical service/history.
+
+Reports now lists **Private cloud reports** above local demo reports. Open retrieves
+the snapshot from the owner-scoped private endpoint and displays Results. Delete
+requires explicit confirmation and removes the row only after server success.
+Private Results supports JSON/CSV export but has no save-to-local-history action.
+The history service independently rejects private snapshots. Logout clears the
+active private snapshot and removes the private report list from view.
+
+Live check performed on 2026-10-10 using the already signed-in browser account:
+
+- Saved `Task 02 verification — synthetic sample` with the imported dataset's
+  explicit sample holdings; it remains in the account for inspection.
+- Ran Analyze saved portfolio; private Results displayed assumed weighted exposure
+  of INR 473,532.89, matching the imported fixture expectation.
+- Navigated to Reports, reloaded the browser and reopened the persisted private
+  report successfully. The local demo archive displayed zero snapshots.
+- No credentials were read, entered or committed. No existing portfolio was
+  overwritten, and the verification record was not deleted.
+
+This proves one-account live save/analyze/list/reopen and browser session
+restoration, not live two-account isolation, explicit logout/login, password reset
+or token refresh. Those live checks remain the checklist above. Automated network
+mocks additionally exercise logout, delayed requests, failed open, confirmed
+deletion and private export. Direct result links after reload require opening the
+private snapshot from Reports first.
+
+Increment 3 remains: integrate private comparison into the main Compare page and
+complete feature parity before removing Cloud. Private Results currently directs
+comparison to the existing Cloud page. No migrations or backend APIs changed.
+
+Final automated verification on 2026-10-10: `npm run test --workspace frontend`
+passed 33 unit tests; `npm run test:e2e --workspace frontend` passed all 62 desktop
+and mobile checks; `npm run build` passed with the existing bundle-size warnings;
+`git diff --check` passed. Private API/authentication mocks do not substitute for
+the live two-account/email checklist.

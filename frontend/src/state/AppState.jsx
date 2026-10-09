@@ -3,10 +3,12 @@ import { FastApiRepository } from '../services/live/FastApiRepository.js';
 import { MockRepository } from '../services/mock/MockRepository.js';
 import { BrowserSimulationService } from '../services/mock/BrowserSimulationService.js';
 import { FastApiSimulationService } from '../services/live/FastApiSimulationService.js';
-import { RunHistory } from './history.js';
+import { RunHistory,isPrivateRun } from './history.js';
 import { LatestRequest } from './latestRequest.js';
 import { usePortfolioWorkspace } from './usePortfolioWorkspace.js';
 import { useAuth } from './AuthState.jsx';
+import { cloudRequest } from '../services/live/supabase.js';
+import { requireSavedPortfolio,validatePrivateRun } from '../services/live/privateRuns.js';
 const Context=createContext(null);
 function storage() {try{return window.localStorage;}catch{return null;}}
 function session() {try {let id=sessionStorage.getItem('meghdrishti:session');if(!id){id=crypto.randomUUID();sessionStorage.setItem('meghdrishti:session',id);}return id;}catch{return crypto.randomUUID();}}
@@ -15,6 +17,15 @@ export function AppState({children}) {
   const [cloudRun,setCloudRun]=useState(null);
   const activeCloudRun=ownerId&&cloudRun?.ownerId===ownerId?cloudRun:null;
   const setActiveCloudRun=run=>setCloudRun(ownerId&&run?.ownerId===ownerId?run:null);
+  const sessionKey=ownerId?`${auth.generation}:${ownerId}`:null,sessionKeyRef=useRef(sessionKey),openRevision=useRef(0);
+  sessionKeyRef.current=sessionKey;
+  const openCloudReport=async id=>{
+    const expected=sessionKey,revision=++openRevision.current;
+    const result=await cloudRequest('/runs/'+encodeURIComponent(id));
+    const run=validatePrivateRun(result,ownerId,id);
+    if(expected!==sessionKeyRef.current||revision!==openRevision.current)return null;
+    setActiveCloudRun(run);return run;
+  };
   useEffect(()=>{setCloudRun(null);},[ownerId,auth.generation]);
   useEffect(()=>{const clear=()=>setCloudRun(null);window.addEventListener('meghdrishti:session-expired',clear);return()=>window.removeEventListener('meghdrishti:session-expired',clear);},[]);
   const [datasetId,setDatasetId]=useState(()=>{try{return storage()?.getItem('meghdrishti:dataset')||'reference';}catch{return 'reference';}}),[datasets,setDatasets]=useState([{id:'reference',label:'Fictional reference demo'}]),[loadingDataset,setLoadingDataset]=useState(false);
@@ -34,9 +45,16 @@ export function AppState({children}) {
   useEffect(()=>{gate.current.invalidate();setPending(false);setAmountErrors({});setError('');setOutdated(false);},[ownerId,auth.generation]);
   const edit=(setter,value)=>{gate.current.invalidate();setPending(false);setOutdated(true);setter(value);};
   const analyze=async()=>{
-    if(pending||loadingDataset||validationError||workspace.portfolioMode!=='sample')return null;setPending(true);setError('');let accepted=null;
-    try {await gate.current.run(({signal,revision})=>service.current.analyze({dataset:data.dataset,holdings,scenario,requestId:crypto.randomUUID(),draftRevision:revision,signal}),run=>{
-      history.current.save(run);setHistoryRevision(n=>n+1);setOutdated(false);setPending(false);accepted=run;
+    const privateMode=workspace.portfolioMode==='private';
+    if(privateMode)requireSavedPortfolio(workspace);
+    if(pending||loadingDataset||validationError||workspace.isSaving||workspace.isLoadingPortfolio)return null;setPending(true);setError('');let accepted=null;
+    const expected=sessionKey;
+    try {await gate.current.run(async({signal,revision})=>privateMode?
+      validatePrivateRun(await cloudRequest('/analysis',{method:'POST',body:JSON.stringify({portfolioId:workspace.activePortfolioId,requestId:crypto.randomUUID()})}),ownerId):
+      service.current.analyze({dataset:data.dataset,holdings,scenario,requestId:crypto.randomUUID(),draftRevision:revision,signal}),run=>{
+      if(expected!==sessionKeyRef.current)return;
+      if(privateMode){openRevision.current++;setActiveCloudRun(run);}else{setCloudRun(null);history.current.save(run);setHistoryRevision(n=>n+1);}
+      setOutdated(false);setPending(false);accepted=run;
     });}catch(e){if(e.name!=='AbortError'){setError(e.message);setPending(false);}}
     return accepted;
   };
@@ -45,12 +63,13 @@ export function AppState({children}) {
     openPortfolio:async id=>{const opened=await workspace.openPortfolio(id);if(opened){gate.current.invalidate();setPending(false);setAmountErrors({});setCloudRun(null);}return opened;},
     selectDataset:async id=>{const changed=await workspace.switchDataset(id);if(changed){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return changed;},
     setAmountError:(id,message)=>{gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors(old=>{const next={...old};if(message)next[id]=message;else delete next[id];return next;});},
-    pending,outdated,history:history.current,historyRevision,activeCloudRun,setActiveCloudRun,
+    pending,outdated,history:history.current,historyRevision,activeCloudRun,setActiveCloudRun,openCloudReport,
+    getRun:id=>activeCloudRun?.id===id?activeCloudRun:history.current.get(id),
     deleteReport:id=>{history.current.delete(id);setHistoryRevision(n=>n+1);},
     saveReport:run=>{history.current.save(run);setHistoryRevision(n=>n+1);},
     engine:import.meta.env.VITE_API_BASE_URL?'FastAPI / NetworkX':'Browser demo',
     setHoldings:value=>{edit(workspace.setHoldings,value);setAmountErrors(old=>Object.fromEntries(Object.entries(old).filter(([id])=>value.some(h=>h.id===id))));},setScenario:value=>edit(workspace.setScenario,value),analyze,
-    explain:run=>service.current.request?service.current.request('/runs/'+encodeURIComponent(run.id)+'/explanation',{method:'POST'}):Promise.resolve({provider:'deterministic',providerStatus:'Browser demo; no external explanation requested'}),
+    explain:run=>isPrivateRun(run)?Promise.resolve({provider:'deterministic',providerStatus:'Private snapshot; no external explanation requested'}):service.current.request?service.current.request('/runs/'+encodeURIComponent(run.id)+'/explanation',{method:'POST'}):Promise.resolve({provider:'deterministic',providerStatus:'Browser demo; no external explanation requested'}),
     compare:(...args)=>service.current.compare(...args),reset:()=>{const loaded=workspace.loadSample();if(loaded){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return loaded;}}}>{children}</Context.Provider>;
 }
 export const useApp=()=>useContext(Context);

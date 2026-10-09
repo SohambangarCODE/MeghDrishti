@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { Holding, Scenario, Dataset } from '../schemas/contracts.js';
-const StoredRun=z.object({id:z.string(),mode:z.literal('demo'),schemaVersion:z.literal('1.0.0'),
+export const StoredRun=z.object({id:z.string(),mode:z.literal('demo'),schemaVersion:z.literal('1.0.0'),
   portfolioSnapshot:z.array(Holding),scenarioSnapshot:Scenario,sourceSnapshot:Dataset,
   holdingsResults:z.array(z.object({amount:z.number().finite(),totalStress:z.number().min(0).max(1).nullable()}).passthrough()),
   totals:z.object({totalCapital:z.number().finite().nonnegative(),assumedWeightedExposure:z.number().finite().nonnegative()}).passthrough(),
   paths:z.array(z.object({id:z.string(),companyIds:z.array(z.string()),edgeIds:z.array(z.string())}).passthrough()),
   eventSnapshot:z.array(z.unknown()),warnings:z.array(z.string()),inputHash:z.string()}).passthrough();
+export const isPrivateRun=run=>run.storage==='private Supabase snapshot'||!!run.ownerId&&run.storage!=='temporary backend demo memory';
 export class RunHistory {
   constructor(storage,limit=20) {
     this.storage=storage;this.limit=limit;this.runs=[];this.warning='';
@@ -16,6 +17,7 @@ export class RunHistory {
     if (!storage) this.warning='Local storage unavailable; history lasts for this session only.';
   }
   save(run) {
+    if(isPrivateRun(run))throw new Error('Private reports cannot be saved in local demo history.');
     StoredRun.parse(run);
     this.runs=[structuredClone(run),...this.runs.filter(r=>r.id!==run.id)].slice(0,this.limit);
     try {this.storage?.setItem('meghdrishti:runs:v1',JSON.stringify(this.runs));}

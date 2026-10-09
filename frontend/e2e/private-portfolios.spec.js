@@ -71,7 +71,7 @@ test('sample selection is explicit and saved samples keep provenance',async({pag
  await expect(page.getByLabel('Amount for Aster Motors')).toHaveValue('4000000');await expect(page.getByText('Mode: Explicit synthetic sample.',{exact:false})).toBeVisible();expect(state.writes).toHaveLength(0);
  await page.getByRole('button',{name:'Save Portfolio',exact:true}).click();await expect(page.getByText('Saved successfully in Supabase.',{exact:true})).toBeVisible();
  expect(state.writes[0].scenario.mode).toBe('demo');expect(state.writes[0].scenario.datasetVersion).toBe(fixture.dataset.datasetVersion);
- await expect(page.getByRole('button',{name:'Run synthetic analysis',exact:true})).toBeDisabled();
+ await expect(page.getByRole('button',{name:'Analyze saved portfolio',exact:true})).toBeEnabled();
 });
 test('late save cannot populate a new login session',async({page})=>{
  let release,notify;const gate=new Promise(r=>release=r),started=new Promise(r=>notify=r);

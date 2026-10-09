@@ -4,6 +4,7 @@ export {expect};
 export const test=base.extend({samplePortfolio:[true,{option:true}],page:async({page,samplePortfolio},use)=>{
  if(samplePortfolio)page.on('dialog',d=>d.accept());
  await page.route('**/api/v1/private/portfolios',r=>r.fulfill({json:{schemaVersion:'1.0.0',portfolios:[]}}));
+ await page.route('**/api/v1/private/runs',r=>r.fulfill({json:{schemaVersion:'1.0.0',runs:[]}}));
  await page.route('**/auth/v1/**',async route=>{
   const url=new URL(route.request().url());
   if(url.pathname.endsWith('/token')&&url.searchParams.get('grant_type')==='password'){
