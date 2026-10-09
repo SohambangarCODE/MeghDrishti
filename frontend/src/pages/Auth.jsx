@@ -1,10 +1,11 @@
+import { safeDestination } from '../state/authDestination.js';
 ﻿import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { supabase } from "../services/live/supabase.js";
 import { useAuth } from "../state/AuthState.jsx";
 import { Notice } from "../components.jsx";
 export default function Auth() {
-  const { session, ready, expired } = useAuth(),
+  const { session, ready, expired, signOut, authError } = useAuth(),
     location = useLocation(),
     reset = location.pathname === "/auth/reset";
   const [mode, setMode] = useState("Sign in"),
@@ -56,6 +57,8 @@ export default function Auth() {
       setPending(false);
     }
   };
+  const callback=location.pathname==='/auth/callback';
+  if(ready&&session&&!reset)return <Navigate replace to={safeDestination(new URLSearchParams(location.search).get('next'))}/>;
   return (
     <div className="auth-grid">
       <div className="auth-intro">
@@ -97,8 +100,7 @@ export default function Auth() {
                   <button
                     className="secondary"
                     onClick={async () => {
-                      const { error } = await supabase.auth.signOut();
-                      if (error) setError(error.message);
+                      await signOut();
                     }}
                   >
                     Sign out
@@ -171,6 +173,8 @@ export default function Auth() {
             )}
           </>
         )}
+        {callback&&ready&&!session&&<Notice error>Confirmation could not be completed. Request a new confirmation link and open it in the same browser.</Notice>}
+        {authError&&<Notice error>{authError}</Notice>}
         {error && <Notice error>{error}</Notice>}
         {message && <Notice>{message}</Notice>}
         <Link className="button secondary" to="/overview">

@@ -1,7 +1,7 @@
 import { test,expect } from '@playwright/test';
 test('reference workflow, paths, fixed comparison, exports and responsive navigation',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('/welcome');await page.getByRole('link',{name:'Open demo workspace'}).click();
+  await page.goto('/welcome');await page.getByRole('link',{name:'Open anonymous demo'}).click();
   await page.getByRole('button',{name:'Run synthetic analysis'}).click();
   await expect(page.getByRole('heading',{name:'Analysis results',exact:true})).toBeVisible();
   await expect(page.getByText('₹13,34,340.00',{exact:true})).toBeVisible();

@@ -12,9 +12,14 @@ import { graphData, layoutGraph } from "../services/graph.js";
 import { Notice, PathList, RunButton } from "../components.jsx";
 
 export default function Graph() {
+  const app=useApp();
+  return <GraphView key={app.activeCloudRun?.id||'demo'} />;
+}
+function GraphView() {
   const app = useApp(),
     [params] = useSearchParams(),
     run =
+      app.activeCloudRun ||
       app.history.get(params.get("run")) ||
       app.history
         .list()
@@ -145,6 +150,7 @@ export default function Graph() {
   return (
     <>
       <h1>Exposure graph</h1>
+      {app.activeCloudRun&&<Notice>Private report active in memory only. <button onClick={()=>app.setActiveCloudRun(null)}>Return workspace to demo</button></Notice>}
       <p>
         Arrows labelled supplies follow supplier → customer. Only those links
         count as commercial hops. View filters do not recalculate analysis.
@@ -261,7 +267,7 @@ export default function Graph() {
             ))}
           </select>
         </label>
-        <RunButton />
+        {!app.activeCloudRun&&<RunButton />}
       </div>
       <p>
         {visible.length} visible entities · {visibleEdges.length} links. Read

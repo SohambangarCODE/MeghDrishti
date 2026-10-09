@@ -12,7 +12,7 @@ export default function Cloud() {
     [portfolios, setPortfolios] = useState([]),
     [runs, setRuns] = useState([]),
     [editor, setEditor] = useState(null),
-    [run, setRun] = useState(null),
+    [run, setRun] = useState(app.activeCloudRun),
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
     [pending, setPending] = useState(false),
@@ -48,7 +48,7 @@ export default function Cloud() {
     setPortfolios([]);
     setRuns([]);
     setEditor(null);
-    setRun(null);
+    setRun(app.activeCloudRun);
     setDeleteId(null);
     setMessage("");
     setError("");
@@ -164,7 +164,7 @@ export default function Cloud() {
             </div>
           ))
         ) : (
-          <p>No private portfolios found.</p>
+          <p>No private portfolios yet. Use Import current demo draft into editor above, then Save private portfolio to create your first saved portfolio.</p>
         )}
       </section>
       {deleteId && (
@@ -181,6 +181,7 @@ export default function Cloud() {
                   setDeleteId(null);
                   setEditor(null);
                   setRun(null);
+                  if (app.activeCloudRun?.portfolioId === deleteId) app.setActiveCloudRun(null);
                   await refresh();
                   setMessage("Private portfolio and reports deleted.");
                 }
@@ -299,7 +300,11 @@ export default function Cloud() {
                 onClick={() =>
                   act(async (current) => {
                     const result = await cloudRequest("/runs/" + r.id);
-                    if (current()) setRun(result.run);
+                    if (current()) {
+                      setRun(result.run);
+                      app.setActiveCloudRun(result.run);
+                      setMessage('Report loaded into main workspace. Go to Graph or Overview to inspect.');
+                    }
                   })
                 }
               >
@@ -313,6 +318,7 @@ export default function Cloud() {
                     await cloudRequest("/runs/" + r.id, { method: "DELETE" });
                     if (current()) {
                       if (run?.id === r.id) setRun(null);
+                      if (app.activeCloudRun?.id === r.id) app.setActiveCloudRun(null);
                       await refresh();
                       setMessage("Private report deleted.");
                     }
@@ -324,12 +330,13 @@ export default function Cloud() {
             </div>
           ))
         ) : (
-          <p>No private analysis snapshots found.</p>
+          <p>No private analysis snapshots yet. Save a portfolio, then analyze the last cloud-saved portfolio.</p>
         )}
       </section>
       {run && (
         <section>
           <h2>Private immutable result</h2>
+          {app.activeCloudRun?.id===run.id&&<div className="actions"><Link to="/graph">Inspect active private graph</Link><Link to="/overview">Inspect active private overview</Link><button onClick={()=>app.setActiveCloudRun(null)}>Return workspace to demo</button></div>}
           <p className="mono">
             {run.id} / {run.scenarioSnapshot.datasetVersion}
           </p>

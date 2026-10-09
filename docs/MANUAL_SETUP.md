@@ -1,5 +1,54 @@
 ﻿# Manual setup
 
+## Frontend authentication environment
+
+Create or update `frontend/.env.local` with these exact names:
+
+```dotenv
+VITE_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_PROJECT_PUBLISHABLE_KEY
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+The first two variables enable the authentication form. Copy their values from
+your project's Connect dialog or API settings. The API base URL is additionally
+required for private FastAPI persistence, not for Supabase Auth itself. Backend
+variables without the `VITE_` prefix do not configure the frontend. Vite exposes
+these values to the browser: never use a secret/service-role key or database
+password. Keep `.env.local` ignored by Git. Restart Vite after changes (or restart
+`npm run dev:full` for both services); production builds must be rebuilt.
+Open `/auth` to see the Sign in form.
+
+### Mocked authentication tests
+
+With the frontend running, run from the repository root:
+
+```powershell
+npm run test:e2e --workspace frontend -- auth.spec.js
+```
+
+The full `npm run test:e2e --workspace frontend` command also discovers this suite.
+It intercepts all `/auth/v1/**` requests using `page.route`, mocks signup, password
+login and logout, and rejects unexpected auth calls without contacting Supabase.
+It checks signup confirmation messaging, login, session persistence across reload,
+logout persistence, and rejected-login notices on desktop and mobile. No real keys
+or users are embedded. Email delivery and real cloud authorization remain separate
+acceptance checks.
+
+No real Supabase project is necessary for this suite. To use an isolated test
+server, set process-only dummy values in a separate PowerShell terminal:
+
+```powershell
+$env:VITE_SUPABASE_URL = 'https://auth-test.supabase.co'
+$env:VITE_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_mock_only'
+npm run dev --workspace frontend -- --host 127.0.0.1 --port 5174 --strictPort
+```
+
+In the test terminal set `$env:E2E_BASE_URL = 'http://127.0.0.1:5174'`, then run the
+auth-only command above. Dummy credentials are for intercepted tests only. Close
+these terminals afterward to discard the environment overrides. The frontend
+still needs its normal demo data source (FastAPI when `VITE_API_BASE_URL` is set).
+
 ## Action required: Supabase project and test accounts
 
 Current status: the project URL is configured and the administrator database URI is stored only in ignored backend/.env.local. The direct database hostname failed DNS resolution during verification, including outside the sandbox. No migrations were applied. The publishable key is still missing; no Supabase CLI or callable Supabase MCP is available.

@@ -6,10 +6,17 @@ import { FastApiSimulationService } from '../services/live/FastApiSimulationServ
 import { RunHistory } from './history.js';
 import { LatestRequest } from './latestRequest.js';
 import { Scenario,Holding } from '../schemas/contracts.js';
+import { useAuth } from './AuthState.jsx';
 const Context=createContext(null);
 function storage() {try{return window.localStorage;}catch{return null;}}
 function session() {try {let id=sessionStorage.getItem('meghdrishti:session');if(!id){id=crypto.randomUUID();sessionStorage.setItem('meghdrishti:session',id);}return id;}catch{return crypto.randomUUID();}}
 export function AppState({children}) {
+  const auth=useAuth(),ownerId=auth.session?.user.id;
+  const [cloudRun,setCloudRun]=useState(null);
+  const activeCloudRun=ownerId&&cloudRun?.ownerId===ownerId?cloudRun:null;
+  const setActiveCloudRun=run=>setCloudRun(ownerId&&run?.ownerId===ownerId?run:null);
+  useEffect(()=>{setCloudRun(null);},[ownerId,auth.generation]);
+  useEffect(()=>{const clear=()=>setCloudRun(null);window.addEventListener('meghdrishti:session-expired',clear);return()=>window.removeEventListener('meghdrishti:session-expired',clear);},[]);
   const [datasetId,setDatasetId]=useState(()=>{try{return storage()?.getItem('meghdrishti:dataset')||'reference';}catch{return 'reference';}}),[datasets,setDatasets]=useState([{id:'reference',label:'Fictional reference demo'}]),[loadingDataset,setLoadingDataset]=useState(false);
   const [data,setData]=useState(null),[holdings,setHoldings]=useState([]),[scenario,setScenario]=useState(null);
   const [error,setError]=useState(''),[amountErrors,setAmountErrors]=useState({}),[pending,setPending]=useState(false),[outdated,setOutdated]=useState(false),[historyRevision,setHistoryRevision]=useState(0);
@@ -35,7 +42,7 @@ export function AppState({children}) {
   return <Context.Provider value={{data,holdings,scenario,error,setError,validationError,datasetId,datasets,loadingDataset,
     selectDataset:id=>{gate.current.invalidate();setPending(false);setOutdated(true);setDatasetId(id);try{storage()?.setItem('meghdrishti:dataset',id);}catch{}},
     setAmountError:(id,message)=>{gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors(old=>{const next={...old};if(message)next[id]=message;else delete next[id];return next;});},
-    pending,outdated,history:history.current,historyRevision,
+    pending,outdated,history:history.current,historyRevision,activeCloudRun,setActiveCloudRun,
     deleteReport:id=>{history.current.delete(id);setHistoryRevision(n=>n+1);},
     saveReport:run=>{history.current.save(run);setHistoryRevision(n=>n+1);},
     engine:import.meta.env.VITE_API_BASE_URL?'FastAPI / NetworkX':'Browser demo',
