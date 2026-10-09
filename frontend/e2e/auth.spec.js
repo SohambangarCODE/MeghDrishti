@@ -14,7 +14,8 @@ const user = {
   app_metadata: { provider: 'email', providers: ['email'] }, user_metadata: {},
 };
 
-async function mockAuth(page, { failLogin = false, nextUser = null } = {}) {
+async function mockAuth(page, { failLogin = false, nextUser = null, beforeExchange = null } = {}) {
+  await page.route('**/api/v1/private/portfolios',r=>r.fulfill({json:{schemaVersion:'1.0.0',portfolios:[]}}));
   const calls = { signup: 0, login: 0, logout: 0, unexpected: [] };
   await page.route('**/auth/v1/**', async route => {
     const request = route.request(), url = new URL(request.url());
@@ -25,6 +26,7 @@ async function mockAuth(page, { failLogin = false, nextUser = null } = {}) {
       return reply(200, { ...user, email_confirmed_at: null, identities: [] });
     }
     if (request.method() === 'POST' && url.pathname.endsWith('/token') && ['password','pkce'].includes(url.searchParams.get('grant_type'))) {
+      if(url.searchParams.get('grant_type')==='pkce'&&beforeExchange)await beforeExchange();
       calls.login++;
       const loginUser=nextUser&&calls.login>1?nextUser:user;
       if(url.searchParams.get('grant_type')==='password')expect(request.postDataJSON()).toMatchObject({ email:loginUser.email, password });
@@ -124,12 +126,12 @@ for (const ending of ['logout', 'expiry']) test(`private report enters workspace
 
 
 
-test('navigation preserves only safe destinations and exposes anonymous entry',async({page})=>{
+test('navigation preserves safe destinations and requires login',async({page})=>{
  await mockAuth(page);
  await page.route('**/api/v1/private/**',r=>r.fulfill({json:{portfolios:[],runs:[]}}));
  await page.goto('/welcome');
- await page.getByRole('link',{name:'Open anonymous demo',exact:true}).click();
- await expect(page).toHaveURL(/overview$/);
+ await expect(page.getByRole('link',{name:'Open anonymous demo',exact:true})).toHaveCount(0);
+ await page.goto('/overview');await expect(page).toHaveURL(/auth\?next=%2Foverview$/);
  await page.goto('/welcome');await page.getByRole('link',{name:'Get Started',exact:true}).click();
  await expect(page).toHaveURL(/auth$/);
  await page.goto('/cloud');await expect(page).toHaveURL(/auth\?next=%2Fcloud$/);
@@ -193,4 +195,34 @@ test('switching accounts resets private workspace ownership',async({page})=>{
  await page.getByLabel('Email',{exact:true}).fill(second.email);await page.getByLabel('Password',{exact:true}).fill(password);await page.locator('main form').getByRole('button',{name:'Sign in',exact:true}).click();
  await expect(page.getByText(`Signed in as ${second.email}`,{exact:true})).toBeVisible();await expect(page.getByText(`Signed in as ${email}`,{exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'Open private cloud workspace',exact:true}).click();await expect(page.getByText('No private portfolios yet.',{exact:false})).toBeVisible();
+});
+
+
+test('every workspace URL requires login and public recovery stays accessible',async({page})=>{
+ await mockAuth(page);
+ for(const destination of ['/overview','/portfolio','/graph','/locations','/scenarios','/results/123','/compare','/evidence','/reports','/cloud','/graph?entity=demo%3Aaster&run=report-123','/locations?entity=demo-route-01']){
+  await page.goto(destination);
+  await expect.poll(()=>{const url=new URL(page.url());return {path:url.pathname,next:url.searchParams.get('next')};}).toEqual({path:'/auth',next:destination});
+  await expect(page.locator('nav[aria-label="Workspace"]')).toHaveCount(0);
+  await expect(page.locator('main form')).toBeVisible();
+ }
+ await page.getByLabel('Email',{exact:true}).fill(email);await page.getByLabel('Password',{exact:true}).fill(password);await page.locator('main form').getByRole('button',{name:'Sign in',exact:true}).click();
+ await expect(page).toHaveURL(/locations\?entity=demo-route-01$/);
+ await page.reload();await expect(page.getByRole('heading',{name:'Operational locations',exact:true})).toBeVisible();await expect(page).toHaveURL(/locations\?entity=demo-route-01$/);
+ await page.getByRole('button',{name:'Sign out',exact:true}).click();await expect(page).toHaveURL(/auth/);
+ await page.goto('/results/123');await page.getByLabel('Email',{exact:true}).fill(email);await page.getByLabel('Password',{exact:true}).fill(password);await page.locator('main form').getByRole('button',{name:'Sign in',exact:true}).click();
+ await expect(page).toHaveURL(/results\/123$/);await expect(page.getByRole('heading',{name:'Result snapshot unavailable'})).toBeVisible();
+ await page.getByRole('button',{name:'Sign out',exact:true}).click();
+ for(const path of ['/welcome','/auth','/auth/callback','/auth/reset']){await page.goto(path);await expect(page).toHaveURL(new RegExp(path+'$'));}
+});
+
+
+test('protected route waits for session initialization without exposing the workspace',async({page})=>{
+ let release,notify;const gate=new Promise(r=>release=r),started=new Promise(r=>notify=r);
+ await mockAuth(page,{beforeExchange:async()=>{notify();await gate;}});
+ await openForm(page);await page.getByRole('button',{name:'Sign up',exact:true}).click();await page.locator('main form').getByRole('button',{name:'Sign up',exact:true}).click();await expect(page.getByText('Sign-up request accepted.',{exact:false})).toBeVisible();
+ await page.goto('/portfolio?code=mock-confirmation-code');await started;
+ await expect(page.getByText('Restoring session...', {exact:true})).toBeVisible();
+ await expect(page.locator('nav[aria-label="Workspace"]')).toHaveCount(0);await expect(page).toHaveURL(/portfolio\?code=/);
+ release();await expect(page.getByRole('heading',{name:'Portfolio',exact:true})).toBeVisible();await expect(page).toHaveURL(/portfolio/);
 });

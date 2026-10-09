@@ -1,6 +1,6 @@
-import {test,expect} from '@playwright/test';
+import {test,expect,navigateWorkspace} from './authenticated-test.js';
 test('point weather uses backend and retains explicit separation',async({page})=>{
- await page.goto('/locations');
+ await navigateWorkspace(page,'/locations');
  await page.getByLabel('Weather latitude').fill('20');
  await page.getByLabel('Weather longitude').fill('78');
  await page.getByRole('button',{name:'Set weather point'}).click();

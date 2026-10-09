@@ -1,9 +1,10 @@
-import {test,expect} from '@playwright/test';
+import {test,expect,navigateWorkspace} from './authenticated-test.js';
 test('transport corridor connects map, weather, graph and scenario',async({page},testInfo)=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('/locations');
+ await navigateWorkspace(page,'/locations');
  await page.getByLabel('Dataset',{exact:true}).selectOption('climateweb');
- await page.getByLabel('Transport corridor',{exact:true}).selectOption('demo-route-01');
+ await navigateWorkspace(page,'/portfolio');await page.getByRole('button',{name:'Load sample portfolio',exact:true}).click();await navigateWorkspace(page,'/locations');
+ await page.getByRole('combobox',{name:'Transport corridor',exact:true}).selectOption('demo-route-01');
  await expect(page).toHaveURL(/entity=demo-route-01/);
  await expect(page.getByText('Start: 32, -98 → End: 38, -88')).toBeVisible();
  await page.getByRole('button',{name:'Weather at route start',exact:true}).click();
@@ -11,7 +12,7 @@ test('transport corridor connects map, weather, graph and scenario',async({page}
  await expect(page.getByLabel('Weather longitude')).toHaveValue('-98');
  await page.getByRole('link',{name:'Inspect selected route in graph'}).click();
  await expect(page.locator('main pre')).toContainText('demo-route-01');
- await page.goto('/locations?entity=demo-route-01');
+ await navigateWorkspace(page,'/locations?entity=demo-route-01');
  await page.getByRole('button',{name:'Load online map tiles'}).click();
  await expect(page.locator('.leaflet-overlay-pane path[stroke="#b8560d"]')).toHaveCount(3);
  await page.screenshot({path:testInfo.outputPath('corridor.png'),fullPage:true});

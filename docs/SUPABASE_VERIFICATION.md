@@ -160,3 +160,92 @@ recovery UI, restoration, logout/expiry and delayed responses. They do not prove
 live email delivery or the complete PKCE email exchange. Run the real-account
 checklist above before declaring live acceptance. Create-from-empty and add/remove
 holdings in the private editor remain the next increment.
+
+
+## Task 01: mandatory authenticated workspace
+
+Landing and authentication/callback/reset are public. All normal working pages
+(Overview, Portfolio, Graph, Locations, Scenarios, Results, Compare, Evidence,
+Reports and Cloud) now require a Supabase session. Get Started opens login for
+signed-out visitors and Overview for signed-in visitors. Synthetic simulation
+remains available after login. There is no anonymous workspace entry.
+
+A shared guard waits for session initialization before rendering the workspace.
+Login preserves result IDs and approved graph/map/comparison query parameters;
+unsafe, unknown or credential-bearing destinations fall back to Overview.
+Logout removes the workspace and directs visitors to the authentication gateway.
+Tests use network-only Supabase mocks; real email and two-account acceptance
+remain separate checks above.
+
+Backend security follow-up: `backend/app/auth.py:identity` still accepts the legacy
+`X-Demo-Session` header for analytical demo APIs. Mandatory browser routing does
+not remove this backend capability. Private APIs independently require validated
+JWTs and owner RLS. Removing or gating anonymous analytical APIs is a separate
+backend task; no backend authorization or migration was changed in Task 01.
+
+Earlier anonymous-entry instructions in this document are superseded by Task 01.
+
+Task 01 follow-up verification (2026-10-10): imported-data workflow and point-weather tests passed on desktop/mobile (4 tests). Climate evidence/overlay and corridor map-to-graph/scenario tests also passed on desktop/mobile (4 tests), after adapting their login expectations and corridor selector. These use mocked Supabase login with actual local analytical APIs. No live-account acceptance is implied.
+
+## Task 02, Increment 1: main private Portfolio editor
+
+The main `/portfolio` editor now starts empty after login or browser refresh.
+My Portfolios lists account-owned records but does not automatically open one.
+Drafts stay in React memory. Legacy `meghdrishti:draft:*` browser drafts are
+removed and never restored. Logout, session expiry and account changes clear
+the draft, selection, errors and list; responses from older sessions are ignored.
+
+Use Create Portfolio, enter Portfolio Name, search supported companies and add
+holdings. Amounts remain INR; CSV review, duplicate merging, exclusions and
+removal use the existing editor. Save Portfolio shows progress and prevents
+duplicate submissions. Failed saves/opens retain current edits. Opening another
+portfolio, creating one, changing dataset or loading a sample requires discard
+confirmation when the draft is dirty. A successful save uses the server response
+and keeps the same UUID for later updates. Opening also selects the saved dataset.
+
+Verified existing API contracts (no backend or migration changes):
+
+- `GET /api/v1/private/portfolios` returns
+  `{ "schemaVersion": "1.0.0", "portfolios": [...] }`.
+- `POST /api/v1/private/portfolios` explicitly supports create/update through
+  `save_portfolio`; send `{ "id": "uuid", "name": "portfolio name",
+  "holdings": [...], "scenario": {...} }`. Never send an owner identifier.
+- The response is `{ "schemaVersion": "1.0.0", "portfolio": {...} }` with
+  `id`, `name`, `dataset_version`, `updated_at` and
+  `draft: { holdings, scenario }`. Holdings have the saved UUID in `portfolioId`.
+- There is no single-portfolio GET. Open refreshes the authenticated list and
+  selects the intended UUID. Responses and dataset/company references are validated.
+- The existing API accepts 1–1,000 holdings and names of 1–200 characters.
+  Empty drafts can be edited but cannot be saved. Scenario belongs to the portfolio.
+- Existing DELETE remains on the Cloud page; this increment adds no delete control.
+
+### Live manual acceptance — not yet verified
+
+Start `npm run dev:full` from the repository root after completing the environment
+and migrations above. Use two email accounts you control; enter passwords only
+in the app. This increment's browser automation mocks authentication and private
+API responses, so it does not prove live persistence or owner isolation.
+
+- [ ] Sign in as User A; open `/portfolio` and confirm no fictional holdings appear.
+- [ ] Create `Test Portfolio A`, add supported holdings and save. Record its UUID.
+- [ ] Edit an amount and save; confirm the UUID stays the same and the list contains
+      one updated record rather than a duplicate.
+- [ ] Refresh; confirm an empty draft, then explicitly open the saved portfolio.
+- [ ] Make an unsaved edit and cancel opening another portfolio; confirm it remains.
+- [ ] Start another portfolio; confirm a new UUID and that the previous record remains.
+- [ ] Sign out, sign in again and explicitly reopen the saved holdings.
+- [ ] Sign in as User B; confirm User A's record is absent and inaccessible through
+      the private API. Use the two-account RLS verification commands above as well.
+- [ ] Click Load sample portfolio explicitly. Confirm synthetic provenance and no
+      automatic save; confirm cancelling discard retains private edits.
+
+### Increment 2 boundary
+
+Main-workspace private analysis has not been integrated or accepted in this
+increment. Its Run synthetic analysis button is disabled for private drafts so
+private holdings cannot be written into the existing local demo report history.
+Explicit sample mode still uses the unchanged synthetic engine. Existing Cloud
+private analysis remains available. Increment 2 must integrate saved private
+portfolio analysis, private results/comparison/export and reopen behavior without
+persisting private snapshots in local browser history. Weather, projections,
+datasets and simulation mathematics were not changed here.

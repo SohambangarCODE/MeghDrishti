@@ -178,7 +178,7 @@ export default function Auth() {
         {error && <Notice error>{error}</Notice>}
         {message && <Notice>{message}</Notice>}
         <Link className="button secondary" to="/overview">
-          Continue to demo
+          Continue to workspace
         </Link>
       </div>
     </div>
