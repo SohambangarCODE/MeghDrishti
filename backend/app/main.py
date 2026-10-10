@@ -1,4 +1,6 @@
 import os
+from .config import load_local_environment
+load_local_environment()
 import asyncio
 from contextlib import asynccontextmanager,suppress
 from datetime import datetime, timezone
@@ -64,7 +66,7 @@ def datasets():
                         'Open-Meteo':'enabled; verified sites required' if os.getenv('OPEN_METEO_ENABLED','false').lower()=='true' else 'not configured',
                         'World Bank CCKP':'file query available; requires imported product and verified geography',
                         'Supabase':'configured, unverified' if os.getenv('SUPABASE_URL') and (os.getenv('SUPABASE_PUBLISHABLE_KEY') or os.getenv('SUPABASE_ANON_KEY')) else 'incomplete configuration',
-                        'Gemini':'enabled, unverified' if os.getenv('GEMINI_ENABLED','false').lower()=='true' and os.getenv('GEMINI_API_KEY') and os.getenv('GEMINI_MODEL') else 'not configured; deterministic fallback'}}
+                        'Gemini':'configured; on-demand grounded assessment available (provider availability checked on request)' if os.getenv('GEMINI_API_KEY') else 'not configured; deterministic fallback'}}
 
 @app.get('/api/v1/demo')
 def defaults(datasetId: str | None=None): return repository.defaults(datasetId)
@@ -164,3 +166,8 @@ def compare(request:CompareRequest,owner=Depends(identity)):
 async def explanation(run_id:str,owner=Depends(identity)):
     from .explanations import explain
     return await explain(get_run(run_id,owner))
+
+@app.post('/api/v1/runs/{run_id}/assessment')
+async def assessment(run_id:str,owner=Depends(identity)):
+    from .assessments import assess
+    return await assess(get_run(run_id,owner))

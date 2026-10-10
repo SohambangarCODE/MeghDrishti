@@ -115,3 +115,10 @@ async def delete_run(run_id:UUID,identity=Depends(authenticated)):
     rows=await store.request('/analysis_runs','DELETE',params={'id':'eq.'+str(run_id),'select':'id'})
     if not rows:raise HTTPException(404,'Run not found')
     return {'schemaVersion':'1.0.0','deleted':str(run_id)}
+
+@router.post('/runs/{run_id}/assessment')
+async def assessment(run_id:UUID,identity=Depends(authenticated)):
+    from .assessments import assess
+    saved=await get_run(run_id,identity)
+    if saved['run'].get('ownerId')!=identity[0]:raise HTTPException(404,'Run not found')
+    return await assess(saved['run'])

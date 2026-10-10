@@ -8,8 +8,8 @@ const responseSchema=z.object({schemaVersion:z.literal('1.0.0'),mode:z.literal('
   totals:z.object({totalCapital:z.number().finite(),connectedCapital:z.number().finite(),assumedWeightedExposure:z.number().finite()}).passthrough()}).passthrough();
 export class FastApiSimulationService {
   constructor(baseUrl,session) {this.baseUrl=baseUrl.replace(/\/$/,'');this.session=session;}
-  async request(path,{signal,...options}={}) {
-    const timeout=AbortSignal.timeout(15000);
+  async request(path,{signal,timeoutMs=15000,...options}={}) {
+    const timeout=AbortSignal.timeout(timeoutMs);
     const response=await fetch(`${this.baseUrl}/api/v1${path}`,{...options,signal:signal?AbortSignal.any([signal,timeout]):timeout,
       headers:{'Content-Type':'application/json','X-Demo-Session':this.session,...options.headers}});
     const body=await response.json();

@@ -45,12 +45,31 @@ export function usePortfolioWorkspace({auth,data,loadDataset,activateDataset}){
   if(busy.current||!confirmReplace())return false;
   operation.current++;setDraft(empty(key,structuredClone(data.scenario)));setSaveError('');setLoadError('');return true;
  };
+ const applySample=(fixture,investment=false)=>{
+  const next=empty(key,structuredClone(fixture.scenario));
+  const holdings=structuredClone(fixture.holdings).map(h=>({...h,portfolioId:next.id}));
+  const name=investment?'Sectivia simulated investment portfolio':fixture.dataset.dataState==='synthetic_operational_demo'?'Imported dataset sample':'Fictional reference sample';
+  portfolioWrite({id:next.id,name,holdings,scenario:next.scenario},fixture.dataset);
+  setDraft({...next,name,holdings,mode:investment?'private':'sample',dirty:true});
+  setSaveError('');setLoadError('');return true;
+ };
  const loadSample=()=>{
   if(busy.current||!confirmReplace())return false;
-  const next=empty(key,structuredClone(data.scenario));
-  setDraft({...next,name:data.dataset.dataState==='synthetic_operational_demo'?'Imported dataset sample':'Fictional reference sample',
-   holdings:structuredClone(data.holdings).map(h=>({...h,portfolioId:next.id})),mode:'sample',dirty:true});
-  setSaveError('');setLoadError('');return true;
+  return applySample(data);
+ };
+ const loadInvestmentSample=async()=>{
+  if(!belongs||busy.current||!confirmReplace())return false;
+  const expected=key,request=++operation.current;busy.current=true;setLoading(true);setLoadError('');
+  try{
+   const fixture=await loadDataset('climateweb'),ids=['a','abbv','cah','cvs'];
+   if(fixture.holdings.length!==4||fixture.holdings.reduce((n,h)=>n+h.amount,0)!==10000000||ids.some(id=>!fixture.holdings.some(h=>h.companyId===id&&h.matchingStatus==='matched')||!fixture.dataset.companies.some(c=>c.id===id)))throw new Error('Installed Sectivia investment sample is unavailable.');
+   if(ids.slice(1).some((id,i)=>!fixture.dataset.commercialEdges.some(e=>e.supplierCompanyId===ids[i]&&e.customerCompanyId===id)))throw new Error('Installed sample commercial chain is unavailable.');
+   if(sessionKey.current!==expected||request!==operation.current)return false;
+   const next=empty(key,structuredClone(fixture.scenario));
+   portfolioWrite({id:next.id,name:'Sectivia simulated investment portfolio',holdings:fixture.holdings.map(h=>({...h,portfolioId:next.id})),scenario:next.scenario},fixture.dataset);
+   activateDataset(fixture);return applySample(fixture,true);
+  }catch(e){if(sessionKey.current===expected&&request===operation.current)setLoadError('Sample loading failed. Your draft was retained. '+e.message);return false;}
+  finally{if(sessionKey.current===expected&&request===operation.current){busy.current=false;setLoading(false);}}
  };
  const openPortfolio=async id=>{
   if(busy.current||!confirmReplace())return false;
@@ -116,5 +135,5 @@ export function usePortfolioWorkspace({auth,data,loadDataset,activateDataset}){
   portfolioMode:current.mode,isDirty:current.dirty,lastSavedAt:current.lastSavedAt,isSaving,isLoadingPortfolio,isListing,
   workspaceLoading:!auth.ready||!!key&&(!belongs||!current.scenario),saveError,loadError,listError,isDeletingPortfolio,deleteError,deletePortfolio,
   privatePortfolios:belongs?portfolios:[],setHoldings:value=>edit({holdings:value}),setScenario:value=>edit({scenario:value}),
-  setPortfolioName:name=>edit({name}),createPortfolio:newPortfolio,loadSample,savePortfolio,openPortfolio,refreshPortfolios,switchDataset};
+  setPortfolioName:name=>edit({name}),createPortfolio:newPortfolio,loadSample,loadInvestmentSample,savePortfolio,openPortfolio,refreshPortfolios,switchDataset};
 }

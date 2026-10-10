@@ -8,3 +8,4 @@ pytest
 httpx
 PyJWT[crypto]
 psycopg[binary]
+openpyxl==3.1.5

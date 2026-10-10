@@ -69,12 +69,23 @@ export function AppState({children}) {
     selectDataset:async id=>{const changed=await workspace.switchDataset(id);if(changed){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return changed;},
     setAmountError:(id,message)=>{gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors(old=>{const next={...old};if(message)next[id]=message;else delete next[id];return next;});},
     pending,outdated,history:history.current,historyRevision,activeCloudRun,setActiveCloudRun,openCloudReport,
+    loadInvestmentSample:async()=>{const loaded=await workspace.loadInvestmentSample();if(loaded){gate.current.invalidate();openRevision.current++;setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return loaded;},
     getRun:id=>activeCloudRun?.id===id?activeCloudRun:history.current.get(id),
     deleteReport:id=>{history.current.delete(id);setHistoryRevision(n=>n+1);},
     saveReport:run=>{history.current.save(run);setHistoryRevision(n=>n+1);},
     engine:import.meta.env.VITE_API_BASE_URL?'FastAPI / NetworkX':'Browser demo',
     setHoldings:value=>{edit(workspace.setHoldings,value);setAmountErrors(old=>Object.fromEntries(Object.entries(old).filter(([id])=>value.some(h=>h.id===id))));},setScenario:value=>edit(workspace.setScenario,value),analyze,
     explain:run=>isPrivateRun(run)?Promise.resolve({provider:'deterministic',providerStatus:'Private snapshot; no external explanation requested'}):service.current.request?service.current.request('/runs/'+encodeURIComponent(run.id)+'/explanation',{method:'POST'}):Promise.resolve({provider:'deterministic',providerStatus:'Browser demo; no external explanation requested'}),
+    assessment:async run=>{
+      const expected=sessionKey;
+      if(isPrivateRun(run)&&(!ownerId||run.ownerId!==ownerId))throw new Error('Open a report belonging to your signed-in account.');
+      const result=isPrivateRun(run)?await cloudRequest('/runs/'+encodeURIComponent(run.id)+'/assessment',{method:'POST'}):
+        service.current.request?await service.current.request('/runs/'+encodeURIComponent(run.id)+'/assessment',{method:'POST',timeoutMs:25000}):null;
+      if(expected!==sessionKeyRef.current)throw new Error('Session changed. Assessment discarded.');
+      if(!result)throw new Error('AI assessment requires a completed run on the FastAPI backend.');
+      if(result.runId!==run.id)throw new Error('Assessment does not match this analysis.');
+      return result;
+    },
     isPrivateRun,
     compare:async(run,fromCompanyId,toCompanyId,amount)=>{
       validateTransfer(run,fromCompanyId,toCompanyId,amount);

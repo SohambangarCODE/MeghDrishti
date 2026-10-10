@@ -1,0 +1,148 @@
+{
+  "sources": [
+    {
+      "schemaVersion": "1.0.0",
+      "adapterVersion": "cckp-xlsx-1",
+      "sha256": "df46b53cdc00dedfd080f216c07d27f028f83b75638231ba767b4ed9cadb4999",
+      "sourceFile": "cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014_median_historical_ensemble_all_mean.xlsx",
+      "sourceSheet": "all",
+      "rawColumnLabels": [
+        "code",
+        "name",
+        "1995-07"
+      ],
+      "workbookProperties": {
+        "creator": "Unknown Creator",
+        "title": "Untitled Spreadsheet",
+        "description": null,
+        "created": "2026-10-10 03:24:22",
+        "modified": "2026-10-10 03:24:22"
+      },
+      "verificationStatus": "awaiting_time_label_verification",
+      "reason": "Time column '1995-07' has no verified mapping to annual period 1995-2014. CCKP documentation defines annual climatology but does not document this export date encoding.",
+      "candidateRecords": [
+        {
+          "regionId": "IND",
+          "geographyName": "India",
+          "geoLevel": "national",
+          "collection": "cmip6-x0.25",
+          "variable": "tasmax",
+          "unit": "°C",
+          "scenario": "historical",
+          "period": "1995-2014",
+          "product": "annual climatology",
+          "ensemble": "multi-model",
+          "percentile": "p50",
+          "value": 29.68,
+          "baseline": "1995-2014",
+          "sourceURL": "https://climateknowledgeportal.worldbank.org/download-data",
+          "downloadedAt": null,
+          "sourceFile": "cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014_median_historical_ensemble_all_mean.xlsx",
+          "sourceFileHash": "df46b53cdc00dedfd080f216c07d27f028f83b75638231ba767b4ed9cadb4999",
+          "rawColumnLabels": [
+            "code",
+            "name",
+            "1995-07"
+          ],
+          "sourceSheet": "all",
+          "sourceCell": "C2",
+          "sourceModel": "ensemble",
+          "sourceModelCalculation": "all",
+          "sourceStatistic": "mean",
+          "sourcePercentile": "median",
+          "metadataURLs": [
+            "https://climateknowledgeportal.worldbank.org/index.php/metadata",
+            "https://worldbank.github.io/climateknowledgeportal/docs/collections/cmip6-x0.25.html",
+            "https://climateknowledgeportal.worldbank.org/download-data"
+          ],
+          "metadataBasis": "Requested product filename and official CCKP product documentation",
+          "verificationStatus": "awaiting_time_label_verification",
+          "verificationReason": "Time column '1995-07' has no verified mapping to annual period 1995-2014. CCKP documentation defines annual climatology but does not document this export date encoding.",
+          "normalizationVersion": "cckp-xlsx-1",
+          "companyLocationVerified": false,
+          "usedInSimulation": false,
+          "normalizedContentHash": "a8c2d919e8ed8b94d1b2229b34242d3b9e7855d80df52f5d109bec4c70273be5"
+        }
+      ],
+      "normalizedContentHash": "fafac9b63b2703cee9660d4bd387d953910d90de009b4e75eab6b3f52cc3591a",
+      "importedAt": "2026-10-10T03:37:06.833373+00:00",
+      "downloadedAt": null
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "adapterVersion": "cckp-xlsx-1",
+      "sha256": "0bb10cdca67f933c022a76af48f03e07e1f845112ff9535c650f9053c154c5ac",
+      "sourceFile": "cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014,2040-2059_median_ssp245_ensemble_all_mean.xlsx",
+      "sourceSheet": "2040-2059",
+      "rawColumnLabels": [
+        "code",
+        "name",
+        "2040-07"
+      ],
+      "workbookProperties": {
+        "creator": "Unknown Creator",
+        "title": "Untitled Spreadsheet",
+        "description": null,
+        "created": "2026-10-10 03:20:44",
+        "modified": "2026-10-10 03:20:44"
+      },
+      "verificationStatus": "awaiting_time_label_verification",
+      "reason": "Time column '2040-07' has no verified mapping to annual period 2040-2059. CCKP documentation defines annual climatology but does not document this export date encoding.",
+      "candidateRecords": [
+        {
+          "regionId": "IND",
+          "geographyName": "India",
+          "geoLevel": "national",
+          "collection": "cmip6-x0.25",
+          "variable": "tasmax",
+          "unit": "°C",
+          "scenario": "ssp245",
+          "period": "2040-2059",
+          "product": "annual climatology",
+          "ensemble": "multi-model",
+          "percentile": "p50",
+          "value": 30.77,
+          "baseline": "1995-2014",
+          "sourceURL": "https://climateknowledgeportal.worldbank.org/download-data",
+          "downloadedAt": null,
+          "sourceFile": "cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014,2040-2059_median_ssp245_ensemble_all_mean.xlsx",
+          "sourceFileHash": "0bb10cdca67f933c022a76af48f03e07e1f845112ff9535c650f9053c154c5ac",
+          "rawColumnLabels": [
+            "code",
+            "name",
+            "2040-07"
+          ],
+          "sourceSheet": "2040-2059",
+          "sourceCell": "C2",
+          "sourceModel": "ensemble",
+          "sourceModelCalculation": "all",
+          "sourceStatistic": "mean",
+          "sourcePercentile": "median",
+          "metadataURLs": [
+            "https://climateknowledgeportal.worldbank.org/index.php/metadata",
+            "https://worldbank.github.io/climateknowledgeportal/docs/collections/cmip6-x0.25.html",
+            "https://climateknowledgeportal.worldbank.org/download-data"
+          ],
+          "metadataBasis": "Requested product filename and official CCKP product documentation",
+          "verificationStatus": "awaiting_time_label_verification",
+          "verificationReason": "Time column '2040-07' has no verified mapping to annual period 2040-2059. CCKP documentation defines annual climatology but does not document this export date encoding.",
+          "normalizationVersion": "cckp-xlsx-1",
+          "companyLocationVerified": false,
+          "usedInSimulation": false,
+          "normalizedContentHash": "42e27dba6708aa3f19d21fe1e13bcee35936a6da565ab8909aa6779e05f723d2"
+        }
+      ],
+      "normalizedContentHash": "45cfab7aba963f3eb2c8660387a747c963255ccc903323e13b2d64beef3a2522",
+      "importedAt": "2026-10-10T03:37:06.835902+00:00",
+      "downloadedAt": null
+    }
+  ],
+  "comparisons": [
+    {
+      "status": "unavailable",
+      "difference": null,
+      "reason": "Annual time-column interpretation is awaiting verification"
+    }
+  ],
+  "status": "awaiting_verification"
+}
