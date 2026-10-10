@@ -16,6 +16,12 @@ export function graphSubset(data, filtered, focus, {limit=40,path=null}={}) {
     if(unique.has(e.sourceId))priority.add(e.sourceId);
     if(unique.has(e.targetId))priority.add(e.targetId);
   }
+  if(path) {
+    for(const id of path.companyIds)if(unique.has(id))priority.add(id);
+    for(const e of data.edges)if(e.commercialHop&&(path.companyIds.includes(e.sourceId)||path.companyIds.includes(e.targetId))){
+      if(unique.has(e.sourceId))priority.add(e.sourceId);if(unique.has(e.targetId))priority.add(e.targetId);
+    }
+  }
   const nodes=[...priority].map(id=>unique.get(id)).filter(Boolean);
   for(const n of filtered)if(!priority.has(n.id)&&nodes.length<Math.max(limit,priority.size)){
     priority.add(n.id);nodes.push(n);
@@ -23,7 +29,6 @@ export function graphSubset(data, filtered, focus, {limit=40,path=null}={}) {
   const ids=new Set(nodes.map(n=>n.id)),seen=new Set();
   const edges=data.edges.filter(e=>{
     if(!ids.has(e.sourceId)||!ids.has(e.targetId)||seen.has(e.id))return false;
-    if(path&&!focus&&!path.edgeIds.includes(e.id))return false;
     seen.add(e.id);return true;
   });
   const neighborhood=focus?nodes.filter(n=>n.id===focus.id||data.edges.some(e=>(focus.kind!=='company'||e.commercialHop)&&((e.sourceId===focus.id&&e.targetId===n.id)||(e.targetId===focus.id&&e.sourceId===n.id)))).map(n=>n.id):[];
@@ -34,4 +39,11 @@ export function graphLimitations(data,dataset) {
   const metadata=dataset?.sourceMetadata||{};
   const partial=metadata.partial===true||metadata.hasMore===true||metadata.pagination?.hasMore===true||metadata.pagination?.nextCursor!=null||metadata.relationshipsComplete===false;
   return partial||missing?'Source graph is partial or has unresolved relationship endpoints. Additional upstream relationships may be missing.':'Shows recorded relationships in this source snapshot; real-world relationship completeness is unknown.';
+}
+
+// Exact edge IDs are required for parallel relationships. No endpoint-only guess.
+export function pathHighlight(path,nodes,edges) {
+  const nodeIds=new Set(path?.companyIds||[]),edgeIds=new Set();
+  if(path)for(const e of edges)if(path.edgeIds.includes(e.id)&&path.companyIds.some((id,i)=>id===e.sourceId&&path.companyIds[i+1]===e.targetId))edgeIds.add(e.id);
+  return {nodeIds,edgeIds};
 }

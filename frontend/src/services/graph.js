@@ -26,11 +26,14 @@ export function layoutGraph(nodes,edges) {
   }
   const lanes=new Map();
   const kindLayer={hazard:0,region:0,facility:1,route:1,waypoint:0,commodity:2,portfolio:0};
-  const positioned=nodes.map(n=>{
+  // Cards are 220px wide and at least 88px tall. Reserve space for wrapped
+  // labels/metrics; stable ID order keeps ordering independent of selection.
+  const heights=new Map(nodes.map(n=>[n.id,Math.max(88,n.height||0,64+Math.ceil((n.label||n.id).length/22)*20+28)]));
+  const positioned=[...nodes].sort((a,b)=>a.id.localeCompare(b.id)).map(n=>{
     const layer=n.kind==='company'?2+(depth.get(n.id)||0):kindLayer[n.kind]??0;
-    const row=lanes.get(layer)||0;lanes.set(layer,row+1);
-    return {...n,position:{x:layer*310,y:row*145}};
+    const y=lanes.get(layer)||0;lanes.set(layer,y+heights.get(n.id)+48);
+    return {...n,position:{x:layer*340,y}};
   });
-  const maxRows=Math.max(1,...lanes.values());
-  return positioned.map(n=>({...n,position:{...n.position,y:n.position.y+(maxRows-(lanes.get(n.position.x/310)||1))*72.5}}));
+  const maxHeight=Math.max(0,...lanes.values());
+  return positioned.map(n=>({...n,position:{...n.position,y:n.position.y+(maxHeight-lanes.get(n.position.x/340))/2}}));
 }

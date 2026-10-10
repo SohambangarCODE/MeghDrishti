@@ -27,9 +27,9 @@ describe('selection-aware graph presentation',()=>{
   expect(result.nodes).toHaveLength(100);expect(new Set(result.nodes.map(n=>n.id)).size).toBe(100);
   expect(result.edges).toHaveLength(99);expect(result.neighborhood).toHaveLength(100);
  });
- it('keeps background filters and path edge filtering when no entity focus exists',()=>{
+ it('keeps background filters and parallel edges available for path fading',()=>{
   const edges=[link('a','c0','c1'),link('b','c1','c0')];
-  expect(graphSubset({nodes,edges},nodes.slice(0,2),null,{path:{edgeIds:['a']}}).edges).toEqual([edges[0]]);
+  expect(graphSubset({nodes,edges},nodes.slice(0,2),null,{path:{companyIds:['c0','c1'],edgeIds:['a']}}).edges).toEqual(edges);
   expect(graphSubset({nodes,edges},[],null).nodes).toEqual([]);
  });
  it('discloses pagination, partial source records, dangling endpoints and unknown real completeness',()=>{
