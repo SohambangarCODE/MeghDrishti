@@ -1,0 +1,11 @@
+{
+  "framework": "fastapi",
+  "buildCommand": "python scripts/prepare_vercel.py",
+  "functions": {
+    "app/main.py": {
+      "maxDuration": 60,
+      "includeFiles": "{fixtures/**,config/**,shared/**,data/normalized/**,data/projections/**}",
+      "excludeFiles": "{.venv/**,artifacts/**,local-archive/**,tests/**,docs/**,data/raw/**,data/incoming/**,data/enrichment/**,supabase/**}"
+    }
+  }
+}

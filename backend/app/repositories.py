@@ -5,11 +5,13 @@ from pathlib import Path
 from threading import RLock
 import json
 import hashlib
+import os
 
 class DemoRepository:
     mode = 'demo'
     def __init__(self, max_runs=100):
-        self.fixture=json.loads((Path(__file__).parents[2]/'frontend/src/fixtures/reference.json').read_text())
+        fixture_path=Path(__file__).parents[1]/'fixtures/reference.json' if os.getenv('VERCEL')=='1' else Path(__file__).parents[2]/'frontend/src/fixtures/reference.json'
+        self.fixture=json.loads(fixture_path.read_text())
         self.fixtures={'reference':self.fixture}
         root=Path(__file__).parents[1]/'data/normalized/climateweb'
         if (root/'active.json').exists():

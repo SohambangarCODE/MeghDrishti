@@ -49,6 +49,10 @@ async def value_error(request,exc):
 async def request_error(request,exc):
     return JSONResponse(status_code=422,content={'error':{'code':'VALIDATION','message':'Invalid request','fieldErrors':[{'field':'.'.join(map(str,e['loc'])),'message':e['msg']} for e in exc.errors()],'retryable':False}})
 
+@app.get('/', include_in_schema=False)
+def home():
+    return {'service':'MeghDrishti backend','health':'/health','docs':'/docs','datasets':'/api/v1/datasets'}
+
 @app.get('/health')
 def health(): return {'status':'ok','mode':'demo','schemaVersion':'1.0.0','modelVersion':DEFAULTS['modelVersion']}
 

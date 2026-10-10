@@ -75,3 +75,5 @@ backend/.venv/Scripts/python.exe backend/scripts/verify_cloud.py
 ```
 
 Source dataset contents and hashes are preserved. Archived one-off exploratory scripts, duplicate root local environment file and previous screenshots/logs are kept locally under backend/local-archive or backend/artifacts, excluded from Git and Docker. Historical instructions are retained in backend/docs/README_HISTORY.md; use this README for current paths.
+
+Backend Vercel deployment is a separate FastAPI project. See [backend deployment fix](backend/docs/VERCEL_BACKEND_DEPLOYMENT.md) for root/framework/environment settings and fixture packaging.

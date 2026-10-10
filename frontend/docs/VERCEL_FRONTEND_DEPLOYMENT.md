@@ -7,7 +7,7 @@
 5. Configure Production (and optionally Preview) variables:
    - `VITE_SUPABASE_URL`: public Supabase project HTTPS URL.
    - `VITE_SUPABASE_PUBLISHABLE_KEY`: publishable/public anon key. Legacy `VITE_SUPABASE_ANON_KEY` is also accepted.
-   - `VITE_API_BASE_URL`: reachable public HTTPS FastAPI origin, without `/api/v1`. Omit until the backend is publicly hosted; localhost is rejected in Vercel builds.
+   - `VITE_API_BASE_URL`: reachable public HTTPS FastAPI origin, without `/api/v1`. Omit until the backend is publicly hosted; invalid/local URLs are disabled with a build warning and an explicit frontend-only notice.
 6. Click Deploy and copy the resulting public URL. No public URL is created by folder preparation or a local build.
 7. Check `/welcome`, `/auth`, and direct refresh on a protected route. The rewrite excludes `/api`; missing API handlers cannot be disguised by index.html.
 8. Add the deployed origin's `/auth/callback` and `/auth/reset` to Supabase's allowed redirects. Production auth/email callback acceptance is a separate verification step.
@@ -17,3 +17,5 @@ No backend is deployed here. Without an API origin, the UI explicitly labels the
 Never put `GEMINI_API_KEY`, `DATABASE_URL`, Supabase service-role keys or their VITE-prefixed variants in the frontend. Existing frontend/.env.local is local-only and ignored. All VITE variables are browser-visible. Redeploy after changing them.
 
 Root npm commands still work. For direct local build: `cd frontend`, `npm install`, `npm run build`. Backend Docker uses the repository root as build context: `docker build -f backend/Dockerfile .`.
+
+If a previous build failed on a local API URL, publish the updated frontend/vite.config.js and redeploy. Set VITE_API_BASE_URL to your verified public backend origin when it is ready. This fallback does not make Sectivia/private persistence available or conceal an unreachable valid backend.
