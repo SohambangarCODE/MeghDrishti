@@ -16,7 +16,7 @@ def test_browser_backend_parity(variant):
         f['dataset']['commercialEdges'].append({**f['dataset']['commercialEdges'][0],'id':'demo:cycle','supplierCompanyId':'demo:beacon','customerCompanyId':'demo:delta','supplyItemIds':[]})
     if variant=='overlay': f['scenario']['assumptionOverrides']=[{'targetId':'demo:delta-aster','field':'dependencyWeight','value':.4,'rationale':'What-if','provenance':'assumed'}]
     backend=simulate(f['dataset'],f['holdings'],f['scenario'])
-    process=subprocess.run(['node',str(ROOT/'scripts/parity.mjs')],input=json.dumps(f),text=True,capture_output=True,check=True,timeout=20)
+    process=subprocess.run(['node',str(ROOT/'frontend/scripts/parity.mjs')],input=json.dumps(f),text=True,capture_output=True,check=True,timeout=20)
     browser=json.loads(process.stdout)
     assert browser['totals']==pytest.approx(backend['totals'])
     assert browser['paths']==backend['paths']

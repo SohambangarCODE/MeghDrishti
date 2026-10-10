@@ -6,7 +6,7 @@ import struct
 from pathlib import Path
 from .models import Dataset
 
-METRICS = json.loads((Path(__file__).parents[2] / 'shared/coverage-metrics.json').read_text())
+METRICS = json.loads((Path(__file__).parents[1] / 'shared/coverage-metrics.json').read_text())
 GROUPS = ['companies', 'commercialEdges', 'facilities', 'routes', 'routeUsage', 'regions']
 
 def canonical(value):

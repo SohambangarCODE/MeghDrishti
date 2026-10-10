@@ -3,6 +3,9 @@
 **/.venv
 **/node_modules
 **/__pycache__
-artifacts
+**/artifacts
 frontend/dist
-data/raw
+backend/data/raw
+
+backend/local-archive
+frontend/test-results

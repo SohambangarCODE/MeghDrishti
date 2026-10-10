@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from .providers import validate_projection
 
-ROOT=Path(__file__).parents[2]/'data/projections'
+ROOT=Path(__file__).parents[1]/'data/projections'
 
 def import_projection_file(path,mapping,root=ROOT):
     raw=Path(path).read_bytes();digest=hashlib.sha256(raw).hexdigest()

@@ -10,3 +10,9 @@ coverage/
 artifacts/
 pytest-cache-files-*/
 test-results/
+
+# Local deployment and exploratory material (never upload credentials)
+.vercel/
+backend/local-archive/
+frontend/test-results/
+frontend/playwright-report/

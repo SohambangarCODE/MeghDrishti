@@ -1,85 +1,77 @@
 # MeghDrishti
 
-Synthetic portfolio dependency evaluator for analysts. Includes a Python/FastAPI/NetworkX engine and a credential-free browser engine, with a Stitch-based React UI. This is **not** a calibrated climate-damage or investment-loss model.
+React/Vite frontend and Python/FastAPI climate-risk analysis backend.
 
-The eleven local Stitch HTML exports are preserved under `frontend/stitch-export/`, with route mappings and source hash in `manifest.json`. Ten PNG previews are readable; the original Portfolio PNG contains a failed-fetch placeholder, so its HTML supplies the layout. No remote project or screen IDs were exposed. See [Stitch integration and API mapping](docs/STITCH_INTEGRATION.md). `PRD.md`, `DESIGN.md` and `STITCH_PROMPTS.md` preserve the original specification.
+## Repository layout
 
-## Run the browser-only demo
-
-Prerequisites: Node.js 22.12+ (tested on 24.13.1), npm 11. No credentials or Python server required.
-
-```sh
-npm ci
-npm run dev
+```text
+FusionMVP/
+  frontend/
+    src/                 React pages, services and browser reference engine
+    e2e/                 Playwright regression tests
+    scripts/             Development launcher and Node tooling
+    docs/                Vercel instructions, recording script and design notes
+    stitch-export/       Destination for future design exports
+    vercel.json          SPA routes and Vite deployment settings
+    package.json
+  backend/
+    app/                 FastAPI APIs, adapters and analysis engine
+    tests/               Backend and parity regression tests
+    scripts/             Importers, setup and verification commands
+    data/                Unchanged supplied datasets and normalized snapshots
+    config/              Shared model defaults
+    shared/              Shared evidence coverage definitions
+    supabase/            Existing migrations and isolation verification SQL
+    docs/                PRD, audits, setup and technical documentation
+    Dockerfile
+    requirements.lock.txt
+  package.json           Existing npm workspace and convenient root commands
+  package-lock.json      npm workspace dependency lock
+  README.md
+  .gitignore
+  .dockerignore
+  .gitattributes
 ```
 
-Open http://127.0.0.1:5173. Choose **Open demo workspace → Run synthetic analysis**. The app explicitly labels the browser engine and synthetic sources. Map tiles are optional; the offline location list always works.
+Only `backend/` and `frontend/` are source directories at the root. `.git` and ignored `node_modules` are local tooling; do not upload them through manual drag-and-drop. Root npm metadata is intentionally retained so existing workspace commands and the lockfile remain valid.
 
-```sh
-npm test
-npm run build
-npm run preview
-npm run demo
-npm run benchmark
-```
+## Run locally
 
-The production evaluator build is `frontend/dist/`. `npm run preview` serves it locally. Do not open index.html directly using `file://` because browser routing/assets require HTTP.
-
-## Run the authoritative backend
-
-Python 3.13 was used for the locked environment. Run these commands from the repository root.
-
-After the Python environment is installed, **`npm run dev:full` starts both services together**: frontend http://127.0.0.1:5173 and backend http://127.0.0.1:8000. It configures the UI to use NetworkX and sets matching CORS origins. Ctrl+C stops both. Stop existing processes on those ports before starting this command. The separate-terminal procedure below is useful when debugging either service.
-
-Windows PowerShell:
+From the repository root:
 
 ```powershell
+npm install
 python -m venv backend/.venv
 backend/.venv/Scripts/python.exe -m pip install -r backend/requirements.lock.txt
-backend/.venv/Scripts/python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
+npm run dev:full
 ```
 
-macOS/Linux:
+Keep `frontend/.env.local` and `backend/.env.local` private. The launcher opens services at http://127.0.0.1:5173 and http://127.0.0.1:8000. Backend local configuration remains beside its requirements; it is not moved into frontend.
 
-```sh
-python3 -m venv backend/.venv
-backend/.venv/bin/python -m pip install -r backend/requirements.lock.txt
-backend/.venv/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
-```
+## Deploy the frontend to Vercel
 
-In a second terminal create `frontend/.env.local` containing:
+Import the GitHub repository, choose **Vite**, Root Directory **frontend**, Build Command **npm run build**, Output Directory **dist**. Enable **Include source files outside of the Root Directory in the Build Step**: frontend imports the existing shared JSON definitions from backend/config and backend/shared. These are model/evidence definitions, not credentials.
 
-```dotenv
-VITE_API_BASE_URL=http://127.0.0.1:8000
-```
+Configure public `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Set `VITE_API_BASE_URL` only to a reachable public HTTPS FastAPI origin; otherwise omit it and the UI explicitly describes the fictional frontend-only preview. Never expose Gemini, database credentials or Supabase service-role keys as Vite variables. No public backend is introduced by the frontend deployment.
 
-Restart `npm run dev`. Overview now identifies **FastAPI / NetworkX**. A backend failure is shown as an error; it never silently switches engines. Both engines use the same synthetic dataset and fixture values. Remove the variable and restart to return to browser-only mode.
+See [Vercel instructions](frontend/docs/VERCEL_FRONTEND_DEPLOYMENT.md), [Supabase setup](backend/docs/MANUAL_SETUP.md) and [video script](frontend/docs/VIDEO_DEMO_SCRIPT.md).
 
-For a different frontend port, set backend `ALLOWED_ORIGINS` to the exact origin, including hostname and port. `npm run dev:full` loads `backend/.env.local`; standalone uvicorn requires environment variables supplied by the shell/process. Examples are templates, never credentials.
-
-API documentation: http://127.0.0.1:8000/docs. Backend tests:
+## Verification
 
 ```powershell
-cd backend
-.venv/Scripts/python.exe -m pytest -q
+npm run test
+npm run build
+backend/.venv/Scripts/python.exe -m pytest backend/tests -c backend/pytest.ini
+npm run test:e2e --workspace frontend
 ```
 
-On macOS/Linux use `.venv/bin/python -m pytest -q`. Parity tests invoke Node and require `npm ci` first.
+Browser tests require the frontend running. Windows-specific environment limitations may require a normal terminal outside the agent sandbox.
 
-## Browser tests
+## Import and verification tools
 
-With both services running (`npm run dev:full`), use `npm run test:e2e --workspace frontend`. Tests use installed Microsoft Edge by default, including 1440px desktop and 390px mobile viewports. Change the Playwright `channel` to an installed Chromium browser if necessary; browser installation is not part of the demo runtime. Screenshots, downloaded exports and failed traces go to ignored `artifacts/playwright/`.
+```powershell
+backend/.venv/Scripts/python.exe backend/scripts/import_climateweb.py --json backend/data/raw/climateweb/climateweb-supply-chain-enriched.json --accept-synthetic-demo
+backend/.venv/Scripts/python.exe backend/scripts/verify_cloud.py
+```
 
-## Cloud setup and imported data
-
-Use [manual setup](docs/MANUAL_SETUP.md) for the prepared migrations, local environment files, auth redirects and two test accounts. `/cloud` provides explicitly imported private drafts, atomic saves, saved analysis snapshots, fixed-snapshot comparison, exports and deletion. Authentication supports persisted/refreshed sessions and callback/recovery routes. Actual database persistence and hosted RLS remain unverified until the connection/key and two accounts are available. Runtime requests use the public key plus caller JWT, never an administrator credential.
-
-The corrected ClimateWeb files are preserved unchanged in `data/raw/climateweb/`, with hashes in `manifest.json`. JSON is the active representation; the CSV pair is a tested alternative, never combined with it. The imported backend dataset contains 215 real identities, 350 dataset-reported relationships, 327 synthetic facilities, four shared routes and 215 route usages. Select **Sectivia + synthetic operations** in the header to exercise the complete imported-data workflow. Measured operational/dependence shares remain null; demo assumptions are explicit. The fictional reference demo and its independent arithmetic remain available.
-
-To reimport the same source: `backend/.venv/Scripts/python.exe scripts/import_climateweb.py --json data/raw/climateweb/climateweb-supply-chain-enriched.json --accept-synthetic-demo`. See the command's `--help` for the CSV-pair alternative. Validation precedes atomic promotion; restart the backend after promotion.
-
-Weather and future-context controls call backend adapters. Synthetic sites and unsupported geography produce unavailable responses. Live Open-Meteo connectivity was checked separately; sourced company screening still requires verified operating inputs. The projection importer uses explicit inspected-column/geography mappings; no actual CCKP file has been supplied. Optional Gemini path selection is gated and validated with deterministic fallback; external generation is unverified.
-
-Use [operations](docs/OPERATIONS.md) for startup, request limits, logging, benchmark, backup/restore procedure and deployment preparation. No external deployment is active.
-
-See [implementation status](docs/IMPLEMENTATION_STATUS.md), [architecture](docs/ARCHITECTURE.md), [data notes](docs/DATA_NOTES.md), [assumptions](docs/ASSUMPTIONS.md), and [demo walkthrough](docs/DEMO.md).
+Source dataset contents and hashes are preserved. Archived one-off exploratory scripts, duplicate root local environment file and previous screenshots/logs are kept locally under backend/local-archive or backend/artifacts, excluded from Git and Docker. Historical instructions are retained in backend/docs/README_HISTORY.md; use this README for current paths.

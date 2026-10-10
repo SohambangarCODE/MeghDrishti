@@ -11,7 +11,7 @@ class DemoRepository:
     def __init__(self, max_runs=100):
         self.fixture=json.loads((Path(__file__).parents[2]/'frontend/src/fixtures/reference.json').read_text())
         self.fixtures={'reference':self.fixture}
-        root=Path(__file__).parents[2]/'data/normalized/climateweb'
+        root=Path(__file__).parents[1]/'data/normalized/climateweb'
         if (root/'active.json').exists():
             pointer=json.loads((root/'active.json').read_text(encoding='utf-8'))
             path=(root/pointer['file']).resolve()

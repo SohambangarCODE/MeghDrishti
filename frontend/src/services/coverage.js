@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {validateDataset} from '../schemas/contracts.js';
-import definitions from '../../../shared/coverage-metrics.json' with {type:'json'};
+import definitions from '../../../backend/shared/coverage-metrics.json' with {type:'json'};
 const groups=['companies','commercialEdges','facilities','routes','routeUsage','regions'];
 import {finiteNumber as number,sourceFields as fields,evidenceRules,companyCoverage} from './evidence.js';
 function canonical(v){

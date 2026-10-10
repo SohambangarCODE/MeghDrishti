@@ -15,7 +15,7 @@ from app.cckp_xlsx import (inspect_cckp_workbook, inspect_pair, compare_context,
 from app.main import app, repository
 from app.projections import ProjectionRepository
 
-PROJECT = Path(__file__).parents[2]
+PROJECT = Path(__file__).parents[1]
 SOURCES = PROJECT / 'data/incoming/cckp'
 HIST = SOURCES / 'cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014_median_historical_ensemble_all_mean.xlsx'
 FUTURE = SOURCES / 'cmip6-x0.25_climatology_tasmax_climatology_annual_1995-2014,2040-2059_median_ssp245_ensemble_all_mean.xlsx'

@@ -1,4 +1,4 @@
-import defaults from '../../../../config/model-defaults.json' with { type: 'json' };
+import defaults from '../../../../backend/config/model-defaults.json' with { type: 'json' };
 import { validateDataset, Holding, Scenario } from '../../schemas/contracts.js';
 
 export function normalizeHoldings(rows, companies) {

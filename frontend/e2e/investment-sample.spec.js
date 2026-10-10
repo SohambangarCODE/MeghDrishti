@@ -1,8 +1,8 @@
 import {test,expect,navigateWorkspace} from './authenticated-test.js';
 import {readFileSync} from 'node:fs';
 import {simulate,compareRun} from '../src/engine/demo/simulate.js';
-const pointer=JSON.parse(readFileSync(new URL('../../data/normalized/climateweb/active.json',import.meta.url)));
-const fixture=JSON.parse(readFileSync(new URL('../../data/normalized/climateweb/'+pointer.file,import.meta.url)));
+const pointer=JSON.parse(readFileSync(new URL('../../backend/data/normalized/climateweb/active.json',import.meta.url)));
+const fixture=JSON.parse(readFileSync(new URL('../../backend/data/normalized/climateweb/'+pointer.file,import.meta.url)));
 test.use({samplePortfolio:false});
 test('Sectivia investment sample loads without saving, confirms replacement and exercises private workflow',async({page})=>{
  test.setTimeout(60000);

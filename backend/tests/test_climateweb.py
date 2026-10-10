@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 from app.climateweb_importer import read_source, adapt, stage_and_promote
 from app.main import app
 
-RAW=Path(__file__).parents[2]/'data/raw/climateweb'
+RAW=Path(__file__).parents[1]/'data/raw/climateweb'
 
 def source(): return read_source(json_path=RAW/'climateweb-supply-chain-enriched.json')
 

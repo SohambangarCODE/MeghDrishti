@@ -7,7 +7,7 @@ import math
 import networkx as nx
 from .models import Dataset, Holding, Scenario
 
-DEFAULTS = json.loads((Path(__file__).parents[2] / 'config/model-defaults.json').read_text())
+DEFAULTS = json.loads((Path(__file__).parents[1] / 'config/model-defaults.json').read_text())
 
 def normalize_holdings(rows, companies):
     parsed = [Holding.model_validate(r).model_dump() for r in rows]
