@@ -46,3 +46,23 @@ The 11:32 build failed because the previous pyproject.toml had tool.vercel confi
 The 11:27 build ran commit 30385bf and could not find scripts/prepare_vercel.py. Redeploying that commit cannot apply the current fix. Publish backend/pyproject.toml, backend/uv.lock, backend/scripts/prepare_vercel.py, backend/vercel.json, backend/.python-version, backend/requirements.txt and the existing fixture-loading/main route changes together. Confirm the GitHub backend/scripts directory contains prepare_vercel.py before deploying the newest commit. Generated backend/fixtures is intentionally ignored; the build creates it from the unchanged canonical frontend fixture.
 
 Local verification of this correction: dependency resolution passed, offline lock check passed, exact python scripts/prepare_vercel.py command from backend passed, manifest/build-command consistency and fixture byte hashes passed. No production deployment was performed and no Git actions were taken.
+
+## CORS fix for the deployed frontend
+
+Live verification: GET health, datasets and reference fixture each returned HTTP200, but without Access-Control-Allow-Origin for https://megh-drishti-frontend.vercel.app; OPTIONS preflight returned400 Disallowed CORS origin. This proves the API was running and the exact frontend origin was absent from its allowlist.
+
+The backend now always permits that explicitly approved exact frontend origin alongside configured clients. Configured comma-separated origins are trimmed, trailing slashes removed and duplicates removed. No wildcard was added, and bearer authentication and owner checks are unchanged.
+
+Preferred Vercel backend Production environment value:
+
+```text
+ALLOWED_ORIGINS=https://megh-drishti-frontend.vercel.app
+```
+
+Publish backend/app/config.py and backend/app/main.py, then redeploy the backend's newest commit. Alternatively, setting the exact ALLOWED_ORIGINS value and redeploying the current backend resolves this configuration mismatch without waiting for code publication. Environment changes do not update a deployment until redeployment.
+
+The frontend API origin is already reaching the correct backend based on the reported console URLs. Keep VITE_API_BASE_URL=https://meghdrishti-backend.vercel.app. Frontend redeployment is unnecessary for this CORS-only backend change.
+
+After redeployment, refresh the frontend. Backend responses to its Origin header should contain Access-Control-Allow-Origin: https://megh-drishti-frontend.vercel.app; preflight should return200. This is not proof of private persistence or provider connectivity; verify those workflows separately.
+
+CORS verification: nine focused tests passed; full backend regression 107 tests passed. Exact frontend GET responses and authenticated POST preflight carry the allowed-origin header; unrelated/lookalike origins are denied and missing JWT still yields401. No production redeployment was performed.

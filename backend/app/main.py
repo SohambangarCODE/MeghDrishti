@@ -1,5 +1,5 @@
 import os
-from .config import load_local_environment
+from .config import load_local_environment, allowed_origins
 load_local_environment()
 import asyncio
 from contextlib import asynccontextmanager,suppress
@@ -31,7 +31,7 @@ from .private_api import router as private_router
 app.include_router(private_router)
 from .climate_api import router as climate_router
 app.include_router(climate_router)
-app.add_middleware(CORSMiddleware,allow_origins=os.getenv('ALLOWED_ORIGINS','http://localhost:5173,http://127.0.0.1:5173').split(','),
+app.add_middleware(CORSMiddleware,allow_origins=allowed_origins(),
                    allow_credentials=False,allow_methods=['GET','POST','DELETE'],allow_headers=['Content-Type','Authorization','X-Demo-Session','Idempotency-Key'])
 from .operations import RequestBoundary
 app.add_middleware(RequestBoundary)

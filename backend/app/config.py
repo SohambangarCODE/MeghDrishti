@@ -3,6 +3,15 @@ import os
 from pathlib import Path
 
 
+def allowed_origins():
+    """Allow configured clients and the explicitly approved deployed frontend."""
+    configured = os.getenv('ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173')
+    origins = [origin.strip().rstrip('/') for origin in configured.split(',') if origin.strip()]
+    # Keep the deployed UI usable when an old localhost setting is carried over.
+    origins.append('https://megh-drishti-frontend.vercel.app')
+    return list(dict.fromkeys(origins))
+
+
 def load_local_environment():
     path = Path(__file__).parents[1] / '.env.local'
     if path.exists():
