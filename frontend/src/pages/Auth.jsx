@@ -94,8 +94,8 @@ export default function Auth() {
               <section>
                 <p>Signed in as {session.user.email}</p>
                 <div className="actions">
-                  <Link className="button" to="/cloud">
-                    Open private cloud workspace
+                  <Link className="button" to="/portfolio">
+                    My portfolios
                   </Link>
                   <button
                     className="secondary"

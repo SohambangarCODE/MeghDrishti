@@ -69,6 +69,15 @@ def datasets():
 @app.get('/api/v1/demo')
 def defaults(datasetId: str | None=None): return repository.defaults(datasetId)
 
+@app.get('/api/v1/datasets/coverage')
+async def dataset_coverage(request: Request, datasetId: str):
+    # This public route accepts installed identifiers only, never private snapshots.
+    if await request.body() or list(request.query_params.keys()) != ['datasetId'] or len(request.query_params.getlist('datasetId')) != 1:
+        raise ValueError('Coverage accepts only one installed datasetId query parameter, without a body')
+    if not datasetId or len(datasetId) > 200: raise ValueError('Invalid dataset identifier')
+    from .coverage import completeness
+    return completeness(repository.dataset(datasetId))
+
 @app.get('/api/v1/companies')
 def search_companies(datasetId:str | None=None,q:str='',limit:int=50):
     if not 1<=limit<=100: raise ValueError('Company search limit must be 1-100')

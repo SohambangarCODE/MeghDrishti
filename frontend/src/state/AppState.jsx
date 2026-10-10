@@ -9,6 +9,7 @@ import { usePortfolioWorkspace } from './usePortfolioWorkspace.js';
 import { useAuth } from './AuthState.jsx';
 import { cloudRequest } from '../services/live/supabase.js';
 import { requireSavedPortfolio,validatePrivateRun } from '../services/live/privateRuns.js';
+import { validateTransfer,validatePrivateComparison } from '../services/live/privateCompare.js';
 const Context=createContext(null);
 function storage() {try{return window.localStorage;}catch{return null;}}
 function session() {try {let id=sessionStorage.getItem('meghdrishti:session');if(!id){id=crypto.randomUUID();sessionStorage.setItem('meghdrishti:session',id);}return id;}catch{return crypto.randomUUID();}}
@@ -47,7 +48,7 @@ export function AppState({children}) {
   const analyze=async()=>{
     const privateMode=workspace.portfolioMode==='private';
     if(privateMode)requireSavedPortfolio(workspace);
-    if(pending||loadingDataset||validationError||workspace.isSaving||workspace.isLoadingPortfolio)return null;setPending(true);setError('');let accepted=null;
+    if(pending||loadingDataset||validationError||workspace.isSaving||workspace.isLoadingPortfolio||workspace.isDeletingPortfolio)return null;setPending(true);setError('');let accepted=null;
     const expected=sessionKey;
     try {await gate.current.run(async({signal,revision})=>privateMode?
       validatePrivateRun(await cloudRequest('/analysis',{method:'POST',body:JSON.stringify({portfolioId:workspace.activePortfolioId,requestId:crypto.randomUUID()})}),ownerId):
@@ -61,6 +62,7 @@ export function AppState({children}) {
   return <Context.Provider value={{...workspace,data,holdings,scenario,error,setError,validationError,datasetId,datasets,loadingDataset,
     createPortfolio:()=>{const created=workspace.createPortfolio();if(created){gate.current.invalidate();setPending(false);setAmountErrors({});setCloudRun(null);}return created;},
     openPortfolio:async id=>{const opened=await workspace.openPortfolio(id);if(opened){gate.current.invalidate();setPending(false);setAmountErrors({});setCloudRun(null);}return opened;},
+    deletePortfolio:async id=>{const deleted=await workspace.deletePortfolio(id);if(deleted){gate.current.invalidate();openRevision.current++;setPending(false);if(workspace.activePortfolioId===id)setAmountErrors({});if(activeCloudRun?.portfolioId===id)setCloudRun(null);}return deleted;},
     selectDataset:async id=>{const changed=await workspace.switchDataset(id);if(changed){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return changed;},
     setAmountError:(id,message)=>{gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors(old=>{const next={...old};if(message)next[id]=message;else delete next[id];return next;});},
     pending,outdated,history:history.current,historyRevision,activeCloudRun,setActiveCloudRun,openCloudReport,
@@ -70,6 +72,15 @@ export function AppState({children}) {
     engine:import.meta.env.VITE_API_BASE_URL?'FastAPI / NetworkX':'Browser demo',
     setHoldings:value=>{edit(workspace.setHoldings,value);setAmountErrors(old=>Object.fromEntries(Object.entries(old).filter(([id])=>value.some(h=>h.id===id))));},setScenario:value=>edit(workspace.setScenario,value),analyze,
     explain:run=>isPrivateRun(run)?Promise.resolve({provider:'deterministic',providerStatus:'Private snapshot; no external explanation requested'}):service.current.request?service.current.request('/runs/'+encodeURIComponent(run.id)+'/explanation',{method:'POST'}):Promise.resolve({provider:'deterministic',providerStatus:'Browser demo; no external explanation requested'}),
-    compare:(...args)=>service.current.compare(...args),reset:()=>{const loaded=workspace.loadSample();if(loaded){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return loaded;}}}>{children}</Context.Provider>;
+    isPrivateRun,
+    compare:async(run,fromCompanyId,toCompanyId,amount)=>{
+      validateTransfer(run,fromCompanyId,toCompanyId,amount);
+      if(!isPrivateRun(run))return service.current.compare(run,fromCompanyId,toCompanyId,amount);
+      if(!ownerId||run.ownerId!==ownerId)throw new Error('Open a report belonging to your signed-in account.');
+      const expected=sessionKey,body={runId:run.id,fromCompanyId,toCompanyId,amount,requestId:crypto.randomUUID()};
+      const result=await cloudRequest('/compare',{method:'POST',body:JSON.stringify(body)});
+      if(expected!==sessionKeyRef.current)throw new Error('Private session changed.');
+      return validatePrivateComparison(result,run,body,ownerId);
+    },reset:()=>{const loaded=workspace.loadSample();if(loaded){gate.current.invalidate();setPending(false);setOutdated(true);setAmountErrors({});setCloudRun(null);}return loaded;}}}>{children}</Context.Provider>;
 }
 export const useApp=()=>useContext(Context);

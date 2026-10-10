@@ -9,7 +9,8 @@ export function usePortfolioWorkspace({auth,data,loadDataset,activateDataset}){
  const key=auth.session?`${auth.generation}:${auth.session.user.id}`:null;
  const [draft,setDraft]=useState(()=>empty(null)),[portfolios,setPortfolios]=useState([]),
   [isSaving,setSaving]=useState(false),[isLoadingPortfolio,setLoading]=useState(false),[isListing,setListing]=useState(false),
-  [saveError,setSaveError]=useState(''),[loadError,setLoadError]=useState(''),[listError,setListError]=useState('');
+  [saveError,setSaveError]=useState(''),[loadError,setLoadError]=useState(''),[listError,setListError]=useState(''),
+  [isDeletingPortfolio,setDeleting]=useState(false),[deleteError,setDeleteError]=useState('');
  const sessionKey=useRef(key),operation=useRef(0),listRevision=useRef(0),busy=useRef(false),draftRef=useRef(draft);
  sessionKey.current=key;draftRef.current=draft;
  const belongs=!!key&&draft.key===key;
@@ -29,6 +30,7 @@ export function usePortfolioWorkspace({auth,data,loadDataset,activateDataset}){
   operation.current++;listRevision.current++;busy.current=false;
   setDraft(empty(key,data?.scenario?structuredClone(data.scenario):null));setPortfolios([]);
   setSaving(false);setLoading(false);setListing(false);setSaveError('');setLoadError('');setListError('');
+  setDeleting(false);setDeleteError('');
   if(key)void refreshPortfolios();
   return()=>{operation.current++;listRevision.current++;};
  },[key]);
@@ -96,9 +98,23 @@ export function usePortfolioWorkspace({auth,data,loadDataset,activateDataset}){
   }catch(e){if(sessionKey.current===expected&&request===operation.current)setLoadError('Dataset switch failed. Your draft was retained. '+e.message);return false;}
   finally{if(sessionKey.current===expected&&request===operation.current){busy.current=false;setLoading(false);}}
  };
+ const deletePortfolio=async id=>{
+  if(!belongs||busy.current||!portfolios.some(p=>p.id===id)||id===current.id&&!confirmReplace())return false;
+  const expected=key,request=++operation.current;busy.current=true;setDeleting(true);setDeleteError('');
+  listRevision.current++;setListing(false);
+  try{
+   const result=await cloudRequest('/portfolios/'+encodeURIComponent(id),{method:'DELETE'});
+   if(result.schemaVersion!=='1.0.0'||result.deleted!==id)throw new Error('Portfolio deletion was not confirmed by the server.');
+   if(sessionKey.current!==expected||request!==operation.current)return false;
+   setPortfolios(previous=>previous.filter(p=>p.id!==id));
+   setDraft(previous=>previous.id===id?empty(expected,structuredClone(data.scenario)):previous);
+   setSaveError('');setLoadError('');return true;
+  }catch(e){if(sessionKey.current===expected&&request===operation.current)setDeleteError('Delete failed or was not confirmed. Your current draft was retained. Refresh My Portfolios to check server state. '+e.message);return false;}
+  finally{if(sessionKey.current===expected&&request===operation.current){busy.current=false;setDeleting(false);}}
+ };
  return {holdings:current.holdings,scenario:current.scenario,activePortfolioId:current.id,activePortfolioName:current.name,
   portfolioMode:current.mode,isDirty:current.dirty,lastSavedAt:current.lastSavedAt,isSaving,isLoadingPortfolio,isListing,
-  workspaceLoading:!auth.ready||!!key&&(!belongs||!current.scenario),saveError,loadError,listError,
+  workspaceLoading:!auth.ready||!!key&&(!belongs||!current.scenario),saveError,loadError,listError,isDeletingPortfolio,deleteError,deletePortfolio,
   privatePortfolios:belongs?portfolios:[],setHoldings:value=>edit({holdings:value}),setScenario:value=>edit({scenario:value}),
   setPortfolioName:name=>edit({name}),createPortfolio:newPortfolio,loadSample,savePortfolio,openPortfolio,refreshPortfolios,switchDataset};
 }

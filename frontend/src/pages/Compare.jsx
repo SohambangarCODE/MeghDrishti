@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect,useRef,useState } from "react";
+import { Link,useSearchParams } from "react-router-dom";
 import { useApp } from "../state/AppState.jsx";
 import { parseAmount } from "../services/portfolio.js";
 import {
@@ -11,39 +11,38 @@ import {
   stress,
 } from "../components.jsx";
 export default function Compare() {
-  const app = useApp(),
-    [params] = useSearchParams(),
-    runs = app.history.list();
-  const [runId, setRunId] = useState(params.get("run") || runs[0]?.id || ""),
-    [from, setFrom] = useState(
-      runs[0]?.portfolioSnapshot.find((h) => h.companyId === "demo:aster")
-        ?.companyId ||
-        runs[0]?.portfolioSnapshot[1]?.companyId ||
-        "",
-    ),
-    [to, setTo] = useState(runs[0]?.portfolioSnapshot.at(-1)?.companyId || ""),
+  const app=useApp(),[params,setParams]=useSearchParams();
+  const runs=[...new Map([app.activeCloudRun,...app.history.list()].filter(Boolean).map(r=>[r.id,r])).values()];
+  // Prefer the active private snapshot even if a local record happens to share its ID.
+  if(app.activeCloudRun){const index=runs.findIndex(r=>r.id===app.activeCloudRun.id);runs[index]=app.activeCloudRun;}
+  const runId=params.get('run')||app.activeCloudRun?.id||runs[0]?.id||'',run=app.getRun(runId);
+  if(!run)return <><h1>Compare allocations</h1><p>Open the intended saved snapshot from <Link to="/reports">Reports</Link> before comparing. No different baseline is selected automatically.</p><Empty/></>;
+  return <Comparison key={run.id} app={app} run={run} runs={runs} selectRun={id=>setParams({run:id})}/>;
+}
+function Comparison({app,run,runs,selectRun}){
+  const matched=run.portfolioSnapshot.filter(h=>h.matchingStatus==='matched');
+  const defaultFrom=matched.find(h=>h.companyId==='demo:aster')?.companyId||matched[1]?.companyId||matched[0]?.companyId||'';
+  const [from,setFrom]=useState(defaultFrom),
+    [to, setTo] = useState(matched.findLast(h=>h.companyId!==defaultFrom)?.companyId||''),
     [amount, setAmount] = useState("1000000"),
     [result, setResult] = useState(null),
     [error, setError] = useState(""),
     [pending, setPending] = useState(false);
-  const run = app.history.get(runId);
-  if (!run)
-    return (
-      <>
-        <h1>Compare allocations</h1>
-        <Empty />
-      </>
-    );
+  const request=useRef(0),busy=useRef(false),privateRun=app.isPrivateRun(run);
+  useEffect(()=>()=>{request.current++;},[]);
   const compare = async () => {
+    if(busy.current)return;
+    const ticket=++request.current;busy.current=true;
     setPending(true);
     setError("");
     setResult(null);
     try {
-      setResult(await app.compare(run, from, to, parseAmount(amount)));
+      const proposed=await app.compare(run, from, to, parseAmount(amount));
+      if(ticket===request.current)setResult(proposed);
     } catch (e) {
-      setError(e.message);
+      if(ticket===request.current)setError(e.message);
     } finally {
-      setPending(false);
+      if(ticket===request.current){busy.current=false;setPending(false);}
     }
   };
   const change = (setter) => (e) => {
@@ -57,12 +56,14 @@ export default function Compare() {
         Hypothetical sensitivity analysis with the baseline event, evidence,
         graph, and parameters held fixed.
       </p>
+      {privateRun&&<Notice>Private saved baseline. This hypothetical comparison changes neither your saved portfolio nor the original analysis. Assumed stress-weighted exposure is not predicted financial loss.</Notice>}
+      <Link to={`/results/${run.id}`}>View selected baseline results</Link>
       <label>
         Baseline snapshot
-        <select disabled={pending} value={runId} onChange={change(setRunId)}>
+        <select disabled={pending} value={run.id} onChange={e=>selectRun(e.target.value)}>
           {runs.map((r) => (
             <option key={r.id} value={r.id}>
-              {r.completedAt} · {r.id.slice(0, 8)}
+              {app.isPrivateRun(r)?'Private':'Local demo'} · {r.completedAt} · {r.id.slice(0, 8)}
             </option>
           ))}
         </select>
@@ -104,7 +105,8 @@ export default function Compare() {
             />
           </label>
         </div>
-        <button disabled={pending} onClick={compare}>
+        {matched.length<2&&<Notice>Two matched holdings are required for a transfer. Unsupported holdings remain in the baseline.</Notice>}
+        <button disabled={pending||matched.length<2} onClick={compare}>
           {pending ? "Comparing…" : "Compare transfer"}
         </button>
         {error && <Notice error>{error}</Notice>}
@@ -166,14 +168,14 @@ export default function Compare() {
           </Notice>
           <p className="mono">Fixed inputs: {result.fixedInputHash}</p>
           <div className="actions">
-            <button
+            {!privateRun&&<button
               onClick={() => {
                 app.setHoldings(result.proposed.portfolioSnapshot);
                 setResult(null);
               }}
             >
               Apply allocation to draft
-            </button>
+            </button>}
             <button className="secondary" onClick={() => setResult(null)}>
               Reset comparison
             </button>

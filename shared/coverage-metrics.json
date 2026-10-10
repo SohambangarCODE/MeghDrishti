@@ -1,0 +1,18 @@
+[
+  ["reportedCompanies","Dataset-reported companies","companies","Dataset-reported","Identity provenance only; not independently verified."],
+  ["reportedRelationships","Dataset-reported commercial relationships","commercialEdges","Dataset-reported","Distinct commercial edges only; excludes commodity context."],
+  ["linkedCompanies","Companies with recorded commercial relationships","companies","Dataset-reported / Synthetic","Recorded topology only. No edge is not proof of no dependency."],
+  ["sourcedCoordinates","Companies with sourced operating coordinates","companies","Sourced evidence","Non-synthetic facility, valid coordinate pair and claim-specific operating-coordinate evidence."],
+  ["syntheticOnlySites","Companies with synthetic-only sites","companies","Synthetic","At least one site and every site explicitly synthetic."],
+  ["missingOperatingEvidence","Companies lacking operating-coordinate evidence","companies","Unknown","No facility meeting the sourced operating-coordinate criterion; not zero risk."],
+  ["measuredOperationalShares","Facilities with evidenced measured operational shares","facilities","Sourced evidence","Measured value and claim-specific evidence; raw measured null never becomes an assumed value."],
+  ["assumedOperationalShares","Facilities with assumed operational shares","facilities","Assumed","Computable demo parameter; not measured footprint coverage."],
+  ["measuredWeights","Commercial relationships with evidenced measured weights","commercialEdges","Sourced evidence","Measured weight basis, numeric value and claim-specific dependency evidence."],
+  ["assumedWeights","Commercial relationships using assumed weights","commercialEdges","Assumed","Numeric effective weight with assumed basis; replacement is already included."],
+  ["missingDemoWeights","Commercial relationships with missing effective demo weights","commercialEdges","Unknown","Numeric parameter availability only; separate from measured dependence."],
+  ["unknownRealDependence","Commercial relationships with unknown measured dependence","commercialEdges","Unknown","No evidenced measured weight, even when an assumed effective weight exists."],
+  ["syntheticGeometry","Companies with usable synthetic route geometry","companies","Synthetic","Valid illustrative corridor plus synthetic company-route association; not observed shipments."],
+  ["sourcedGeometry","Companies with evidence-supported observed routes","companies","Sourced evidence","Claim-specific evidence for both observed geometry and company route usage."],
+  ["projectionCompanies","Companies with evidenced provider-geography mappings","companies","Sourced evidence","Sourced operating coordinates linked to a non-synthetic region with claim-specific provider mapping."],
+  ["projectionRegions","Regions with evidenced provider-geography mappings","regions","Sourced evidence","Provider ID plus claim-specific mapping evidence; registration country is insufficient."]
+]
