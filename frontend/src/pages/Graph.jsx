@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ReactFlow,
   Background,
@@ -11,6 +11,7 @@ import { useApp } from "../state/AppState.jsx";
 import { graphData, layoutGraph } from "../services/graph.js";
 import { Notice, PathList, RunButton } from "../components.jsx";
 import {createEntityEvidence} from '../services/evidence.js';
+import {graphSubset,resolveGraphEntity,graphLimitations} from '../services/graphView.js';
 
 export default function Graph() {
   const app=useApp();
@@ -18,7 +19,7 @@ export default function Graph() {
 }
 function GraphView() {
   const app = useApp(),
-    [params] = useSearchParams(),
+    [params,setParams] = useSearchParams(),
     run =
       app.activeCloudRun ||
       app.history.get(params.get("run")) ||
@@ -36,6 +37,8 @@ function GraphView() {
     [selectedEdge,setSelectedEdge]=useState(null),
     [path, setPath] = useState(null),
     [scope, setScope] = useState("portfolio");
+  const urlEntity=params.get('entity');
+  useEffect(()=>{setSelected(null);setSelectedEdge(null);if(urlEntity!==null)setPath(null);},[urlEntity]);
   const dataset=run?run.sourceSnapshot:app.data.dataset;
   const evidence=useMemo(()=>app.activeCloudRun?app.activeRunEvidence:dataset===app.data.dataset?app.editingEvidence:createEntityEvidence(dataset),[dataset,app.activeRunEvidence,app.editingEvidence,app.activeCloudRun]);
   const data = useMemo(
@@ -46,8 +49,8 @@ function GraphView() {
       ):{nodes:[],edges:[]},
     [dataset,run?.portfolioSnapshot,app.holdings],
   );
-  const activeEntity =
-    selected || data.nodes.find((n) => n.id === params.get("entity"));
+  const target=resolveGraphEntity(data.nodes,params.get('entity'));
+  const activeEntity = selected || target.entity;
   const affectedIds = new Set(
     run?.paths.filter((p) => p.stress !== null).flatMap((p) => p.companyIds) ||
       [],
@@ -78,14 +81,9 @@ function GraphView() {
         `${n.label} ${n.id}`.toLowerCase().includes(query.toLowerCase())) &&
       (!affected || affectedIds.has(n.id)),
   );
-  const visible = filtered.slice(0, 40),
-    ids = new Set(visible.map((n) => n.id));
-  const visibleEdges = data.edges.filter(
-    (e) =>
-      ids.has(e.sourceId) &&
-      ids.has(e.targetId) &&
-      (!path || scope === "all" || path.edgeIds.includes(e.id)),
-  );
+  const subset=graphSubset(data,filtered,activeEntity,{path:scope==='all'?null:path});
+  const visible=subset.nodes,visibleEdges=subset.edges,
+    ids=new Set(visible.map(n=>n.id));
   const positions = layoutGraph(visible, visibleEdges);
   const colors = {
     company: "#397d76",
@@ -141,8 +139,8 @@ function GraphView() {
     label: e.commercialHop ? undefined : e.kind.replaceAll("_", " "),
     markerEnd: { type: MarkerType.ArrowClosed },
     style: {
-      stroke: e.commercialHop ? "#397d76" : "#aaa5ae",
-      strokeWidth: e.commercialHop ? 2.5 : 1,
+      stroke: activeEntity && e.commercialHop && (e.sourceId===activeEntity.id||e.targetId===activeEntity.id) ? '#b8560d' : e.commercialHop ? "#397d76" : "#aaa5ae",
+      strokeWidth: activeEntity && e.commercialHop && (e.sourceId===activeEntity.id||e.targetId===activeEntity.id) ? 4 : e.commercialHop ? 2.5 : 1,
       strokeDasharray: e.commercialHop ? undefined : "5 5",
     },
     labelStyle: { fontSize: 10 },
@@ -150,7 +148,7 @@ function GraphView() {
     ariaLabel:e.commercialHop?`${evidence.edge(e).relationship.text}; ${evidence.edge(e).weight.text}`:e.kind.replaceAll('_',' '),
   }));
   const viewKey =
-    visible.map((n) => n.id).join("|") +
+    (activeEntity?.id||'') + visible.map((n) => n.id).join("|") +
     visibleEdges.map((e) => e.id).join("|");
   return (
     <>
@@ -201,6 +199,7 @@ function GraphView() {
         <span>━━ Supplier → customer</span>
         <span>┄┄ Operational / context link</span>
         <span>Green cards: portfolio holdings</span>
+        <span>Thick orange arrows: selected company's direct relationships</span>
       </p>
       {path && (
         <Notice>
@@ -279,11 +278,12 @@ function GraphView() {
         {visible.length} visible entities · {visibleEdges.length} links. Read
         left to right. Select a path below to isolate its companies.
       </p>
-      {filtered.length > 40 && (
+      {target.error&&<Notice>{target.error} Clear the entity parameter or select a recorded entity below.</Notice>}
+      <Notice>{graphLimitations(data,dataset)}</Notice>
+      {subset.neighborhood.length>40&&<Notice>Expanded neighborhood: all {subset.neighborhood.length} directly relevant entities are included. Use zoom controls or the readable relationship list below.</Notice>}
+      {subset.omitted > 0 && (
         <Notice>
-          Showing 40 of {filtered.length} matching entities. Search or select an
-          entity type to narrow the view; calculations still use the complete
-          dataset.
+          Showing {visible.length} entities; {subset.omitted} unrelated matching entities are outside this view. The selected entity and all recorded direct commercial neighbors remain visible. Filters affect background nodes; calculations are unchanged.
         </Notice>
       )}
       {!visible.length && (
@@ -299,8 +299,8 @@ function GraphView() {
             nodes={nodes}
             edges={edges}
             fitView
-            fitViewOptions={{ padding: 0.2, maxZoom: 1 }}
-            minZoom={0.15}
+            fitViewOptions={{ padding: 0.2, maxZoom: 1, ...(activeEntity?{nodes:subset.neighborhood.map(id=>({id}))}:{}) }}
+            minZoom={subset.neighborhood.length>40?0.02:0.15}
             maxZoom={1.8}
             nodesDraggable={false}
             nodesConnectable={false}
@@ -349,7 +349,7 @@ function GraphView() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((n) => (
+                {[...new Map([...visible,...filtered].map(n=>[n.id,n])).values()].map((n) => (
                   <tr key={n.id}>
                     <th>
                       <button
@@ -392,6 +392,9 @@ function GraphView() {
           <PathList
             run={run}
             onSelect={(p) => {
+              if(urlEntity){const next=new URLSearchParams(params);next.delete('entity');setParams(next);}
+              setSelected(null);
+              setSelectedEdge(null);
               setPath(p);
               setScope("portfolio");
               setKind("all");
