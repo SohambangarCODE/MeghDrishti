@@ -19,3 +19,6 @@ frontend/playwright-report/
 
 # Reference fixture packaged from its canonical frontend source at Vercel build time
 backend/fixtures/
+
+# Local dependency resolver cache
+backend/.uv-cache/

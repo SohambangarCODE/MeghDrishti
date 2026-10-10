@@ -9,7 +9,7 @@ The backend now has a conventional pinned `requirements.txt`, explicit `app.main
 1. Publish these changed files to the same GitHub repository manually. Do not upload environment files, virtual environments, node_modules, local archives or artifacts. No Git actions were performed by Codex.
 2. Open Vercel → **meghdrishti-backend** → Settings → Build and Deployment.
 3. **Root Directory: backend**. Enable **Include source files outside of the Root Directory in the Build Step**, because fixture packaging reads frontend/src/fixtures/reference.json during build.
-4. **Framework Preset: FastAPI**. Dependencies are defined in backend/requirements.txt. Leave Install Command at framework default; remove any old npm override. Build Command is **python scripts/prepare_vercel.py**, supplied by backend/vercel.json. Clear any old npm/Vite Build Command override. Output Directory should be the framework default, with no `dist` override.
+4. **Framework Preset: FastAPI**. Vercel installs dependencies from backend/pyproject.toml and backend/uv.lock. requirements.txt mirrors the existing pinned runtime versions. Leave Install Command at framework default; remove any old npm override. Build Command is **python scripts/prepare_vercel.py**, supplied by backend/vercel.json. Clear any old npm/Vite Build Command override. Output Directory should be the framework default, with no `dist` override.
 5. Set backend Production environment variables:
    - `SUPABASE_URL`
    - `SUPABASE_PUBLISHABLE_KEY` (legacy `SUPABASE_ANON_KEY` supported)
@@ -38,3 +38,11 @@ backend/.venv/Scripts/python.exe -m pytest backend/tests -c backend/pytest.ini -
 No external deployment was performed by this fix. Local packaged-mode checks are not proof of production connectivity. Serverless demo-run memory and weather cache are instance-local; private Supabase reports are the persistence workflow. Provider quotas, CORS, production auth redirects and immutable snapshot verification still require live testing after redeployment.
 
 Official references: https://vercel.com/docs/frameworks/backend/fastapi and https://vercel.com/docs/functions/runtimes/python.
+
+## Fix for the 11:32 and 11:27 build logs
+
+The 11:32 build failed because the previous pyproject.toml had tool.vercel configuration but no required project metadata. It now contains a valid [project] table, Python version constraint, existing pinned runtime dependencies, tool.uv package=false and the existing app.main:app entrypoint. A real uv lock command resolved 34 packages and generated backend/uv.lock; offline lock consistency also passed.
+
+The 11:27 build ran commit 30385bf and could not find scripts/prepare_vercel.py. Redeploying that commit cannot apply the current fix. Publish backend/pyproject.toml, backend/uv.lock, backend/scripts/prepare_vercel.py, backend/vercel.json, backend/.python-version, backend/requirements.txt and the existing fixture-loading/main route changes together. Confirm the GitHub backend/scripts directory contains prepare_vercel.py before deploying the newest commit. Generated backend/fixtures is intentionally ignored; the build creates it from the unchanged canonical frontend fixture.
+
+Local verification of this correction: dependency resolution passed, offline lock check passed, exact python scripts/prepare_vercel.py command from backend passed, manifest/build-command consistency and fixture byte hashes passed. No production deployment was performed and no Git actions were taken.
