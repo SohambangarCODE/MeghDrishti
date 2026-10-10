@@ -1,4 +1,5 @@
-import { createContext,useContext,useEffect,useRef,useState } from 'react';
+import {createEntityEvidence} from '../services/evidence.js';
+import { createContext,useContext,useEffect,useMemo,useRef,useState } from 'react';
 import { FastApiRepository } from '../services/live/FastApiRepository.js';
 import { MockRepository } from '../services/mock/MockRepository.js';
 import { BrowserSimulationService } from '../services/mock/BrowserSimulationService.js';
@@ -35,6 +36,8 @@ export function AppState({children}) {
   if(!repository.current)repository.current=import.meta.env.VITE_API_BASE_URL?new FastApiRepository(import.meta.env.VITE_API_BASE_URL):new MockRepository();
   const workspace=usePortfolioWorkspace({auth,data,loadDataset:id=>repository.current.load(id),activateDataset:fixture=>{setData(fixture);const id=datasets.find(d=>d.datasetVersion===fixture.dataset.datasetVersion)?.id||datasetId;setDatasetId(id);}});
   const holdings=workspace.holdings,scenario=workspace.scenario||data?.scenario;
+  const editingEvidence=useMemo(()=>createEntityEvidence(data?.dataset),[data?.dataset]);
+  const activeRunEvidence=useMemo(()=>activeCloudRun?createEntityEvidence(activeCloudRun.sourceSnapshot):null,[activeCloudRun?.sourceSnapshot,sessionKey]);
   const [error,setError]=useState(''),[amountErrors,setAmountErrors]=useState({}),[pending,setPending]=useState(false),[outdated,setOutdated]=useState(false),[historyRevision,setHistoryRevision]=useState(0);
   const validationError=Object.values(amountErrors).join(' ');
   const history=useRef(null),gate=useRef(new LatestRequest()),service=useRef(null);
@@ -59,7 +62,7 @@ export function AppState({children}) {
     });}catch(e){if(e.name!=='AbortError'){setError(e.message);setPending(false);}}
     return accepted;
   };
-  return <Context.Provider value={{...workspace,data,holdings,scenario,error,setError,validationError,datasetId,datasets,loadingDataset,
+  return <Context.Provider value={{...workspace,data,holdings,scenario,error,setError,validationError,datasetId,datasets,loadingDataset,editingEvidence,activeRunEvidence,
     createPortfolio:()=>{const created=workspace.createPortfolio();if(created){gate.current.invalidate();setPending(false);setAmountErrors({});setCloudRun(null);}return created;},
     openPortfolio:async id=>{const opened=await workspace.openPortfolio(id);if(opened){gate.current.invalidate();setPending(false);setAmountErrors({});setCloudRun(null);}return opened;},
     deletePortfolio:async id=>{const deleted=await workspace.deletePortfolio(id);if(deleted){gate.current.invalidate();openRevision.current++;setPending(false);if(workspace.activePortfolioId===id)setAmountErrors({});if(activeCloudRun?.portfolioId===id)setCloudRun(null);}return deleted;},

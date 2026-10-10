@@ -283,12 +283,44 @@ mocks additionally exercise logout, delayed requests, failed open, confirmed
 deletion and private export. Direct result links after reload require opening the
 private snapshot from Reports first.
 
-Increment 3 remains: integrate private comparison into the main Compare page and
-complete feature parity before removing Cloud. Private Results currently directs
-comparison to the existing Cloud page. No migrations or backend APIs changed.
+Increment 3 is implemented: private comparison now uses the main Compare page,
+and Cloud capabilities are consolidated into Portfolio, Reports and Results.
+No migrations or backend APIs changed. The Increment 3 instructions below
+supersede earlier references to opening the separate Cloud workspace.
 
 Final automated verification on 2026-10-10: `npm run test --workspace frontend`
 passed 33 unit tests; `npm run test:e2e --workspace frontend` passed all 62 desktop
 and mobile checks; `npm run build` passed with the existing bundle-size warnings;
 `git diff --check` passed. Private API/authentication mocks do not substitute for
 the live two-account/email checklist.
+
+## Increment 3: main workspace comparison and management
+
+1. Sign in, open Portfolio, explicitly select a saved portfolio, and use Open
+   Portfolio. Save changes before Analyze saved portfolio.
+2. Open Reports and reopen the intended private report. On Results, choose
+   Compare this snapshot. Verify the baseline ID matches that report.
+3. Select two matched holdings and enter a positive INR transfer within the
+   source holding's capital. Choose Compare transfer. Both total-capital values
+   must match; source, scenario, events and model inputs remain fixed.
+4. Verify there is no Apply allocation to draft action for a private baseline.
+   Return through View selected baseline results and check the saved baseline
+   is unchanged. Export it from Results as needed.
+5. Reload the browser and reopen the report from Reports to prove persistence.
+   The private snapshot is intentionally not restored from local demo history.
+6. Use Reports for confirmed report deletion. Use Portfolio's Delete portfolio
+   and reports only on a disposable test portfolio: Cancel must retain it;
+   Confirm portfolio deletion removes the portfolio and dependent reports.
+7. Verify `/cloud` requires authentication and then redirects to Reports.
+   Sign out and verify private lists, drafts and active results are cleared.
+
+A live one-account private comparison passed on 2026-10-10: the saved synthetic
+sample's INR 1,000,000 AbbVie-to-CVS transfer kept total capital at INR 10,000,000
+and changed assumed weighted exposure from INR 473,532.89 to INR 431,738.69.
+This does not replace the live two-account/email/refresh acceptance checklist.
+See `TASK02_INCREMENT3.md` for the contract, capability parity and test results.
+
+Final Increment 3 verification: 35 frontend unit tests, all 66 desktop/mobile
+browser tests, and 2 backend private-API tests passed. The production build and
+`git diff --check` passed. Automated authentication/private-persistence mocks
+remain separate from live RLS and email acceptance.

@@ -1,0 +1,473 @@
+{
+  "mixed": {
+    "schemaVersion": "1.0.0",
+    "datasetVersion": "test-coverage-v1",
+    "companies": [
+      {
+        "provenance": "dataset_reported",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "001",
+        "externalId": "001",
+        "name": "Test Company 001",
+        "ticker": null,
+        "exchange": null,
+        "sectorId": "test",
+        "countryOfRegistration": null,
+        "roles": [
+          "company"
+        ]
+      },
+      {
+        "provenance": "dataset_reported",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "002",
+        "externalId": "002",
+        "name": "Test Company 002",
+        "ticker": null,
+        "exchange": null,
+        "sectorId": "test",
+        "countryOfRegistration": null,
+        "roles": [
+          "company"
+        ]
+      },
+      {
+        "provenance": "dataset_reported",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "003",
+        "externalId": "003",
+        "name": "Test Company 003",
+        "ticker": null,
+        "exchange": null,
+        "sectorId": "test",
+        "countryOfRegistration": null,
+        "roles": [
+          "company"
+        ]
+      }
+    ],
+    "commercialEdges": [
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": {
+          "fieldEvidence": {
+            "dependencyWeight": [
+              "specific"
+            ]
+          }
+        },
+        "id": "e1",
+        "supplierCompanyId": "001",
+        "customerCompanyId": "002",
+        "dependencyWeight": 0,
+        "weightBasis": "measured",
+        "substitutability": null,
+        "supplyItemIds": [],
+        "status": null,
+        "currentAsOf": null
+      },
+      {
+        "provenance": "dataset_reported",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "e2",
+        "supplierCompanyId": "002",
+        "customerCompanyId": "003",
+        "dependencyWeight": 0.25,
+        "weightBasis": "assumed",
+        "substitutability": null,
+        "supplyItemIds": [],
+        "status": null,
+        "currentAsOf": null
+      },
+      {
+        "provenance": "dataset_reported",
+        "evidenceIds": [
+          "generic"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "e3",
+        "supplierCompanyId": "003",
+        "customerCompanyId": "001",
+        "dependencyWeight": 0.4,
+        "weightBasis": "measured",
+        "substitutability": null,
+        "supplyItemIds": [],
+        "status": null,
+        "currentAsOf": null
+      },
+      {
+        "provenance": "synthetic",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "e4",
+        "supplierCompanyId": "001",
+        "customerCompanyId": "003",
+        "dependencyWeight": null,
+        "weightBasis": "assumed",
+        "substitutability": null,
+        "supplyItemIds": [],
+        "status": null,
+        "currentAsOf": null
+      }
+    ],
+    "facilities": [
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "id": "f1",
+        "companyId": "001",
+        "name": "f1",
+        "facilityType": "factory",
+        "regionId": "region-a",
+        "latitude": 0,
+        "longitude": 0,
+        "locationPrecision": "illustrative",
+        "operatingRelationship": "operator",
+        "operationalShare": 0,
+        "vulnerabilityByHazard": {
+          "heat": 0.75
+        },
+        "sourceFields": {
+          "operational_share": 0,
+          "fieldEvidence": {
+            "operatingCoordinates": [
+              "specific"
+            ],
+            "operationalShare": [
+              "specific"
+            ]
+          }
+        }
+      },
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "generic"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "id": "f2",
+        "companyId": "002",
+        "name": "f2",
+        "facilityType": "factory",
+        "regionId": "region-a",
+        "latitude": 10,
+        "longitude": 10,
+        "locationPrecision": "illustrative",
+        "operatingRelationship": "operator",
+        "operationalShare": 0.5,
+        "vulnerabilityByHazard": {
+          "heat": 0.75
+        },
+        "sourceFields": null
+      },
+      {
+        "provenance": "synthetic",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "id": "f3",
+        "companyId": "003",
+        "name": "f3",
+        "facilityType": "factory",
+        "regionId": "region-b",
+        "latitude": 20,
+        "longitude": 20,
+        "locationPrecision": "illustrative",
+        "operatingRelationship": "operator",
+        "operationalShare": 1,
+        "vulnerabilityByHazard": {
+          "heat": 0.75
+        },
+        "sourceFields": {
+          "operational_share": null,
+          "operational_share_assumed": 1,
+          "parameter_status": "synthetic_demo"
+        }
+      },
+      {
+        "provenance": "unknown",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "id": "f4",
+        "companyId": "002",
+        "name": "f4",
+        "facilityType": "factory",
+        "regionId": null,
+        "latitude": null,
+        "longitude": null,
+        "locationPrecision": "illustrative",
+        "operatingRelationship": "operator",
+        "operationalShare": null,
+        "vulnerabilityByHazard": {
+          "heat": 0.75
+        },
+        "sourceFields": null
+      }
+    ],
+    "routes": [
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": {
+          "fieldEvidence": {
+            "routeGeometry": [
+              "specific"
+            ]
+          }
+        },
+        "id": "route-a",
+        "name": "route-a",
+        "mode": "test",
+        "waypointIds": [],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "regionIds": [],
+        "operatingStatus": null,
+        "vulnerabilityByHazard": null
+      },
+      {
+        "provenance": "synthetic",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "route-b",
+        "name": "route-b",
+        "mode": "test",
+        "waypointIds": [],
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "regionIds": [],
+        "operatingStatus": null,
+        "vulnerabilityByHazard": null
+      }
+    ],
+    "routeUsage": [
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": {
+          "fieldEvidence": {
+            "routeUsage": [
+              "specific"
+            ]
+          }
+        },
+        "id": "u1",
+        "companyId": "001",
+        "routeId": "route-a",
+        "shipmentShare": 0.5,
+        "substitutability": null,
+        "vulnerabilityByHazard": null
+      },
+      {
+        "provenance": "synthetic",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "u2",
+        "companyId": "003",
+        "routeId": "route-b",
+        "shipmentShare": 0.5,
+        "substitutability": null,
+        "vulnerabilityByHazard": null
+      },
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "generic"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "u3",
+        "companyId": "002",
+        "routeId": "route-a",
+        "shipmentShare": 0.5,
+        "substitutability": null,
+        "vulnerabilityByHazard": null
+      }
+    ],
+    "regions": [
+      {
+        "provenance": "sourced",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": {
+          "fieldEvidence": {
+            "providerGeographyId": [
+              "specific"
+            ]
+          }
+        },
+        "id": "region-a",
+        "name": "region-a",
+        "countryISO3": null,
+        "geographyLevel": "national",
+        "providerGeographyId": "test-provider-id",
+        "boundary": null,
+        "centroid": null
+      },
+      {
+        "provenance": "synthetic",
+        "evidenceIds": [
+          "specific"
+        ],
+        "missingFields": [],
+        "datasetVersion": "test-coverage-v1",
+        "sourceFields": null,
+        "id": "region-b",
+        "name": "region-b",
+        "countryISO3": null,
+        "geographyLevel": "synthetic",
+        "providerGeographyId": null,
+        "boundary": null,
+        "centroid": null
+      }
+    ],
+    "evidence": [
+      {
+        "id": "specific",
+        "sourceName": "Test-only claim evidence",
+        "url": "https://example.com/test-only-evidence",
+        "retrievedAt": null,
+        "documentDate": null,
+        "claim": "Test-only operating coordinates, measured zero share and dependence, route usage and provider mapping.",
+        "entityIds": [
+          "f1",
+          "e1",
+          "route-a",
+          "u1",
+          "region-a"
+        ],
+        "reportedOrVerifiedStatus": "sourced"
+      },
+      {
+        "id": "generic",
+        "sourceName": "Generic package attribution",
+        "url": "https://example.com/dataset",
+        "retrievedAt": null,
+        "documentDate": null,
+        "claim": "Dataset-level attribution only.",
+        "entityIds": [],
+        "reportedOrVerifiedStatus": "sourced"
+      }
+    ],
+    "waypoints": [],
+    "events": [],
+    "supplyItems": [],
+    "commodities": []
+  },
+  "empty": {
+    "schemaVersion": "1.0.0",
+    "datasetVersion": "empty-test",
+    "companies": [],
+    "commercialEdges": [],
+    "facilities": [],
+    "routes": [],
+    "routeUsage": [],
+    "regions": [],
+    "evidence": [],
+    "waypoints": [],
+    "events": [],
+    "supplyItems": [],
+    "commodities": []
+  },
+  "expectedMixed": {
+    "reportedCompanies": 3,
+    "reportedRelationships": 2,
+    "linkedCompanies": 3,
+    "sourcedCoordinates": 1,
+    "syntheticOnlySites": 1,
+    "missingOperatingEvidence": 2,
+    "measuredOperationalShares": 1,
+    "assumedOperationalShares": 1,
+    "measuredWeights": 1,
+    "assumedWeights": 1,
+    "missingDemoWeights": 1,
+    "unknownRealDependence": 3,
+    "syntheticGeometry": 1,
+    "sourcedGeometry": 1,
+    "projectionCompanies": 1,
+    "projectionRegions": 1
+  }
+}

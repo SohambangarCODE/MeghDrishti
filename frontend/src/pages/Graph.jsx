@@ -10,10 +10,11 @@ import { useSearchParams } from "react-router-dom";
 import { useApp } from "../state/AppState.jsx";
 import { graphData, layoutGraph } from "../services/graph.js";
 import { Notice, PathList, RunButton } from "../components.jsx";
+import {createEntityEvidence} from '../services/evidence.js';
 
 export default function Graph() {
   const app=useApp();
-  return <GraphView key={app.activeCloudRun?.id||'demo'} />;
+  return <GraphView key={app.activeCloudRun?.id||app.datasetId} />;
 }
 function GraphView() {
   const app = useApp(),
@@ -32,15 +33,18 @@ function GraphView() {
     [kind, setKind] = useState("all"),
     [affected, setAffected] = useState(false),
     [selected, setSelected] = useState(null),
+    [selectedEdge,setSelectedEdge]=useState(null),
     [path, setPath] = useState(null),
     [scope, setScope] = useState("portfolio");
+  const dataset=run?run.sourceSnapshot:app.data.dataset;
+  const evidence=useMemo(()=>app.activeCloudRun?app.activeRunEvidence:dataset===app.data.dataset?app.editingEvidence:createEntityEvidence(dataset),[dataset,app.activeRunEvidence,app.editingEvidence,app.activeCloudRun]);
   const data = useMemo(
     () =>
-      graphData(
-        run?.sourceSnapshot || app.data.dataset,
+      dataset&&['companies','facilities','routes','waypoints','commodities','regions','events','routeUsage','commercialEdges','supplyItems'].every(k=>Array.isArray(dataset[k]))?graphData(
+        dataset,
         run?.portfolioSnapshot || app.holdings,
-      ),
-    [run?.id, app.data, app.holdings],
+      ):{nodes:[],edges:[]},
+    [dataset,run?.portfolioSnapshot,app.holdings],
   );
   const activeEntity =
     selected || data.nodes.find((n) => n.id === params.get("entity"));
@@ -143,6 +147,7 @@ function GraphView() {
     },
     labelStyle: { fontSize: 10 },
     labelBgStyle: { fill: "#fff" },
+    ariaLabel:e.commercialHop?`${evidence.edge(e).relationship.text}; ${evidence.edge(e).weight.text}`:e.kind.replaceAll('_',' '),
   }));
   const viewKey =
     visible.map((n) => n.id).join("|") +
@@ -150,6 +155,7 @@ function GraphView() {
   return (
     <>
       <h1>Exposure graph</h1>
+      {!evidence.available&&<Notice>Source snapshot unavailable. Historical graph evidence cannot use the selected installed dataset.</Notice>}
       {app.activeCloudRun&&<Notice>Private report active in memory only. <button onClick={()=>app.setActiveCloudRun(null)}>Return workspace to demo</button></Notice>}
       <p>
         Arrows labelled supplies follow supplier → customer. Only those links
@@ -299,8 +305,9 @@ function GraphView() {
             nodesDraggable={false}
             nodesConnectable={false}
             onNodeClick={(_, n) =>
-              setSelected(data.nodes.find((x) => x.id === n.id))
+              {setSelectedEdge(null);setSelected(data.nodes.find((x) => x.id === n.id));}
             }
+            onEdgeClick={(_,e)=>{setSelected(null);setSelectedEdge(data.edges.find(x=>x.id===e.id));}}
           >
             <Background color="#ddd9df" gap={24} />
             <Controls showInteractive={false} />
@@ -308,7 +315,7 @@ function GraphView() {
         </div>
         <section className="graph-inspector" aria-live="polite">
           <h2>Entity evidence</h2>
-          {activeEntity ? (
+          {selectedEdge ? <><h3>Selected relationship</h3><p className="mono">{selectedEdge.id}</p>{selectedEdge.commercialHop?<>{Object.values(evidence.edge(selectedEdge)).map(s=><p key={s.text} title={s.detail}>{s.text}</p>)}</>:<p>Operational / visual context link; not a commercial dependency weight.</p>}</> : activeEntity ? (
             <>
               <h3>{activeEntity.label}</h3>
               <p>
@@ -347,7 +354,7 @@ function GraphView() {
                     <th>
                       <button
                         className="secondary"
-                        onClick={() => setSelected(n)}
+                        onClick={() => {setSelectedEdge(null);setSelected(n);}}
                       >
                         {n.label}
                       </button>
@@ -372,6 +379,8 @@ function GraphView() {
                     ? "1 commercial hop"
                     : "not a commercial hop"}
                   )
+                  {e.commercialHop&&<><br/><small title={evidence.edge(e).relationship.detail}>{evidence.edge(e).relationship.text}</small>{' · '}<small title={evidence.edge(e).weight.detail}>{evidence.edge(e).weight.text}</small></>}
+                  {' '}<button className="secondary" aria-label={`Inspect relationship ${e.id}`} onClick={()=>{setSelected(null);setSelectedEdge(e);}}>Details</button>
                 </li>
               ))}
           </ul>

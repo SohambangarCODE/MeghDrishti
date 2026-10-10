@@ -1,0 +1,21 @@
+import {readFileSync} from 'node:fs';
+import {describe,it,expect} from 'vitest';
+import {createEntityEvidence,companyCoverage} from '../services/evidence.js';
+import {summarizeCoverage} from '../services/coverage.js';
+import {graphData} from '../services/graph.js';
+import {simulate} from '../engine/demo/simulate.js';
+const cases=JSON.parse(readFileSync(new URL('../../../backend/tests/fixtures/coverage-cases.json',import.meta.url),'utf8'));
+const fixture=JSON.parse(readFileSync(new URL('../fixtures/reference.json',import.meta.url),'utf8'));
+const holding=id=>({companyId:id,matchingStatus:'matched'});
+const edge=(d,id)=>graphData(d).edges.find(e=>e.id===id);
+describe('entity evidence uses existing claim criteria',()=>{
+ it('reuses per-company coverage records exactly',async()=>{expect(companyCoverage(cases.mixed)).toEqual((await summarizeCoverage(cases.mixed)).companies);});
+ it('keeps unmatched, ambiguous and absent IDs unavailable',()=>{const index=createEntityEvidence(cases.mixed);for(const h of [{companyId:'001',matchingStatus:'unmatched'},{companyId:'001',matchingStatus:'ambiguous'},holding('absent')])expect(index.holding(h).operating.text).toBe('Unavailable');});
+ it('distinguishes sourced, synthetic and unknown operating evidence',()=>{const i=createEntityEvidence(cases.mixed);expect(i.holding(holding('001')).operating.text).toBe('Sourced operating coordinates');expect(i.holding(holding('002')).operating.text).toBe('Operating evidence unknown');expect(i.holding(holding('003')).operating.text).toBe('Synthetic locations only');});
+ it('does not call an isolated company zero dependence',()=>{const d=structuredClone(cases.mixed);d.commercialEdges=[];expect(createEntityEvidence(d).holding(holding('001')).dependence.text).toBe('No recorded commercial relationships');});
+ it('separates reported topology, assumed weights, sourced zero and missing evidence',()=>{const d=cases.mixed,i=createEntityEvidence(d);expect(i.edge(edge(d,'e1')).weight.text).toBe('Measured dependency weight');expect(i.edge(edge(d,'e2')).relationship.text).toBe('Dataset-reported relationship');expect(i.edge(edge(d,'e2')).weight.text).toBe('Assumed dependency weight');expect(i.edge(edge(d,'e3')).weight.text).toBe('Dependency weight unknown');expect(i.edge(edge(d,'e4')).relationship.text).toBe('Synthetic relationship');});
+ it('joins graph records by exact ID and directed endpoints only',()=>{const i=createEntityEvidence(cases.mixed);for(const e of [{id:'missing',sourceId:'001',targetId:'002'},{id:'e1',sourceId:'002',targetId:'001'}])expect(i.edge(e).relationship.text).toBe('Relationship unknown');const d=structuredClone(cases.mixed);delete d.commercialEdges[0].provenance;expect(createEntityEvidence(d).edge(edge(d,'e1')).weight.text).toBe('Dependency weight unknown');});
+ it('labels facilities and routes without upgrading generic attribution',()=>{const i=createEntityEvidence(cases.mixed);expect(i.facility('f1').text).toBe('Sourced operating coordinates');expect(i.facility('f2').text).toBe('Operating-coordinate evidence unknown');expect(i.facility('f3').text).toBe('Synthetic facility / coordinates');expect(i.route('route-a').text).toBe('Sourced route geometry');expect(i.route('route-b').text).toBe('Synthetic route geometry');const d=structuredClone(cases.mixed);d.routes[0].sourceFields=null;expect(createEntityEvidence(d).route('route-a').text).toBe('Route geometry unknown');});
+ it('never replaces incomplete snapshots or ambiguous source IDs',()=>{expect(createEntityEvidence(null).holding(holding('001')).operating.text).toBe('Unavailable');const d=structuredClone(cases.mixed);d.commercialEdges.push({...d.commercialEdges[0]});expect(createEntityEvidence(d).edge(edge(d,'e1')).relationship.text).toBe('Relationship unknown');});
+ it('preserves the source and numerical analysis results',()=>{const d=structuredClone(fixture.dataset),before=JSON.stringify(d),baseline=simulate(d,fixture.holdings,fixture.scenario);const i=createEntityEvidence(d);fixture.holdings.forEach(h=>i.holding(h));graphData(d).edges.filter(e=>e.commercialHop).forEach(e=>i.edge(e));d.facilities.forEach(f=>i.facility(f.id));d.routes.forEach(r=>i.route(r.id));expect(JSON.stringify(d)).toBe(before);expect(simulate(d,fixture.holdings,fixture.scenario)).toEqual(baseline);expect(baseline.totals.assumedWeightedExposure).toBeCloseTo(1334340,8);});
+});

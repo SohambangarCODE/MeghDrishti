@@ -6,13 +6,18 @@ import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { useApp } from "../state/AppState.jsx";
 import { Notice } from "../components.jsx";
 export default function Locations() {
+ const app=useApp(),privateRun=app.activeCloudRun,dataset=privateRun?privateRun.sourceSnapshot:app.data.dataset;
+ const evidence=privateRun?app.activeRunEvidence:app.editingEvidence;
+ if(!evidence?.available)return <><h1>Operational locations</h1><Notice>Source snapshot unavailable. Historical locations cannot use the selected installed dataset.</Notice></>;
+ return <LocationsView key={privateRun?.id||app.datasetId} data={dataset} evidence={evidence} privateRun={privateRun}/>;
+}
+function LocationsView({data,evidence,privateRun}) {
   const app = useApp(),
     ref = useRef(null),
     [onlineMap, setOnlineMap] = useState(false),
     [failed, setFailed] = useState(false),
     [facilities, setFacilities] = useState(true),
     [routes, setRoutes] = useState(true);
-  const data = app.data.dataset;
   const navigate=useNavigate();
   const [routeQuery,setRouteQuery]=useState('');
   const [weatherPoint, setWeatherPoint] = useState(null),
@@ -59,7 +64,7 @@ export default function Locations() {
         if (f.latitude !== null && f.longitude !== null) {
           const point = [f.latitude, f.longitude];
           points.push(point);
-          L.circleMarker(point, {
+          const marker=L.circleMarker(point, {
             bubblingMouseEvents: false,
             radius: 8,
             color:
@@ -68,8 +73,8 @@ export default function Locations() {
                 : "#397d76",
           })
             .addTo(map)
-            .on("click", () => select(f.id))
-            .bindTooltip(`${f.name} — illustrative coordinates`);
+            .on("click", () => select(f.id));
+          const tip=document.createElement('span');tip.textContent=f.name+' — '+evidence.facility(f.id).text;marker.bindTooltip(tip);
         }
     const routePoints=[];
     if (routes) for(const r of shownRoutes) if(r.geometry?.type==='LineString'){
@@ -77,11 +82,11 @@ export default function Locations() {
       const active=r.id===selected;
       routePoints.push(...coordinates);
       const line=L.polyline(coordinates,{color:active?'#b8560d':'#2563eb',weight:active?6:3,opacity:selectedRoute&&!active ? .4 : .85,bubblingMouseEvents:false}).addTo(map);
-      const label=document.createElement('span');label.textContent=r.name+' — synthetic corridor';line.bindTooltip(label).on('click',()=>chooseRoute(r.id));
+      const label=document.createElement('span');label.textContent=r.name+' — '+evidence.route(r.id).text;line.bindTooltip(label).on('click',()=>chooseRoute(r.id));
       if(active){
         coordinates.forEach((point,index)=>{
           const marker=L.circleMarker(point,{radius:index===0||index===coordinates.length-1?8:4,color:'#b8560d',fillColor:'white',fillOpacity:1,bubblingMouseEvents:false}).addTo(map);
-          const tip=document.createElement('span');tip.textContent=index===0?'Start (illustrative)':index===coordinates.length-1?'End (illustrative)':`Waypoint ${index}`;marker.bindTooltip(tip);
+          const tip=document.createElement('span');tip.textContent=index===0?'Start (geometry order)':index===coordinates.length-1?'End (geometry order)':`Waypoint ${index}`;marker.bindTooltip(tip);
         });
       }
     }
@@ -123,9 +128,10 @@ export default function Locations() {
     <>
       <h1>Operational locations</h1>
       <Notice>
-        All locations are synthetic and illustrative. No headquarters or
-        registered-country substitutions are used.
+        A map pin does not verify an operating facility; a corridor does not
+        establish observed shipments. No headquarters or registration-country substitutions are used.
       </Notice>
+      {privateRun&&<Notice>Private report locations: immutable source snapshot, in memory only. <button onClick={()=>app.setActiveCloudRun(null)}>Return workspace to demo</button></Notice>}
       <div className="actions">
         <label className="check">
           <input
@@ -147,8 +153,8 @@ export default function Locations() {
           {onlineMap ? "Use offline list" : "Load online map tiles"}
         </button>
       </div>
-      <section><h2>Transport corridor explorer</h2><p>Blue lines are supplied synthetic corridors. Orange highlights your selection; endpoint markers describe geometry order, not verified shipment direction. No road routing or travel time is inferred.</p><div className="fields"><label>Find corridor<input value={routeQuery} onChange={e=>setRouteQuery(e.target.value)} placeholder="Search route name"/></label><label>Transport corridor<select value={shownRoutes.some(r=>r.id===selected)?selected:''} onChange={e=>chooseRoute(e.target.value)}><option value="">Choose a corridor</option>{shownRoutes.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label></div><div className="actions"><button className="secondary" onClick={()=>{setWeatherPoint(null);select('');setRouteQuery('');}}>Reset map selection</button><span>{shownRoutes.length} corridors match the current company/search.</span></div>
-      {selectedRoute&&<article className="location-card selected"><h3>{selectedRoute.name}</h3><p>Transport mode: {selectedRoute.mode||'Unknown'} · Source: {selectedRoute.provenance}. Geometry: {routeCoordinates.length?`${routeCoordinates.length} supplied points`:'not supplied'}.</p>{routeCoordinates.length>0&&<p>Start: {routeCoordinates[0][1]}, {routeCoordinates[0][0]} → End: {routeCoordinates.at(-1)[1]}, {routeCoordinates.at(-1)[0]}</p>}<div className="actions"><Link className="button secondary" to={`/graph?entity=${encodeURIComponent(selectedRoute.id)}`}>Inspect selected route in graph</Link>{routeCoordinates.length>0&&<><button className="secondary" onClick={()=>setWeatherPoint({latitude:routeCoordinates[0][1],longitude:routeCoordinates[0][0]})}>Weather at route start</button><button className="secondary" onClick={()=>setWeatherPoint({latitude:routeCoordinates.at(-1)[1],longitude:routeCoordinates.at(-1)[0]})}>Weather at route end</button></>}{routeEvents.map(event=><button key={event.id} onClick={()=>{app.setScenario({...app.scenario,id:event.id,eventIds:[event.id],eventOverrides:{},assumptionOverrides:[]});navigate('/scenarios');}}>Configure route disruption</button>)}</div>{!routeEvents.length&&<p>No supplied disruption scenario targets this corridor. Select a supported scenario on the Scenarios page.</p>}<details><summary>Companies using this corridor ({data.routeUsage.filter(u=>u.routeId===selectedRoute.id).length})</summary><div className="table-scroll"><table><thead><tr><th>Company</th><th>Assumed shipment share</th><th>Assumed substitutability</th></tr></thead><tbody>{data.routeUsage.filter(u=>u.routeId===selectedRoute.id).map(u=><tr key={u.id}><th><button className="secondary" onClick={()=>select(u.companyId)}>{data.companies.find(c=>c.id===u.companyId)?.name||u.companyId}</button></th><td>{u.shipmentShare===null?'Unknown':`${u.shipmentShare*100}%`}</td><td>{u.substitutability===null?'Unknown':`${u.substitutability*100}%`}</td></tr>)}</tbody></table></div></details></article>}</section>
+      <section><h2>Transport corridor explorer</h2><p>Blue lines show supplied geometry; its evidence quality is labelled per corridor. Orange highlights your selection; endpoint markers describe geometry order, not verified shipment direction. No road routing or travel time is inferred.</p><div className="fields"><label>Find corridor<input value={routeQuery} onChange={e=>setRouteQuery(e.target.value)} placeholder="Search route name"/></label><label>Transport corridor<select value={shownRoutes.some(r=>r.id===selected)?selected:''} onChange={e=>chooseRoute(e.target.value)}><option value="">Choose a corridor</option>{shownRoutes.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></label></div><div className="actions"><button className="secondary" onClick={()=>{setWeatherPoint(null);select('');setRouteQuery('');}}>Reset map selection</button><span>{shownRoutes.length} corridors match the current company/search.</span></div>
+      {selectedRoute&&<article className="location-card selected"><h3>{selectedRoute.name}</h3><p>Transport mode: {selectedRoute.mode||'Unknown'} · Source: {selectedRoute.provenance}. <span title={evidence.route(selectedRoute.id).detail}>{evidence.route(selectedRoute.id).text}</span>. Geometry: {routeCoordinates.length?`${routeCoordinates.length} supplied points`:'not supplied'}.</p>{routeCoordinates.length>0&&<p>Start: {routeCoordinates[0][1]}, {routeCoordinates[0][0]} → End: {routeCoordinates.at(-1)[1]}, {routeCoordinates.at(-1)[0]}</p>}<div className="actions"><Link className="button secondary" to={`/graph?entity=${encodeURIComponent(selectedRoute.id)}`}>Inspect selected route in graph</Link>{routeCoordinates.length>0&&<><button className="secondary" onClick={()=>setWeatherPoint({latitude:routeCoordinates[0][1],longitude:routeCoordinates[0][0]})}>Weather at route start</button><button className="secondary" onClick={()=>setWeatherPoint({latitude:routeCoordinates.at(-1)[1],longitude:routeCoordinates.at(-1)[0]})}>Weather at route end</button></>}{!privateRun&&routeEvents.map(event=><button key={event.id} onClick={()=>{app.setScenario({...app.scenario,id:event.id,eventIds:[event.id],eventOverrides:{},assumptionOverrides:[]});navigate('/scenarios');}}>Configure route disruption</button>)}</div>{!routeEvents.length&&<p>No supplied disruption scenario targets this corridor. Select a supported scenario on the Scenarios page.</p>}<details><summary>Companies using this corridor ({data.routeUsage.filter(u=>u.routeId===selectedRoute.id).length})</summary><div className="table-scroll"><table><thead><tr><th>Company</th><th>Assumed shipment share</th><th>Assumed substitutability</th></tr></thead><tbody>{data.routeUsage.filter(u=>u.routeId===selectedRoute.id).map(u=><tr key={u.id}><th><button className="secondary" onClick={()=>select(u.companyId)}>{data.companies.find(c=>c.id===u.companyId)?.name||u.companyId}</button></th><td>{u.shipmentShare===null?'Unknown':`${u.shipmentShare*100}%`}</td><td>{u.substitutability===null?'Unknown':`${u.substitutability*100}%`}</td></tr>)}</tbody></table></div></details></article>}</section>
       {onlineMap && (
         <div ref={ref} className="map" aria-label="Illustrative facility map" />
       )}
@@ -200,7 +206,7 @@ export default function Locations() {
                 <p>
                   Operator:{" "}
                   {data.companies.find((c) => c.id === f.companyId)?.name}.
-                  Source: synthetic reference fixture.
+                  <span title={evidence.facility(f.id).detail}>{evidence.facility(f.id).text}</span>.
                 </p>
                 <Link to={`/graph?entity=${encodeURIComponent(f.id)}`}>
                   Inspect linked graph entity {f.id}
@@ -215,9 +221,7 @@ export default function Locations() {
                   Inspect corridor in graph
                 </Link>
                 <p>
-                  {r.geometry
-                    ? "Illustrative synthetic corridor geometry; not observed shipments."
-                    : "Route geometry not supplied."}{" "}
+                  <span title={evidence.route(r.id).detail}>{evidence.route(r.id).text}</span>.{" "}
                   {data.routeUsage.filter((u) => u.routeId === r.id).length}{" "}
                   recorded demo company usage(s).
                 </p>
@@ -243,7 +247,7 @@ export default function Locations() {
           ) : (
             <p>Select a company, a facility record or a map marker.</p>
           )}
-          <WeatherPanel facilityIds={shownFacilities.map((f) => f.id)} />
+          {privateRun?<Notice>Weather evidence unavailable for historical snapshots. No current-dataset weather is substituted or private facility IDs sent for refresh.</Notice>:<WeatherPanel facilityIds={shownFacilities.map((f) => f.id)} />}
         </section>
       </div>
     </>

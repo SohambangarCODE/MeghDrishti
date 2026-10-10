@@ -2,11 +2,7 @@ import {z} from 'zod';
 import {validateDataset} from '../schemas/contracts.js';
 import definitions from '../../../shared/coverage-metrics.json' with {type:'json'};
 const groups=['companies','commercialEdges','facilities','routes','routeUsage','regions'];
-const number=v=>typeof v==='number'&&Number.isFinite(v);
-const fields=r=>r.sourceFields||{};
-const synthetic=r=>r.provenance==='synthetic'||fields(r).parameter_status==='synthetic_demo'||fields(r).simulation_parameter_status==='synthetic_demo'||fields(r).is_synthetic===true;
-const coordinates=r=>number(r.latitude)&&number(r.longitude)&&Math.abs(r.latitude)<=90&&Math.abs(r.longitude)<=180;
-const geometry=r=>r.geometry?.type==='LineString'&&Array.isArray(r.geometry.coordinates)&&r.geometry.coordinates.length>=2&&r.geometry.coordinates.every(p=>Array.isArray(p)&&p.length===2&&number(p[0])&&number(p[1])&&Math.abs(p[0])<=180&&Math.abs(p[1])<=90);
+import {finiteNumber as number,sourceFields as fields,evidenceRules,companyCoverage} from './evidence.js';
 function canonical(v){
  if(v===null)return ['null'];
  if(typeof v==='boolean')return ['boolean',v];
@@ -23,26 +19,8 @@ export async function coverageHash(dataset){
 export async function summarizeCoverage(dataset){
  // Observe the immutable original; do not fill absent snapshot fields from current data.
  validateDataset(dataset);
- const evidence=new Map(dataset.evidence.map(e=>[e.id,e]));
- const supports=(r,claim)=>{
-  const sf=fields(r),refs=sf.fieldEvidence?.[claim];
-  if(r.provenance!=='sourced'||synthetic(r)||!Array.isArray(refs))return false;
-  return refs.some(key=>{const e=evidence.get(key);return e&&r.evidenceIds.includes(key)&&e.entityIds.includes(r.id)&&['sourced','verified'].includes(e.reportedOrVerifiedStatus)&&!!e.url&&!!e.claim.trim();});
- };
- const sourcedSite=f=>coordinates(f)&&supports(f,'operatingCoordinates');
- const mapped=r=>!!r.providerGeographyId&&r.geographyLevel!=='synthetic'&&supports(r,'providerGeographyId');
- const measuredShare=f=>{const sf=fields(f),v=Object.hasOwn(sf,'operational_share')?sf.operational_share:f.operationalShare;return number(v)&&v>=0&&v<=1&&supports(f,'operationalShare');};
- const measuredWeight=e=>e.weightBasis==='measured'&&number(e.dependencyWeight)&&supports(e,'dependencyWeight');
- const regions=new Map(dataset.regions.map(r=>[r.id,r])),routes=new Map(dataset.routes.map(r=>[r.id,r]));
- const companies=dataset.companies.map(c=>{
-  const sites=dataset.facilities.filter(f=>f.companyId===c.id),usages=dataset.routeUsage.filter(u=>u.companyId===c.id),incoming=dataset.commercialEdges.filter(e=>e.customerCompanyId===c.id),outgoing=dataset.commercialEdges.filter(e=>e.supplierCompanyId===c.id),sourced=sites.filter(sourcedSite).length;
-  return {id:c.id,name:c.name,supplierCount:incoming.length,customerCount:outgoing.length,facilityCount:sites.length,routeUsageCount:usages.length,sourcedCoordinateCount:sourced,
-   syntheticOnlySites:sites.length>0&&sites.every(synthetic),
-   syntheticRouteGeometry:usages.some(u=>synthetic(u)&&synthetic(routes.get(u.routeId))&&geometry(routes.get(u.routeId))),
-   sourcedRouteGeometry:usages.some(u=>supports(u,'routeUsage')&&supports(routes.get(u.routeId),'routeGeometry')&&geometry(routes.get(u.routeId))),
-   projectionMapping:sites.some(f=>sourcedSite(f)&&regions.has(f.regionId)&&mapped(regions.get(f.regionId))),
-   operatingEvidenceState:sourced?'Sourced':'Unknown',measuredDependenceState:incoming.length>0&&incoming.every(measuredWeight)?'Sourced':'Unknown'};
- });
+ const rules=evidenceRules(dataset),{mapped,measuredShare,measuredWeight}=rules;
+ const companies=companyCoverage(dataset,rules);
  const count=(rows,p)=>rows.filter(p).length,edges=dataset.commercialEdges,facilities=dataset.facilities;
  const counts=Object.fromEntries(groups.map(k=>[k,dataset[k].length]));
  const values={reportedCompanies:count(dataset.companies,c=>c.provenance==='dataset_reported'),reportedRelationships:count(edges,e=>e.provenance==='dataset_reported'),
